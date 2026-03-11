@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Omni-Tool Enterprise Suite",
+  "description": "Hybrid-Online Enterprise Suite for Video, Audio, Image, and AI Processing. Local-First, Cloud-Optional.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
