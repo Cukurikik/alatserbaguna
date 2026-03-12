@@ -1,0 +1,53 @@
+import {Routes} from '@angular/router';
+import { ShellComponent } from './layout/shell/shell.component';
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: ShellComponent,
+    children: [
+      { path: '',         loadComponent: () => import('./modules/dashboard/dashboard.component').then(m => m.DashboardComponent) },
+      { path: 'video',    loadComponent: () => import('./modules/video-engine/video-engine.component').then(m => m.VideoEngineComponent) },
+      { path: 'video/trim', loadComponent: () => import('./modules/video-engine/trimmer/trimmer-wrapper.component').then(m => m.TrimmerWrapperComponent) },
+      { path: 'video/merge', loadComponent: () => import('./modules/video-engine/merger/merger-wrapper.component').then(m => m.MergerWrapperComponent) },
+      { path: 'video/convert', loadComponent: () => import('./modules/video-engine/converter/converter-wrapper.component').then(m => m.ConverterWrapperComponent) },
+      { path: 'video/compress', loadComponent: () => import('./modules/video-engine/compressor/compressor-wrapper.component').then(m => m.CompressorWrapperComponent) },
+      { path: 'video/crop', loadComponent: () => import('./modules/video-engine/crop/crop-wrapper.component').then(m => m.CropWrapperComponent) },
+      { path: 'video/rotate-flip', loadComponent: () => import('./modules/video-engine/rotate-flip/rotate-flip-wrapper.component').then(m => m.RotateFlipWrapperComponent) },
+      { path: 'video/speed-control', loadComponent: () => import('./modules/video-engine/speed-control/speed-control-wrapper.component').then(m => m.SpeedControlWrapperComponent) },
+      { path: 'video/reverse', loadComponent: () => import('./modules/video-engine/reverse/reverse-wrapper.component').then(m => m.ReverseWrapperComponent) },
+      { path: 'video/loop', loadComponent: () => import('./modules/video-engine/loop/loop-wrapper.component').then(m => m.LoopWrapperComponent) },
+      { path: 'video/stabilizer', loadComponent: () => import('./modules/video-engine/stabilizer/stabilizer-wrapper.component').then(m => m.StabilizerWrapperComponent) },
+      { path: 'video/subtitle-burner', loadComponent: () => import('./modules/video-engine/subtitle-burner/subtitle-burner-wrapper.component').then(m => m.SubtitleBurnerWrapperComponent) },
+      { path: 'video/thumbnail-gen', loadComponent: () => import('./modules/video-engine/thumbnail-gen/thumbnail-gen-wrapper.component').then(m => m.ThumbnailGenWrapperComponent) },
+      { path: 'video/gif-maker', loadComponent: () => import('./modules/video-engine/gif-maker/gif-maker-wrapper.component').then(m => m.GifMakerWrapperComponent) },
+      { path: 'video/audio-extractor', loadComponent: () => import('./modules/video-engine/audio-extractor/audio-extractor-wrapper.component').then(m => m.AudioExtractorWrapperComponent) },
+      { path: 'video/video-to-mp3', loadComponent: () => import('./modules/video-engine/video-to-mp3/video-to-mp3-wrapper.component').then(m => m.VideoToMp3WrapperComponent) },
+      { path: 'video/audio-replacer', loadComponent: () => import('./modules/video-engine/audio-replacer/audio-replacer-wrapper.component').then(m => m.AudioReplacerWrapperComponent) },
+      { path: 'video/watermark', loadComponent: () => import('./modules/video-engine/watermark/watermark-wrapper.component').then(m => m.WatermarkWrapperComponent) },
+      { path: 'video/gif-converter', loadComponent: () => import('./modules/video-engine/gif-converter/gif-converter-wrapper.component').then(m => m.GifConverterWrapperComponent) },
+      { path: 'video/frame-extractor', loadComponent: () => import('./modules/video-engine/frame-extractor/frame-extractor-wrapper.component').then(m => m.FrameExtractorWrapperComponent) },
+      { path: 'video/color-grading', loadComponent: () => import('./modules/video-engine/color-grading/color-grading-wrapper.component').then(m => m.ColorGradingWrapperComponent) },
+      { path: 'video/denoiser', loadComponent: () => import('./modules/video-engine/denoiser/denoiser-wrapper.component').then(m => m.DenoiserWrapperComponent) },
+      { path: 'video/upscaler-ai', loadComponent: () => import('./modules/video-engine/upscaler-ai/upscaler-ai-wrapper.component').then(m => m.UpscalerAiWrapperComponent) },
+      { path: 'video/background-blur', loadComponent: () => import('./modules/video-engine/background-blur/background-blur-wrapper.component').then(m => m.BackgroundBlurWrapperComponent) },
+      { path: 'video/object-remover', loadComponent: () => import('./modules/video-engine/object-remover/object-remover-wrapper.component').then(m => m.ObjectRemoverWrapperComponent) },
+      { path: 'video/scene-detector', loadComponent: () => import('./modules/video-engine/scene-detector/scene-detector-wrapper.component').then(m => m.SceneDetectorWrapperComponent) },
+      { path: 'video/voice-remover', loadComponent: () => import('./modules/video-engine/voice-remover/voice-remover-wrapper.component').then(m => m.VoiceRemoverWrapperComponent) },
+      { path: 'video/metadata-editor', loadComponent: () => import('./modules/video-engine/metadata-editor/metadata-editor-wrapper.component').then(m => m.MetadataEditorWrapperComponent) },
+      { path: 'video/screen-recorder', loadComponent: () => import('./modules/video-engine/screen-recorder/screen-recorder-wrapper.component').then(m => m.ScreenRecorderWrapperComponent) },
+      { path: 'video/webcam-recorder', loadComponent: () => import('./modules/video-engine/webcam-recorder/webcam-recorder-wrapper.component').then(m => m.WebcamRecorderWrapperComponent) },
+      { path: 'video/slideshow-maker', loadComponent: () => import('./modules/video-engine/slideshow-maker/slideshow-maker-wrapper.component').then(m => m.SlideshowMakerWrapperComponent) },
+      { path: 'video/pip-overlay', loadComponent: () => import('./modules/video-engine/components/pip-overlay-wrapper.component').then(m => m.PipOverlayWrapperComponent) },
+      { path: 'video/batch-processor', loadComponent: () => import('./modules/video-engine/components/batch-processor-wrapper.component').then(m => m.BatchProcessorWrapperComponent) },
+      { path: 'video/comparison', loadComponent: () => import('./modules/video-engine/components/comparison-wrapper.component').then(m => m.ComparisonWrapperComponent) },
+      { path: 'video/auto-subtitle', loadComponent: () => import('./modules/video-engine/components/auto-subtitle-wrapper.component').then(m => m.AutoSubtitleWrapperComponent) },
+      { path: 'video/silence-remover', loadComponent: () => import('./modules/video-engine/components/silence-remover-wrapper.component').then(m => m.SilenceRemoverWrapperComponent) },
+      { path: 'audio',    loadComponent: () => import('./modules/audio-studio/audio-studio.component').then(m => m.AudioStudioComponent) },
+      { path: 'image',    loadComponent: () => import('./modules/image-matrix/image-matrix.component').then(m => m.ImageMatrixComponent) },
+      { path: 'converter',loadComponent: () => import('./modules/converter/converter.component').then(m => m.ConverterComponent) },
+      { path: 'settings', loadComponent: () => import('./modules/settings/settings.component').then(m => m.SettingsComponent) },
+    ]
+  },
+  { path: '**', redirectTo: '' }
+];
