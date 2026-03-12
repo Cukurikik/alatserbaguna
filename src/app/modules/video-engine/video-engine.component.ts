@@ -4,13 +4,13 @@ import { ToolCardComponent, Tool } from '../../shared/components/tool-card/tool-
 import { LucideAngularModule, Search, Filter } from 'lucide-angular';
 
 export const VIDEO_TOOLS: Tool[] = [
-  // Kategori: Basic
+  // Category: Basic
   { id: 'trim',           label: 'Video Trimmer',    icon: '✂️',  category: 'basic',    status: 'stable' },
   { id: 'merge',          label: 'Video Merger',     icon: '🔗',  category: 'basic',    status: 'stable' },
   { id: 'convert',        label: 'Format Converter', icon: '🔄',  category: 'basic',    status: 'stable' },
   { id: 'compress',       label: 'Compressor',       icon: '📦',  category: 'basic',    status: 'stable' },
   { id: 'crop',           label: 'Smart Crop',       icon: '📐',  category: 'basic',    status: 'stable' },
-  // Kategori: Advanced
+  // Category: Advanced
   { id: 'rotate-flip',    label: 'Rotate & Flip',    icon: '🔃',  category: 'advanced', status: 'stable' },
   { id: 'speed-control',  label: 'Speed Control',    icon: '⚡',  category: 'advanced', status: 'stable' },
   { id: 'reverse',        label: 'Reverse',          icon: '⏪',  category: 'advanced', status: 'stable' },
@@ -22,7 +22,7 @@ export const VIDEO_TOOLS: Tool[] = [
   { id: 'watermark',      label: 'Watermark Adder',  icon: '💧',  category: 'advanced', status: 'stable' },
   { id: 'gif-converter',  label: 'GIF Converter',    icon: '🎞️',  category: 'advanced', status: 'stable' },
   { id: 'frame-extractor', label: 'Frame Extractor', icon: '🎞️',  category: 'advanced', status: 'stable' },
-  // Kategori: Pro
+  // Category: Pro
   { id: 'audio-extractor', label: 'Audio Extractor', icon: '🎵',  category: 'pro',      status: 'stable' },
   { id: 'audio-replacer',  label: 'Audio Replacer',  icon: '🔊',  category: 'pro',      status: 'stable' },
   { id: 'color-grading',   label: 'Color Grading',   icon: '🎨',  category: 'pro',      status: 'beta' },
@@ -33,7 +33,7 @@ export const VIDEO_TOOLS: Tool[] = [
   { id: 'scene-detector',  label: 'Scene Detector',  icon: '🎬',  category: 'pro',      status: 'stable' },
   { id: 'voice-remover',   label: 'Voice Remover',   icon: '🎤',  category: 'pro',      status: 'experimental' },
   { id: 'metadata-editor', label: 'Metadata Editor', icon: '📋',  category: 'pro',      status: 'stable' },
-  // Kategori: Recording & Creation
+  // Category: Recording & Creation
   { id: 'screen-recorder', label: 'Screen Recorder', icon: '🖥️',  category: 'pro',      status: 'stable' },
   { id: 'webcam-recorder', label: 'Webcam Recorder', icon: '📷',  category: 'pro',      status: 'stable' },
   { id: 'slideshow-maker', label: 'Slideshow Maker', icon: '🎞️',  category: 'pro',      status: 'stable' },
@@ -96,7 +96,7 @@ export const VIDEO_TOOLS: Tool[] = [
       transition('* => *', [
         query(':enter', [
           style({ opacity: 0, transform: 'scale(0.92)' }),
-          stagger(40, animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' })))
+          stagger(40, animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' })))\
         ], { optional: true })
       ])
     ])

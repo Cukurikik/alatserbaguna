@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ReactBridgeComponent } from '../../../../shared/components/react-bridge/react-bridge.component';
-import { PipOverlayPage } from '../../../../react-features/video/tools/31-pip-overlay';
+import { ComparisonPage } from '../../../../../react-features/video/tools/33-comparison';
 
 @Component({
-  selector: 'app-pip-overlay-wrapper',
+  selector: 'app-comparison-wrapper',
   standalone: true,
   imports: [ReactBridgeComponent],
   template: `<app-react-bridge [component]="reactComponent" />`
 })
-export class PipOverlayWrapperComponent {
-  reactComponent = PipOverlayPage;
+export class ComparisonWrapperComponent {
+  reactComponent = ComparisonPage;
 }

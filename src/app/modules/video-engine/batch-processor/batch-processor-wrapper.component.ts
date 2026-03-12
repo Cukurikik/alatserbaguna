@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactBridgeComponent } from '../../../../shared/components/react-bridge/react-bridge.component';
-import { BatchProcessorPage } from '../../../../react-features/video/tools/32-batch-processor';
+import { BatchProcessorPage } from '../../../../../react-features/video/tools/32-batch-processor';
 
 @Component({
   selector: 'app-batch-processor-wrapper',
