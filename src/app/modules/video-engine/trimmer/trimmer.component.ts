@@ -205,7 +205,7 @@ export class VideoTrimmerComponent {
             }
           }, 3000);
         }
-      }, 300);
+      }, 10);
 
     } catch (error) {
       console.error('Validation Error:', error);
