@@ -10,7 +10,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   selector: 'app-trimmer',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe, AudioDropZoneComponent],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -191,12 +191,12 @@ export class TrimmerComponent implements OnDestroy {
   }
 
   onStartChange(event: Event, durationMs: number) {
-    const val = parseInt((e.target as HTMLInputElement).value, 10);
+    const val = parseInt((event.target as HTMLInputElement).value, 10);
     this.store.dispatch(TrimmerActions.setInPoint({ ms: val }));
   }
 
   onEndChange(event: Event, durationMs: number) {
-    const val = parseInt((e.target as HTMLInputElement).value, 10);
+    const val = parseInt((event.target as HTMLInputElement).value, 10);
     this.store.dispatch(TrimmerActions.setOutPoint({ ms: val }));
   }
 

@@ -235,7 +235,7 @@ export class CompressorComponent implements OnDestroy {
   }
 
   onChange(type: 'threshold' | 'ratio' | 'attack' | 'release' | 'makeup', event: Event): void {
-    const val = parseFloat((e.target as HTMLInputElement).value);
+    const val = parseFloat((event.target as HTMLInputElement).value);
     switch (type) {
       case 'threshold': this.thresholdDb.set(val); break;
       case 'ratio': this.ratio.set(val); break;

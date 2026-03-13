@@ -10,7 +10,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   selector: 'app-pitch',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe, AudioDropZoneComponent],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -86,9 +86,12 @@ import { ExportFormat } from '../shared/types/audio.types';
                 </div>
 
                 <!-- Preserve Tempo Toggle -->
-                <div class="mt-4 p-5 rounded-xl border transition-colors flex items-start gap-4 cursor-pointer" 
+                <div tabindex="0" role="button"
+                     class="mt-4 p-5 rounded-xl border transition-colors flex items-start gap-4 cursor-pointer" 
                      [class]="preserveTempo() ? 'bg-purple-500/5 border-purple-500/30' : 'bg-gray-900/50 border-gray-800'"
-                     (click)="toggleTempo()">
+                     (click)="toggleTempo()"
+                     (keydown.enter)="toggleTempo()"
+                     (keydown.space)="toggleTempo()">
                      
                      <div class="w-6 h-6 rounded flex items-center justify-center border transition-colors mt-0.5"
                           [class]="preserveTempo() ? 'bg-purple-500 border-purple-400' : 'bg-gray-800 border-gray-600'">
@@ -221,7 +224,7 @@ export class PitchComponent implements OnDestroy {
   }
 
   onSemiChange(event: Event): void {
-    const val = parseInt((e.target as HTMLInputElement).value, 10);
+    const val = parseInt((event.target as HTMLInputElement).value, 10);
     this.semitones.set(val);
   }
 

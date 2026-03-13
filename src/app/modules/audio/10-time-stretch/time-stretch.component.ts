@@ -241,7 +241,7 @@ export class TimeStretchComponent implements OnDestroy {
   }
 
   onSpeedChange(event: Event): void {
-    const val = parseFloat((e.target as HTMLInputElement).value);
+    const val = parseFloat((event.target as HTMLInputElement).value);
     this.speed.set(val);
   }
 

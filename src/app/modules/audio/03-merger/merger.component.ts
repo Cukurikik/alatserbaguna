@@ -55,7 +55,7 @@ import { ExportFormat } from '../shared/types/audio.types';
               
               <div class="flex justify-between items-center mb-6">
                  <h3 class="text-xs font-black text-gray-500 uppercase tracking-widest">Track Sequence ({{ state.inputFiles.length }})</h3>
-                 <app-audio-drop-zone [compact]="true" (fileSelected)="onFilesAdded($event)"></app-audio-drop-zone>
+                 <app-audio-drop-zone (fileSelected)="onFilesAdded($event)"></app-audio-drop-zone>
               </div>
 
               @if (state.inputFiles.length === 0) {

@@ -10,7 +10,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   selector: 'app-reverb',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe, AudioDropZoneComponent],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -220,7 +220,7 @@ export class ReverbComponent implements OnDestroy {
   }
 
   onChange(type: 'room' | 'damping' | 'dry' | 'wet', event: Event): void {
-    const val = parseFloat((e.target as HTMLInputElement).value);
+    const val = parseFloat((event.target as HTMLInputElement).value);
     switch (type) {
       case 'room': this.roomSizeMs.set(val); break;
       case 'damping': this.damping.set(val); break;
