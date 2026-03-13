@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-video-preview',
@@ -9,7 +9,8 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
         <video 
           controls 
           class="w-full h-auto max-h-[60vh] object-contain"
-          [src]="videoUrl">
+          [src]="videoUrl"
+          (loadedmetadata)="onLoadedMetadata($event)">
         </video>
       } @else {
         <div class="h-64 flex items-center justify-center text-gray-500">
@@ -22,4 +23,10 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class VideoPreviewComponent {
   @Input() videoUrl: string | null = null;
+  @Output() durationLoaded = new EventEmitter<number>();
+
+  onLoadedMetadata(event: Event) {
+    const videoElement = event.target as HTMLVideoElement;
+    this.durationLoaded.emit(videoElement.duration);
+  }
 }

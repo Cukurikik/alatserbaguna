@@ -1,6 +1,9 @@
 export interface VideoMetadata {
+  name: string;
+  size: number;
+  type: string;
   duration: number;
-  fps: number;
+  fps?: number;
   width: number;
   height: number;
 }
