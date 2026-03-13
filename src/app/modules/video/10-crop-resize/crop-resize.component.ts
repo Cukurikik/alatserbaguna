@@ -141,7 +141,7 @@ export class CropResizeComponent {
   }
 
   getCropValue(key: string, state: CropResizeState): number {
-    return (state as Record<string, unknown>)[key] as number;
+    return (state as any)[key] as number;
   }
 
   updateCrop(key: string, value: number, state: CropResizeState): void {
