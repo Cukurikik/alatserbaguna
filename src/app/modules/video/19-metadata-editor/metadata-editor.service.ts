@@ -68,10 +68,7 @@ export class MetadataEditorService {
   }
 
   process(config: MetadataEditorConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<MetadataEditorConfig, ArrayBuffer>(
-      () => new Worker(new URL('./metadata-editor.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./metadata-editor.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

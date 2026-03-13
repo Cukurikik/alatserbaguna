@@ -33,10 +33,7 @@ export class ReverserService {
    * segmented approach (30s chunks reversed independently then concatenated).
    */
   process(config: ReverserConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<ReverserConfig, ArrayBuffer>(
-      () => new Worker(new URL('./reverser.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./reverser.worker', import.meta.url), { type: 'module' }), config);
   }
 
   /**

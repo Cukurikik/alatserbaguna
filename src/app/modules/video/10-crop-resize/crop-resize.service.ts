@@ -78,10 +78,7 @@ export class CropResizeService {
   }
 
   process(config: CropResizeConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<CropResizeConfig, ArrayBuffer>(
-      () => new Worker(new URL('./crop-resize.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./crop-resize.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, mode: 'crop' | 'resize'): string {

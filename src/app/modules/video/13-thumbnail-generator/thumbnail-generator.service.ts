@@ -67,10 +67,7 @@ export class ThumbnailGeneratorService {
   }
 
   process(config: ThumbnailConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<ThumbnailConfig, ArrayBuffer>(
-      () => new Worker(new URL('./thumbnail-generator.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./thumbnail-generator.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, mode: string, format: string): string {

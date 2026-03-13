@@ -49,10 +49,7 @@ export class VideoToGifService {
   }
 
   process(config: VideoToGifConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<VideoToGifConfig, ArrayBuffer>(
-      () => new Worker(new URL('./video-to-gif.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./video-to-gif.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

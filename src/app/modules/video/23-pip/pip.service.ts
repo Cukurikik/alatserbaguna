@@ -56,10 +56,7 @@ export class PipService {
   }
 
   process(config: PipConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<PipConfig, ArrayBuffer>(
-      () => new Worker(new URL('./pip.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./pip.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

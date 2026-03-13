@@ -43,10 +43,7 @@ export class AudioReplacerService {
   }
 
   process(config: AudioReplacerConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<AudioReplacerConfig, ArrayBuffer>(
-      () => new Worker(new URL('./audio-replacer.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./audio-replacer.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

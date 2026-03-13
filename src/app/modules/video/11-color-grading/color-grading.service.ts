@@ -89,10 +89,7 @@ export class ColorGradingService {
   }
 
   process(config: ColorGradingProcessConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<ColorGradingProcessConfig, ArrayBuffer>(
-      () => new Worker(new URL('./color-grading.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./color-grading.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

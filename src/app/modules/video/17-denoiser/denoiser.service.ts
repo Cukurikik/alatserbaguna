@@ -67,10 +67,7 @@ export class DenoiserService {
   }
 
   process(config: DenoiserConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<DenoiserConfig, ArrayBuffer>(
-      () => new Worker(new URL('./denoiser.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./denoiser.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

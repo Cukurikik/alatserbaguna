@@ -71,10 +71,7 @@ export class UpscalerService {
   }
 
   process(config: UpscalerConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<UpscalerConfig, ArrayBuffer>(
-      () => new Worker(new URL('./upscaler.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./upscaler.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, scaleFactor: number): string {

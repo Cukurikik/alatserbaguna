@@ -57,10 +57,7 @@ export class FlipRotateService {
   }
 
   process(config: FlipRotateConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<FlipRotateConfig, ArrayBuffer>(
-      () => new Worker(new URL('./flip-rotate.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./flip-rotate.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

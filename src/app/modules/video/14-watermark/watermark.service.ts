@@ -59,10 +59,7 @@ export class WatermarkService {
   }
 
   process(config: WatermarkConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<WatermarkConfig, ArrayBuffer>(
-      () => new Worker(new URL('./watermark.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./watermark.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

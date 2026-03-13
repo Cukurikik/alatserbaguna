@@ -45,10 +45,7 @@ export class BlurService {
   }
 
   process(config: BlurConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<BlurConfig, ArrayBuffer>(
-      () => new Worker(new URL('./blur.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./blur.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

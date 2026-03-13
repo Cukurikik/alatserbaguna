@@ -62,9 +62,6 @@ export class CompareService {
 
   /** Export side-by-side or difference mode via FFmpeg hstack/blend filter. */
   export(config: CompareConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<CompareConfig, ArrayBuffer>(
-      () => new Worker(new URL('./compare.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./compare.worker', import.meta.url), { type: 'module' }), config);
   }
 }

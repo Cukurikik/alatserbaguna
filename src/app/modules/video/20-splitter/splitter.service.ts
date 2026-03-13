@@ -44,10 +44,7 @@ export class SplitterService {
   }
 
   process(config: SplitterConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<SplitterConfig, ArrayBuffer>(
-      () => new Worker(new URL('./splitter.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./splitter.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, segmentIndex: number): string {

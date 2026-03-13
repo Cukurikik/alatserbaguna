@@ -60,10 +60,7 @@ export class AudioExtractorService {
   }
 
   process(config: AudioExtractorConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<AudioExtractorConfig, ArrayBuffer>(
-      () => new Worker(new URL('./audio-extractor.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./audio-extractor.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, format: string): string {

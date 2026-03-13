@@ -97,10 +97,7 @@ export class SubtitleBurnerService {
   }
 
   process(config: SubtitleConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<SubtitleConfig, ArrayBuffer>(
-      () => new Worker(new URL('./subtitle-burner.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./subtitle-burner.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

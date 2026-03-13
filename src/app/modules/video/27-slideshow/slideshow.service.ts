@@ -51,10 +51,7 @@ export class SlideshowService {
   }
 
   process(config: SlideshowConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<SlideshowConfig, ArrayBuffer>(
-      () => new Worker(new URL('./slideshow.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./slideshow.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(): string {

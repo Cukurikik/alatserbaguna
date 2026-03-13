@@ -51,10 +51,7 @@ export class InterpolatorService {
   }
 
   process(config: InterpolatorConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<InterpolatorConfig, ArrayBuffer>(
-      () => new Worker(new URL('./interpolator.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./interpolator.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, targetFPS: string): string {

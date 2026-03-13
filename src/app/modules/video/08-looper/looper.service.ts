@@ -68,10 +68,7 @@ export class LooperService {
   }
 
   process(config: LooperConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<LooperConfig, ArrayBuffer>(
-      () => new Worker(new URL('./looper.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./looper.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

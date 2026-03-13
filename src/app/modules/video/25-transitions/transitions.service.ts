@@ -43,10 +43,7 @@ export class TransitionsService {
   }
 
   process(config: TransitionsConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<TransitionsConfig, ArrayBuffer>(
-      () => new Worker(new URL('./transitions.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./transitions.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string): string {

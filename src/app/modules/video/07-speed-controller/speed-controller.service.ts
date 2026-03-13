@@ -63,10 +63,7 @@ export class SpeedControllerService {
   }
 
   process(config: SpeedConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<SpeedConfig, ArrayBuffer>(
-      () => new Worker(new URL('./speed-controller.worker', import.meta.url), { type: 'module' }),
-      config
-    );
+    return this.bridge.runTask(new Worker(new URL('./speed-controller.worker', import.meta.url), { type: 'module' }), config);
   }
 
   getOutputFilename(originalName: string, speed: number): string {
