@@ -24,13 +24,14 @@ export class TrimmerEffects {
         if (!result.success) {
           return of(TrimmerActions.processingFailure({
             errorCode: 'INVALID_FILE_TYPE',
-            message: result.error.issues[0].message
+            message: result.error.issues[0].message,
+            retryable: false
           }));
         }
 
         return this.ffmpegService.getMetadata(file).then(
           meta => TrimmerActions.loadMetaSuccess({ meta }),
-          () => TrimmerActions.loadMetaFailure({ errorCode: 'FILE_CORRUPTED' })
+          () => TrimmerActions.loadMetaFailure({ errorCode: 'FILE_CORRUPTED', message: 'Failed to read headers' })
         );
       })
     )
@@ -52,11 +53,17 @@ export class TrimmerEffects {
         if (!result.success) {
           return of(TrimmerActions.processingFailure({
             errorCode: 'INVALID_TIME_RANGE',
-            message: result.error.issues[0].message
+            message: result.error.issues[0].message,
+            retryable: false
           }));
         }
 
-        return this.trimmerService.process(result.data).pipe(
+        return this.trimmerService.process({
+          file: result.data.inputFile,
+          startTime: result.data.startTime,
+          endTime: result.data.endTime,
+          outputFormat: result.data.outputFormat
+        }).pipe(
           map(msg => {
             if (msg.type === 'progress') {
               return TrimmerActions.updateProgress({ progress: msg.value || 0 });
@@ -69,13 +76,15 @@ export class TrimmerEffects {
             } else {
               return TrimmerActions.processingFailure({
                 errorCode: (msg.errorCode as VideoErrorCode) || 'WORKER_CRASHED',
-                message: msg.message || VideoErrorMessages['WORKER_CRASHED']
+                message: msg.message || VideoErrorMessages['WORKER_CRASHED'],
+                retryable: true
               });
             }
           }),
           catchError(error => of(TrimmerActions.processingFailure({
             errorCode: error.code || 'UNKNOWN_ERROR',
-            message: error.message || VideoErrorMessages['UNKNOWN_ERROR']
+            message: error.message || VideoErrorMessages['UNKNOWN_ERROR'],
+            retryable: true
           })))
         );
       })

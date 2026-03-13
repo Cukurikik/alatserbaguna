@@ -289,7 +289,7 @@ export class ScreenRecorderComponent implements OnDestroy {
 
     } catch (err: any) {
       this.store.dispatch(ScreenRecorderActions.processingFailure({ 
-        errorCode: 'RECORDER_ACCESS_DENIED', 
+        errorCode: 'MEDIA_RECORDER_FAILED', 
         message: err.message || 'Stream capture rejected by hardware layer.',
         retryable: true
       }));

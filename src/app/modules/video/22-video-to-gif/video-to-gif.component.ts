@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { VideoToGifActions, selectVideoToGifState, VideoToGifState, DitherMode } from './video-to-gif.store';
+import { VideoToGifActions, selectVideoToGifState, VideoToGifState } from './video-to-gif.store';
 import { VideoToGifService } from './video-to-gif.service';
 import { FileDropZoneComponent } from '../shared/components/file-drop-zone/file-drop-zone.component';
 import { VideoPreviewComponent } from '../shared/components/video-preview/video-preview.component';

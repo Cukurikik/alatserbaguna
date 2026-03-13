@@ -207,7 +207,7 @@ export class UpscalerComponent implements OnInit, OnDestroy {
      // Simulate meta load for now to unblock UI
      setTimeout(() => {
         this.store.dispatch(UpscalerActions.loadMetaSuccess({
-           meta: { format: 'mp4', duration: 10, size: file.size, bitrate: 5000000, streams: 2, width: 1920, height: 1080, fps: 30 },
+           meta: { filename: file.name, fileSizeMB: file.size / (1024 * 1024), duration: 10, width: 1920, height: 1080, fps: 30, codec: 'h264', audioCodec: 'aac', audioBitrate: 128, videoBitrate: 0, hasAudio: true, aspectRatio: '16:9' },
            framesTotal: 300
         }));
      }, 500);
@@ -240,7 +240,7 @@ export class UpscalerComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           this.store.dispatch(UpscalerActions.processingFailure({ 
-            errorCode: 'AI_INFERENCE_FAILED', 
+            errorCode: 'WORKER_CRASHED', 
             message: err.message ?? 'Nova core synthesis calculation aborted by kernel.',
             retryable: true
           }));

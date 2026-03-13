@@ -33,20 +33,20 @@ import { NgClass } from '@angular/common';
            </div>
            
            <div class="space-y-1">
-             <a routerLink="/dashboard" routerLinkActive="active-node" [routerLinkActiveOptions]="{exact: true}"
-                class="node-link group">
-                <div class="node-icon">
+             <a routerLink="/dashboard" routerLinkActive="bg-emerald-500/10 text-emerald-400 active-node" [routerLinkActiveOptions]="{exact: true}"
+                class="flex items-center gap-5 px-4 py-3.5 rounded-2xl text-gray-500 hover:bg-white/[0.03] hover:text-white transition-all active:scale-95 relative group active-node-base">
+                <div class="w-10 h-10 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center shrink-0 transition-all group-hover:border-current group-hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] group-[.active-node]:border-emerald-500/40 group-[.active-node]:bg-emerald-500/10 group-[.active-node]:shadow-[0_0_20px_rgba(16,185,129,0.2)] node-icon-base">
                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                 </div>
-                <span class="node-label" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">Dashboard</span>
+                <span class="text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">Dashboard</span>
              </a>
 
-             <a routerLink="/video" routerLinkActive="active-node"
-                class="node-link group">
-                <div class="node-icon text-emerald-400">
+             <a routerLink="/video" routerLinkActive="bg-emerald-500/10 text-emerald-400 active-node"
+                class="flex items-center gap-5 px-4 py-3.5 rounded-2xl text-gray-500 hover:bg-white/[0.03] hover:text-white transition-all active:scale-95 relative group active-node-base">
+                <div class="text-emerald-400 w-10 h-10 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center shrink-0 transition-all group-hover:border-current group-hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] group-[.active-node]:border-emerald-500/40 group-[.active-node]:bg-emerald-500/10 group-[.active-node]:shadow-[0_0_20px_rgba(16,185,129,0.2)] node-icon-base">
                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 </div>
-                <span class="node-label" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">Video_Engine</span>
+                <span class="text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">Video_Engine</span>
              </a>
            </div>
         </div>
@@ -59,12 +59,12 @@ import { NgClass } from '@angular/common';
            </div>
            
            <div class="space-y-1">
-             <a routerLink="/ai-assistant" routerLinkActive="active-node-ai"
-                class="node-link-ai group">
-                <div class="node-icon text-indigo-400 group-hover:text-indigo-300">
+             <a routerLink="/ai-assistant" routerLinkActive="bg-indigo-500/10 text-indigo-400 active-node-ai"
+                class="flex items-center gap-5 px-4 py-3.5 rounded-2xl text-gray-500 hover:bg-indigo-500/[0.05] hover:text-indigo-400 transition-all active:scale-95 relative group active-node-ai-base">
+                <div class="text-indigo-400 group-hover:text-indigo-300 w-10 h-10 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center shrink-0 transition-all group-hover:border-current group-hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] group-[.active-node-ai]:border-indigo-500/40 group-[.active-node-ai]:bg-indigo-500/10 group-[.active-node-ai]:shadow-[0_0_20px_rgba(99,102,241,0.2)] node-icon-base">
                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                 </div>
-                <span class="node-label" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">AI_Assistant</span>
+                <span class="text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">AI_Assistant</span>
              </a>
            </div>
         </div>
@@ -87,18 +87,6 @@ import { NgClass } from '@angular/common';
   styles: [`
     .custom-scrollbar::-webkit-scrollbar { width: 3px; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 10px; }
-    
-    .node-link { @apply flex items-center gap-5 px-4 py-3.5 rounded-2xl text-gray-500 hover:bg-white/[0.03] hover:text-white transition-all active:scale-95 relative; }
-    .node-link-ai { @apply flex items-center gap-5 px-4 py-3.5 rounded-2xl text-gray-500 hover:bg-indigo-500/[0.05] hover:text-indigo-400 transition-all active:scale-95 relative; }
-    
-    .node-icon { @apply w-10 h-10 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center shrink-0 transition-all group-hover:border-current group-hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]; }
-    .node-label { @apply text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap; }
-    
-    .active-node { @apply bg-emerald-500/10 text-emerald-400; }
-    .active-node .node-icon { @apply border-emerald-500/40 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.2)]; }
-    
-    .active-node-ai { @apply bg-indigo-500/10 text-indigo-400; }
-    .active-node-ai .node-icon { @apply border-indigo-500/40 bg-indigo-500/10 shadow-[0_0_20px_rgba(99,102,241,0.2)]; }
   `],
 })
 export class Sidebar {
