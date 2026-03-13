@@ -1,0 +1,2226 @@
+﻿[33mΓ¥»[39m Building...
+node.exe : @ngrx/store: The feature name "stabilizer" does not exist in 
+the state, therefore createFeatureSelector cannot access it.  Be sure it 
+is imported in a loaded module using StoreModule.forRoot('stabilizer', 
+...) or StoreModule.forFeature('stabilizer', ...).  If the default state 
+is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\IKYY\AppData\Roaming\n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (@ngrx/store: Th...can be igno 
+   red.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "flipRotate" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('flipRotate', ...) or 
+StoreModule.forFeature('flipRotate', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "colorGrading" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('colorGrading', ...) or 
+StoreModule.forFeature('colorGrading', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "thumbnailGenerator" does not exist in the 
+state, therefore createFeatureSelector cannot access it.  Be sure it is 
+imported in a loaded module using 
+StoreModule.forRoot('thumbnailGenerator', ...) or 
+StoreModule.forFeature('thumbnailGenerator', ...).  If the default state 
+is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+@ngrx/store: The feature name "audioExtractor" does not exist in the 
+state, therefore createFeatureSelector cannot access it.  Be sure it is 
+imported in a loaded module using StoreModule.forRoot('audioExtractor', 
+...) or StoreModule.forFeature('audioExtractor', ...).  If the default 
+state is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "metadataEditor" does not exist in the 
+state, therefore createFeatureSelector cannot access it.  Be sure it is 
+imported in a loaded module using StoreModule.forRoot('metadataEditor', 
+...) or StoreModule.forFeature('metadataEditor', ...).  If the default 
+state is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "denoiser" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('denoiser', ...) or 
+StoreModule.forFeature('denoiser', ...).  If the default state is intended 
+to be undefined, as is the case with router state, this development-only 
+warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "screenRecorder" does not exist in the 
+state, therefore createFeatureSelector cannot access it.  Be sure it is 
+imported in a loaded module using StoreModule.forRoot('screenRecorder', 
+...) or StoreModule.forFeature('screenRecorder', ...).  If the default 
+state is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "pip" does not exist in the state, therefore 
+createFeatureSelector cannot access it.  Be sure it is imported in a 
+loaded module using StoreModule.forRoot('pip', ...) or 
+StoreModule.forFeature('pip', ...).  If the default state is intended to 
+be undefined, as is the case with router state, this development-only 
+warning message can be ignored.
+@ngrx/store: The feature name "transitions" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('transitions', ...) or 
+StoreModule.forFeature('transitions', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "slideshow" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('slideshow', ...) or 
+StoreModule.forFeature('slideshow', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+ERROR TypeError: Cannot read properties of undefined (reading 'length')
+    at MergerComponent_Conditional_7_Template (C:\Users\IKYY\Downloads\gene
+rated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\
+modules\video\02-merger\merger.component.ts:28:11)
+    at executeTemplate (C:\Users\IKYY\Downloads\generated\.angular\prerende
+r-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm
+2022\_debug_node-chunk.mjs:5019:5)
+    at refreshView (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_debug_node-chunk.mjs:5689:7)
+    at detectChangesInView (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_debug_node-chunk.mjs:5829:5)
+    at detectChangesInViewIfAttached (C:\Users\IKYY\Downloads\generated\.an
+gular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ang
+ular\core\fesm2022\_debug_node-chunk.mjs:5812:3)
+    at detectChangesInEmbeddedViews (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_debug_node-chunk.mjs:5783:7)
+    at refreshView (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_debug_node-chunk.mjs:5710:5)
+    at detectChangesInView (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_debug_node-chunk.mjs:5829:5)
+    at detectChangesInViewIfAttached (C:\Users\IKYY\Downloads\generated\.an
+gular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ang
+ular\core\fesm2022\_debug_node-chunk.mjs:5812:3)
+    at detectChangesInComponent (C:\Users\IKYY\Downloads\generated\.angular
+\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\
+core\fesm2022\_debug_node-chunk.mjs:5803:5)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "audioReplacer" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('audioReplacer', ...) or 
+StoreModule.forFeature('audioReplacer', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+@ngrx/store: The feature name "subtitleBurner" does not exist in the 
+state, therefore createFeatureSelector cannot access it.  Be sure it is 
+imported in a loaded module using StoreModule.forRoot('subtitleBurner', 
+...) or StoreModule.forFeature('subtitleBurner', ...).  If the default 
+state is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "blur" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('blur', ...) or 
+StoreModule.forFeature('blur', ...).  If the default state is intended to 
+be undefined, as is the case with router state, this development-only 
+warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+ERROR TypeError: Cannot read properties of undefined (reading 'length')
+    at BatchComponent_Conditional_7_Template (C:\Users\IKYY\Downloads\gener
+ated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\m
+odules\video\28-batch\batch.component.ts:28:11)
+    at executeTemplate (C:\Users\IKYY\Downloads\generated\.angular\prerende
+r-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm
+2022\_debug_node-chunk.mjs:5019:5)
+    at refreshView (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_debug_node-chunk.mjs:5689:7)
+    at detectChangesInView (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_debug_node-chunk.mjs:5829:5)
+    at detectChangesInViewIfAttached (C:\Users\IKYY\Downloads\generated\.an
+gular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ang
+ular\core\fesm2022\_debug_node-chunk.mjs:5812:3)
+    at detectChangesInEmbeddedViews (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_debug_node-chunk.mjs:5783:7)
+    at refreshView (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_debug_node-chunk.mjs:5710:5)
+    at detectChangesInView (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_debug_node-chunk.mjs:5829:5)
+    at detectChangesInViewIfAttached (C:\Users\IKYY\Downloads\generated\.an
+gular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ang
+ular\core\fesm2022\_debug_node-chunk.mjs:5812:3)
+    at detectChangesInComponent (C:\Users\IKYY\Downloads\generated\.angular
+\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\
+core\fesm2022\_debug_node-chunk.mjs:5803:5)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "cropResize" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('cropResize', ...) or 
+StoreModule.forFeature('cropResize', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+@ngrx/store: The feature name "interpolator" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('interpolator', ...) or 
+StoreModule.forFeature('interpolator', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+@ngrx/store: The feature name "compare" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('compare', ...) or 
+StoreModule.forFeature('compare', ...).  If the default state is intended 
+to be undefined, as is the case with router state, this development-only 
+warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "speedController" does not exist in the 
+state, therefore createFeatureSelector cannot access it.  Be sure it is 
+imported in a loaded module using StoreModule.forRoot('speedController', 
+...) or StoreModule.forFeature('speedController', ...).  If the default 
+state is intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "videoToGif" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('videoToGif', ...) or 
+StoreModule.forFeature('videoToGif', ...).  If the default state is 
+intended to be undefined, as is the case with router state, this 
+development-only warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5b
+b88\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\b9a92555-0f8e-469b-a7bf-d8952ea5bb88\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+@ngrx/store: The feature name "upscaler" does not exist in the state, 
+therefore createFeatureSelector cannot access it.  Be sure it is imported 
+in a loaded module using StoreModule.forRoot('upscaler', ...) or 
+StoreModule.forFeature('upscaler', ...).  If the default state is intended 
+to be undefined, as is the case with router state, this development-only 
+warning message can be ignored.
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7
+016\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\a5db5c95-281a-4b4f-b465-b65fde2d7016\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dc
+b94\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\4010bd40-31a9-4741-8735-f47dac6dcb94\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+uncaughtException Error: ffmpeg.wasm does not support nodejs
+    at new FFmpeg (C:\Users\IKYY\Downloads\generated\.angular\prerender-roo
+t\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@ffmpeg\ffmpeg\dist\esm
+\empty.mjs:4:15)
+    at _FfmpegAudioService.<instance_members_initializer> (C:\Users\IKYY\Do
+wnloads\generated\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda
+636\src\app\modules\audio\shared\engine\ffmpeg-audio.service.ts:8:20)
+    at new _FfmpegAudioService (C:\Users\IKYY\Downloads\generated\.angular\
+prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modules\audio\s
+hared\engine\ffmpeg-audio.service.ts:13:3)
+    at Object.FfmpegAudioService_Factory (C:\Users\IKYY\Downloads\generated
+\.angular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\src\app\modul
+es\audio\shared\engine\ffmpeg-audio.service.ts:68:3)
+    at <anonymous> (C:\Users\IKYY\Downloads\generated\.angular\prerender-ro
+ot\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2022
+\_effect-chunk2.mjs:1316:35)
+    at runInInjectorProfilerContext (C:\Users\IKYY\Downloads\generated\.ang
+ular\prerender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angu
+lar\core\fesm2022\_effect-chunk2.mjs:444:5)
+    at R3Injector.hydrate (C:\Users\IKYY\Downloads\generated\.angular\prere
+nder-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\f
+esm2022\_effect-chunk2.mjs:1314:11)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1203:23)
+    at R3Injector.get (C:\Users\IKYY\Downloads\generated\.angular\prerender
+-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\fesm2
+022\_effect-chunk2.mjs:1208:27)
+    at R3Injector.retrieve (C:\Users\IKYY\Downloads\generated\.angular\prer
+ender-root\e5a4884b-81aa-4e96-b10c-c95155dda636\node_modules\@angular\core\
+fesm2022\_effect-chunk2.mjs:1118:19)
+[32mΓ£ö[39m Building...
+[35mBrowser bundles[39m     
+[1mInitial chunk files[22m [2m | [22m[1mNames[22m                        [2m | [22m [1mRaw size[22m
+[32mchunk-UJIBHNAH.js[39m   [2m | [22m[2m-[22m                            [2m | [22m[36m872.68 kB[39m[2m | [22m
+[32mmain.js[39m             [2m | [22m[2mmain[22m                         [2m | [22m[36m569.76 kB[39m[2m | [22m
+[32mchunk-STLDYRJG.js[39m   [2m | [22m[2m-[22m                            [2m | [22m[36m335.97 kB[39m[2m | [22m
+[32mstyles.css[39m          [2m | [22m[2mstyles[22m                       [2m | [22m[36m239.85 kB[39m[2m | [22m
+[32mchunk-4DII5X7W.js[39m   [2m | [22m[2m-[22m                            [2m | [22m[36m166.44 kB[39m[2m | [22m
+[32mchunk-AA4CFFX7.js[39m   [2m | [22m[2m-[22m                            [2m | [22m [36m43.75 kB[39m[2m | [22m
+[32mchunk-A2ON2NAU.js[39m   [2m | [22m[2m-[22m                            [2m | [22m [36m17.76 kB[39m[2m | [22m
+[32mchunk-6YDCAKYX.js[39m   [2m | [22m[2m-[22m                            [2m | [22m  [36m4.41 kB[39m[2m | [22m
+[32mchunk-XL74RPPS.js[39m   [2m | [22m[2m-[22m                            [2m | [22m  [36m2.23 kB[39m[2m | [22m
+[32mchunk-653SOEEV.js[39m   [2m | [22m[2m-[22m                            [2m | [22m  [36m1.51 kB[39m[2m | [22m
+
+[1m [22m                   [2m | [22m[1mInitial total[22m                [2m | [22m  [1m2.25 MB[22m
+
+[1mLazy chunk files[22m    [2m | [22m[1mNames[22m                        [2m | [22m [1mRaw size[22m
+[32mchunk-37VJM6QH.js[39m   [2m | [22m[2mmetadata-editor-component[22m    [2m | [22m[36m196.58 kB[39m[2m | [22m
+[32mchunk-OMPV5EH7.js[39m   [2m | [22m[2mbrowser[22m                      [2m | [22m[36m147.13 kB[39m[2m | [22m
+[32mchunk-FPZVTBCN.js[39m   [2m | [22m[2mthumbnail-generator-component[22m[2m | [22m [36m75.08 kB[39m[2m | [22m
+[32mchunk-MBAQYV4Z.js[39m   [2m | [22m[2mcrop-resize-component[22m        [2m | [22m [36m67.28 kB[39m[2m | [22m
+[32mchunk-N34M36SI.js[39m   [2m | [22m[2mwatermark-component[22m          [2m | [22m [36m66.25 kB[39m[2m | [22m
+[32mchunk-YGPUSPGM.js[39m   [2m | [22m[2msubtitle-burner-component[22m    [2m | [22m [36m66.23 kB[39m[2m | [22m
+[32mchunk-MRROUOIZ.js[39m   [2m | [22m[2mcompressor-component[22m         [2m | [22m [36m59.24 kB[39m[2m | [22m
+[32mchunk-JT6G2XGY.js[39m   [2m | [22m[2mflip-rotate-component[22m        [2m | [22m [36m57.90 kB[39m[2m | [22m
+[32mchunk-4TCT7KCH.js[39m   [2m | [22m[2maudio-replacer-component[22m     [2m | [22m [36m57.85 kB[39m[2m | [22m
+[32mchunk-BVCXLQE6.js[39m   [2m | [22m[2mscreen-recorder-component[22m    [2m | [22m [36m57.17 kB[39m[2m | [22m
+[32mchunk-C63XCOX5.js[39m   [2m | [22m[2mconverter-component[22m          [2m | [22m [36m57.04 kB[39m[2m | [22m
+[32mchunk-LSCAGZ7K.js[39m   [2m | [22m[2mlooper-component[22m             [2m | [22m [36m56.45 kB[39m[2m | [22m
+[32mchunk-R6AYTVKI.js[39m   [2m | [22m[2mdenoiser-component[22m           [2m | [22m [36m56.15 kB[39m[2m | [22m
+[32mchunk-2MGYBIK6.js[39m   [2m | [22m[2mpip-component[22m                [2m | [22m [36m56.11 kB[39m[2m | [22m
+[32mchunk-S6ML6KVQ.js[39m   [2m | [22m[2mcompare-component[22m            [2m | [22m [36m55.59 kB[39m[2m | [22m
+[2m...and 118 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+
+[35mServer bundles[39m      
+[1mInitial chunk files[22m [2m | [22m[1mNames[22m                        [2m | [22m [1mRaw size[22m
+[32mserver.mjs[39m          [2m | [22m[2mserver[22m                       [2m | [22m  [36m1.95 MB[39m[2m | [22m
+[32mmain.server.mjs[39m     [2m | [22m[2mmain.server[22m                  [2m | [22m  [36m1.46 MB[39m[2m | [22m
+[32mchunk-VMXE44NY.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m[36m897.39 kB[39m[2m | [22m
+[32mpolyfills.server.mjs[39m[2m | [22m[2mpolyfills.server[22m             [2m | [22m[36m427.81 kB[39m[2m | [22m
+[32mchunk-2UAVBJYC.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m[36m337.00 kB[39m[2m | [22m
+[32mchunk-ORPUCZ6K.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m[36m162.78 kB[39m[2m | [22m
+[32mchunk-NKWD3MOF.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m [36m43.78 kB[39m[2m | [22m
+[32mchunk-FPVGTD3Z.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m [36m17.79 kB[39m[2m | [22m
+[32mchunk-GB3IK3JW.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m  [36m4.45 kB[39m[2m | [22m
+[32mchunk-3II4UTYF.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m  [36m2.81 kB[39m[2m | [22m
+[32mchunk-T3F3LUTR.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m  [36m2.27 kB[39m[2m | [22m
+[32mchunk-4KGORVLN.mjs[39m  [2m | [22m[2m-[22m                            [2m | [22m  [36m2.15 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m    [2m | [22m[1mNames[22m                        [2m | [22m [1mRaw size[22m
+[32mchunk-GHWT2IBN.mjs[39m  [2m | [22m[2mmetadata-editor-component[22m    [2m | [22m[36m196.62 kB[39m[2m | [22m
+[32mchunk-GQSHIPWX.mjs[39m  [2m | [22m[2mbrowser[22m                      [2m | [22m[36m147.17 kB[39m[2m | [22m
+[32mchunk-VNZZ3RBN.mjs[39m  [2m | [22m[2mthumbnail-generator-component[22m[2m | [22m [36m75.12 kB[39m[2m | [22m
+[32mchunk-4M4ISJP5.mjs[39m  [2m | [22m[2mcrop-resize-component[22m        [2m | [22m [36m67.33 kB[39m[2m | [22m
+[32mchunk-O3TAX2DZ.mjs[39m  [2m | [22m[2mwatermark-component[22m          [2m | [22m [36m66.30 kB[39m[2m | [22m
+[32mchunk-E7VSR5SK.mjs[39m  [2m | [22m[2msubtitle-burner-component[22m    [2m | [22m [36m66.27 kB[39m[2m | [22m
+[32mchunk-5J46SR4Z.mjs[39m  [2m | [22m[2mcompressor-component[22m         [2m | [22m [36m59.28 kB[39m[2m | [22m
+[32mchunk-JCTBOSST.mjs[39m  [2m | [22m[2mflip-rotate-component[22m        [2m | [22m [36m57.94 kB[39m[2m | [22m
+[32mchunk-JAQIFXUK.mjs[39m  [2m | [22m[2maudio-replacer-component[22m     [2m | [22m [36m57.90 kB[39m[2m | [22m
+[32mchunk-A72YJSBA.mjs[39m  [2m | [22m[2mscreen-recorder-component[22m    [2m | [22m [36m57.21 kB[39m[2m | [22m
+[32mchunk-TB66GPAK.mjs[39m  [2m | [22m[2mconverter-component[22m          [2m | [22m [36m57.08 kB[39m[2m | [22m
+[32mchunk-DP63KKE3.mjs[39m  [2m | [22m[2mlooper-component[22m             [2m | [22m [36m56.50 kB[39m[2m | [22m
+[32mchunk-TQSJR4YV.mjs[39m  [2m | [22m[2mdenoiser-component[22m           [2m | [22m [36m56.19 kB[39m[2m | [22m
+[32mchunk-VFE6U3MW.mjs[39m  [2m | [22m[2mpip-component[22m                [2m | [22m [36m56.16 kB[39m[2m | [22m
+[32mchunk-D7XT2D5Y.mjs[39m  [2m | [22m[2mcompare-component[22m            [2m | [22m [36m55.64 kB[39m[2m | [22m
+[2m...and 90 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+[35mPrerendered 64 static routes.[39m
+Application bundle generation complete. [10.248 seconds] - 2026-03-13T18:49:55.834Z
+
+[1m[33m[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All 
+imports are unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/shared/components/audio-player/audio-player.compo
+nent.ts:7:2:
+[37m      7 Γöé   [32mimports[37m: [DecimalPipe],
+        Γò╡   [32m~~~~~~~[0m
+
+[39m[22m
+Output location: C:\Users\IKYY\Downloads\generated\dist\app
+

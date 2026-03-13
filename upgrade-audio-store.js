@@ -168,7 +168,7 @@ for (const f of features) {
 // Helper to pass f
 function genComponentUpdate(fPath, f) {
   let content = fs.readFileSync(fPath, 'utf8');
-  const methodStart = content.indexOf('onProcess(state:');
+  const methodStart = content.indexOf('onProcess(state: ');
   const methodEnd = content.indexOf('onDownload', methodStart);
   if (methodStart !== -1 && methodEnd !== -1) {
     const newMethod = `onProcess(state: any): void {

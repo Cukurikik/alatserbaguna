@@ -1,14 +1,13 @@
 import { z } from 'zod';
+import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-const AudioFileSchema = z.instanceof(File)
-  .refine((f) => f.size <= 500 * 1024 * 1024, 'Max file size is 500MB')
-  .refine((f) => ['audio/mpeg','audio/wav','audio/flac','audio/ogg','audio/aac','audio/opus','audio/mp4','audio/webm','video/mp4','video/webm'].includes(f.type), 'Invalid audio file type');
-
-export const ExportFormatSchema = z.enum(['wav', 'mp3', 'aac', 'ogg', 'flac', 'opus', 'm4a']);
-
-export const ReverbInputSchema = z.object({
+export const ReverbSchema = z.object({
   inputFile: AudioFileSchema,
   outputFormat: ExportFormatSchema,
+  mode: z.enum(['convolution', 'algorithmic']).default('algorithmic'),
+  roomSize: z.number().min(0).max(100).default(50),
+  decay: z.number().min(0.1).max(10).default(2),
+  wetMix: z.number().min(0).max(1).default(0.3),
 });
 
-export type ReverbInput = z.infer<typeof ReverbInputSchema>;
+export type ReverbConfig = z.infer<typeof ReverbSchema>;

@@ -1,6 +1,8 @@
-
-export { AudioDropZoneComponent } from './components/audio-drop-zone/audio-drop-zone.component';
-export { AudioProgressRingComponent } from './components/audio-progress-ring/audio-progress-ring.component';
-export { FfmpegAudioService } from './engine/ffmpeg-audio.service';
-export { AudioContextService } from './engine/audio-context.service';
 export * from './types/audio.types';
+export * from './errors/audio.errors';
+export * from './schemas/audio.schemas';
+export { AudioContextService } from './engine/audio-context.service';
+export { OfflineRendererService } from './engine/offline-renderer.service';
+export { FfmpegAudioService } from './engine/ffmpeg-audio.service';
+export { OnnxAudioService } from './engine/onnx-audio.service';
+export { WorkerBridgeService } from './engine/worker-bridge.service';

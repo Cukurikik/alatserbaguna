@@ -1,14 +1,11 @@
 import { z } from 'zod';
+import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-const AudioFileSchema = z.instanceof(File)
-  .refine((f) => f.size <= 500 * 1024 * 1024, 'Max file size is 500MB')
-  .refine((f) => ['audio/mpeg','audio/wav','audio/flac','audio/ogg','audio/aac','audio/opus','audio/mp4','audio/webm','video/mp4','video/webm'].includes(f.type), 'Invalid audio file type');
-
-export const ExportFormatSchema = z.enum(['wav', 'mp3', 'aac', 'ogg', 'flac', 'opus', 'm4a']);
-
-export const MergerInputSchema = z.object({
+export const MergerSchema = z.object({
   inputFile: AudioFileSchema,
   outputFormat: ExportFormatSchema,
+  crossfade: z.boolean().default(false),
+  crossfadeDuration: z.number().min(0).max(3).default(0),
 });
 
-export type MergerInput = z.infer<typeof MergerInputSchema>;
+export type MergerConfig = z.infer<typeof MergerSchema>;

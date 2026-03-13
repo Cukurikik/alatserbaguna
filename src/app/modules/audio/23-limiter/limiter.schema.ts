@@ -1,14 +1,11 @@
 import { z } from 'zod';
+import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-const AudioFileSchema = z.instanceof(File)
-  .refine((f) => f.size <= 500 * 1024 * 1024, 'Max file size is 500MB')
-  .refine((f) => ['audio/mpeg','audio/wav','audio/flac','audio/ogg','audio/aac','audio/opus','audio/mp4','audio/webm','video/mp4','video/webm'].includes(f.type), 'Invalid audio file type');
-
-export const ExportFormatSchema = z.enum(['wav', 'mp3', 'aac', 'ogg', 'flac', 'opus', 'm4a']);
-
-export const LimiterInputSchema = z.object({
+export const LimiterSchema = z.object({
   inputFile: AudioFileSchema,
   outputFormat: ExportFormatSchema,
+  ceiling: z.number().min(-6).max(0).default(-0.1),
+  lookaheadMs: z.number().min(0).max(20).default(5),
 });
 
-export type LimiterInput = z.infer<typeof LimiterInputSchema>;
+export type LimiterConfig = z.infer<typeof LimiterSchema>;

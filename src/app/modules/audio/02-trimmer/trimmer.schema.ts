@@ -1,14 +1,12 @@
 import { z } from 'zod';
+import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-const AudioFileSchema = z.instanceof(File)
-  .refine((f) => f.size <= 500 * 1024 * 1024, 'Max file size is 500MB')
-  .refine((f) => ['audio/mpeg','audio/wav','audio/flac','audio/ogg','audio/aac','audio/opus','audio/mp4','audio/webm','video/mp4','video/webm'].includes(f.type), 'Invalid audio file type');
-
-export const ExportFormatSchema = z.enum(['wav', 'mp3', 'aac', 'ogg', 'flac', 'opus', 'm4a']);
-
-export const TrimmerInputSchema = z.object({
+export const TrimmerSchema = z.object({
   inputFile: AudioFileSchema,
   outputFormat: ExportFormatSchema,
+  startTime: z.number().min(0),
+  endTime: z.number().min(0),
+  snapToZero: z.boolean().default(false),
 });
 
-export type TrimmerInput = z.infer<typeof TrimmerInputSchema>;
+export type TrimmerConfig = z.infer<typeof TrimmerSchema>;

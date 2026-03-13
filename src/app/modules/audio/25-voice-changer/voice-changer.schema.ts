@@ -1,14 +1,11 @@
 import { z } from 'zod';
+import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-const AudioFileSchema = z.instanceof(File)
-  .refine((f) => f.size <= 500 * 1024 * 1024, 'Max file size is 500MB')
-  .refine((f) => ['audio/mpeg','audio/wav','audio/flac','audio/ogg','audio/aac','audio/opus','audio/mp4','audio/webm','video/mp4','video/webm'].includes(f.type), 'Invalid audio file type');
-
-export const ExportFormatSchema = z.enum(['wav', 'mp3', 'aac', 'ogg', 'flac', 'opus', 'm4a']);
-
-export const VoiceChangerInputSchema = z.object({
+export const VoiceChangerSchema = z.object({
   inputFile: AudioFileSchema,
   outputFormat: ExportFormatSchema,
+  pitch: z.number().min(-12).max(12).default(0),
+  speed: z.number().min(0.5).max(2.0).default(1.0),
 });
 
-export type VoiceChangerInput = z.infer<typeof VoiceChangerInputSchema>;
+export type VoiceChangerConfig = z.infer<typeof VoiceChangerSchema>;
