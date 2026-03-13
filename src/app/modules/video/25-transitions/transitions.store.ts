@@ -6,7 +6,7 @@ export interface TransitionDef { type: string; duration: number; }
 export interface TransitionsState {
   clips: File[];
   transitions: TransitionDef[];
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -16,9 +16,15 @@ export interface TransitionsState {
 }
 
 const initialState: TransitionsState = {
-  clips: [], transitions: [],
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  clips: [],
+  transitions: [],
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const TransitionsActions = createActionGroup({
@@ -44,8 +50,13 @@ export const transitionsFeature = createFeature({
     on(TransitionsActions.addClip, (state, { file }) => {
       const clips = [...state.clips, file];
       const transitions = [...state.transitions, { type: 'fade', duration: 0.5 }];
-      // transitions = clips.length - 1 entries
-      return { ...state, clips, transitions: transitions.slice(0, clips.length - 1) };
+      return { 
+        ...state, 
+        clips, 
+        transitions: transitions.slice(0, Math.max(0, clips.length - 1)),
+        status: 'idle',
+        progress: 0
+      };
     }),
     on(TransitionsActions.removeClip, (state, { index }) => {
       const clips = state.clips.filter((_, i) => i !== index);
@@ -61,15 +72,42 @@ export const transitionsFeature = createFeature({
       ...state,
       transitions: state.transitions.map(() => ({ ...transition })),
     })),
-    on(TransitionsActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(TransitionsActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(TransitionsActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(TransitionsActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(TransitionsActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(TransitionsActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(TransitionsActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(TransitionsActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectTransitionsState, selectStatus, selectProgress, selectClips, selectTransitions,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectTransitionsState,
+  selectStatus,
+  selectProgress,
+  selectClips,
+  selectTransitions,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = transitionsFeature;

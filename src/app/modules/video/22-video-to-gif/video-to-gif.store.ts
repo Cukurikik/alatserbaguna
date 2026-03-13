@@ -10,8 +10,7 @@ export interface VideoToGifState {
   fps: number;
   width: number | 'auto';
   dither: 'none' | 'bayer' | 'floyd_steinberg';
-  estimatedSizeMB: number;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -21,10 +20,20 @@ export interface VideoToGifState {
 }
 
 const initialState: VideoToGifState = {
-  inputFile: null, videoMeta: null,
-  startTime: 0, endTime: 5, fps: 15, width: 480, dither: 'bayer', estimatedSizeMB: 0,
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  startTime: 0,
+  endTime: 5,
+  fps: 15,
+  width: 480,
+  dither: 'bayer',
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const VideoToGifActions = createActionGroup({
@@ -32,13 +41,11 @@ export const VideoToGifActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Start Time': props<{ time: number }>(),
     'Set End Time': props<{ time: number }>(),
     'Set Fps': props<{ fps: number }>(),
     'Set Width': props<{ width: number | 'auto' }>(),
     'Set Dither': props<{ dither: 'none' | 'bayer' | 'floyd_steinberg' }>(),
-    'Set Estimated Size': props<{ sizeMB: number }>(),
     'Start Processing': emptyProps(),
     'Update Progress': props<{ progress: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
@@ -51,25 +58,59 @@ export const videoToGifFeature = createFeature({
   name: 'videoToGif',
   reducer: createReducer(
     initialState,
-    on(VideoToGifActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(VideoToGifActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const, startTime: 0, endTime: Math.min(5, meta.duration) })),
-    on(VideoToGifActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(VideoToGifActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(VideoToGifActions.loadMetaSuccess, (state, { meta }) => ({ 
+      ...state, 
+      videoMeta: meta, 
+      startTime: 0, 
+      endTime: Math.min(5, meta.duration) 
+    })),
     on(VideoToGifActions.setStartTime, (state, { time }) => ({ ...state, startTime: time })),
     on(VideoToGifActions.setEndTime, (state, { time }) => ({ ...state, endTime: time })),
     on(VideoToGifActions.setFps, (state, { fps }) => ({ ...state, fps })),
     on(VideoToGifActions.setWidth, (state, { width }) => ({ ...state, width })),
     on(VideoToGifActions.setDither, (state, { dither }) => ({ ...state, dither })),
-    on(VideoToGifActions.setEstimatedSize, (state, { sizeMB }) => ({ ...state, estimatedSizeMB: sizeMB })),
-    on(VideoToGifActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(VideoToGifActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(VideoToGifActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(VideoToGifActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(VideoToGifActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(VideoToGifActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(VideoToGifActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(VideoToGifActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectVideoToGifState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectStartTime, selectEndTime, selectFps, selectWidth, selectDither, selectEstimatedSizeMB,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectVideoToGifState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectStartTime,
+  selectEndTime,
+  selectFps,
+  selectWidth,
+  selectDither,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = videoToGifFeature;

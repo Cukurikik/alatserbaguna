@@ -12,7 +12,7 @@ export interface ThumbnailGeneratorState {
   intervalSeconds: number;
   imageFormat: 'jpg' | 'png' | 'webp';
   jpgQuality: number;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlobs: Blob[];
   outputSizeMB: number | null;
@@ -22,12 +22,22 @@ export interface ThumbnailGeneratorState {
 }
 
 const initialState: ThumbnailGeneratorState = {
-  inputFile: null, videoMeta: null,
-  mode: 'single', timestamp: 0,
-  gridCols: 4, gridRows: 4, intervalSeconds: 5,
-  imageFormat: 'jpg', jpgQuality: 90,
-  status: 'idle', progress: 0, outputBlobs: [], outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  mode: 'single',
+  timestamp: 0,
+  gridCols: 4,
+  gridRows: 4,
+  intervalSeconds: 5,
+  imageFormat: 'jpg',
+  jpgQuality: 90,
+  status: 'idle',
+  progress: 0,
+  outputBlobs: [],
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const ThumbnailGeneratorActions = createActionGroup({
@@ -35,7 +45,6 @@ export const ThumbnailGeneratorActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Mode': props<{ mode: 'single' | 'grid' | 'interval' }>(),
     'Set Timestamp': props<{ timestamp: number }>(),
     'Set Grid Cols': props<{ cols: number }>(),
@@ -55,9 +64,8 @@ export const thumbnailGeneratorFeature = createFeature({
   name: 'thumbnailGenerator',
   reducer: createReducer(
     initialState,
-    on(ThumbnailGeneratorActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(ThumbnailGeneratorActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const, timestamp: 0 })),
-    on(ThumbnailGeneratorActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(ThumbnailGeneratorActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(ThumbnailGeneratorActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, timestamp: 0 })),
     on(ThumbnailGeneratorActions.setMode, (state, { mode }) => ({ ...state, mode })),
     on(ThumbnailGeneratorActions.setTimestamp, (state, { timestamp }) => ({ ...state, timestamp })),
     on(ThumbnailGeneratorActions.setGridCols, (state, { cols }) => ({ ...state, gridCols: cols })),
@@ -65,17 +73,49 @@ export const thumbnailGeneratorFeature = createFeature({
     on(ThumbnailGeneratorActions.setInterval, (state, { intervalSeconds }) => ({ ...state, intervalSeconds })),
     on(ThumbnailGeneratorActions.setImageFormat, (state, { imageFormat }) => ({ ...state, imageFormat })),
     on(ThumbnailGeneratorActions.setJpgQuality, (state, { quality }) => ({ ...state, jpgQuality: quality })),
-    on(ThumbnailGeneratorActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlobs: [], errorCode: null, errorMessage: null })),
+    on(ThumbnailGeneratorActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlobs: [], 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(ThumbnailGeneratorActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(ThumbnailGeneratorActions.processingSuccess, (state, { outputBlobs, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlobs, outputSizeMB, progress: 100 })),
-    on(ThumbnailGeneratorActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(ThumbnailGeneratorActions.processingSuccess, (state, { outputBlobs, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlobs, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(ThumbnailGeneratorActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(ThumbnailGeneratorActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectThumbnailGeneratorState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectMode, selectTimestamp, selectGridCols, selectGridRows, selectIntervalSeconds,
-  selectImageFormat, selectJpgQuality, selectOutputBlobs, selectOutputSizeMB,
-  selectErrorCode, selectErrorMessage, selectRetryable,
+  selectThumbnailGeneratorState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectMode,
+  selectTimestamp,
+  selectGridCols,
+  selectGridRows,
+  selectIntervalSeconds,
+  selectImageFormat,
+  selectJpgQuality,
+  selectOutputBlobs,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = thumbnailGeneratorFeature;

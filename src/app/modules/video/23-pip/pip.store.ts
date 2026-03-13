@@ -13,7 +13,7 @@ export interface PipState {
   startTime: number | null;
   endTime: number | null;
   borderRadius: number;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -23,10 +23,22 @@ export interface PipState {
 }
 
 const initialState: PipState = {
-  mainFile: null, overlayFile: null, mainMeta: null, overlayMeta: null,
-  pipWidthPercent: 25, position: 'BR', startTime: null, endTime: null, borderRadius: 0,
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  mainFile: null,
+  overlayFile: null,
+  mainMeta: null,
+  overlayMeta: null,
+  pipWidthPercent: 25,
+  position: 'BR',
+  startTime: null,
+  endTime: null,
+  borderRadius: 0,
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const PipActions = createActionGroup({
@@ -36,7 +48,6 @@ export const PipActions = createActionGroup({
     'Load Overlay File': props<{ file: File }>(),
     'Load Main Meta Success': props<{ meta: VideoMeta }>(),
     'Load Overlay Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Pip Width Percent': props<{ percent: number }>(),
     'Set Position': props<{ position: PipPosition }>(),
     'Set Start Time': props<{ time: number | null }>(),
@@ -54,27 +65,58 @@ export const pipFeature = createFeature({
   name: 'pip',
   reducer: createReducer(
     initialState,
-    on(PipActions.loadMainFile, (state, { file }) => ({ ...state, mainFile: file })),
+    on(PipActions.loadMainFile, (state, { file }) => ({ ...state, mainFile: file, status: 'idle', progress: 0 })),
     on(PipActions.loadOverlayFile, (state, { file }) => ({ ...state, overlayFile: file })),
-    on(PipActions.loadMainMetaSuccess, (state, { meta }) => ({ ...state, mainMeta: meta, status: 'idle' as const })),
+    on(PipActions.loadMainMetaSuccess, (state, { meta }) => ({ ...state, mainMeta: meta })),
     on(PipActions.loadOverlayMetaSuccess, (state, { meta }) => ({ ...state, overlayMeta: meta })),
-    on(PipActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
     on(PipActions.setPipWidthPercent, (state, { percent }) => ({ ...state, pipWidthPercent: percent })),
     on(PipActions.setPosition, (state, { position }) => ({ ...state, position })),
     on(PipActions.setStartTime, (state, { time }) => ({ ...state, startTime: time })),
     on(PipActions.setEndTime, (state, { time }) => ({ ...state, endTime: time })),
     on(PipActions.setBorderRadius, (state, { radius }) => ({ ...state, borderRadius: radius })),
-    on(PipActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(PipActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(PipActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(PipActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(PipActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(PipActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(PipActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(PipActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectPipState, selectStatus, selectProgress, selectMainFile, selectOverlayFile,
-  selectMainMeta, selectOverlayMeta, selectPipWidthPercent, selectPosition,
-  selectStartTime, selectEndTime, selectBorderRadius,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectPipState,
+  selectStatus,
+  selectProgress,
+  selectMainFile,
+  selectOverlayFile,
+  selectMainMeta,
+  selectOverlayMeta,
+  selectPipWidthPercent,
+  selectPosition,
+  selectStartTime,
+  selectEndTime,
+  selectBorderRadius,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = pipFeature;

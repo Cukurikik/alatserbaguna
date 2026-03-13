@@ -13,7 +13,7 @@ export interface CropResizeState {
   targetHeight: number | null;
   lockAspectRatio: boolean;
   padMode: 'stretch' | 'pad' | 'crop-to-fit';
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -23,12 +23,21 @@ export interface CropResizeState {
 }
 
 const initialState: CropResizeState = {
-  inputFile: null, videoMeta: null,
-  mode: 'resize', cropRegion: null,
-  targetWidth: 1920, targetHeight: 1080,
-  lockAspectRatio: true, padMode: 'pad',
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  mode: 'resize',
+  cropRegion: null,
+  targetWidth: 1280,
+  targetHeight: 720,
+  lockAspectRatio: true,
+  padMode: 'pad',
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const CropResizeActions = createActionGroup({
@@ -36,7 +45,6 @@ export const CropResizeActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Mode': props<{ mode: 'crop' | 'resize' }>(),
     'Set Crop Region': props<{ region: CropRegion }>(),
     'Set Target Width': props<{ width: number }>(),
@@ -55,26 +63,62 @@ export const cropResizeFeature = createFeature({
   name: 'cropResize',
   reducer: createReducer(
     initialState,
-    on(CropResizeActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(CropResizeActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const, targetWidth: meta.width, targetHeight: meta.height })),
-    on(CropResizeActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(CropResizeActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(CropResizeActions.loadMetaSuccess, (state, { meta }) => ({ 
+      ...state, 
+      videoMeta: meta,
+      targetWidth: meta.width,
+      targetHeight: meta.height,
+      cropRegion: { x: 0, y: 0, w: meta.width, h: meta.height }
+    })),
     on(CropResizeActions.setMode, (state, { mode }) => ({ ...state, mode })),
     on(CropResizeActions.setCropRegion, (state, { region }) => ({ ...state, cropRegion: region })),
     on(CropResizeActions.setTargetWidth, (state, { width }) => ({ ...state, targetWidth: width })),
     on(CropResizeActions.setTargetHeight, (state, { height }) => ({ ...state, targetHeight: height })),
     on(CropResizeActions.toggleLockAspect, (state) => ({ ...state, lockAspectRatio: !state.lockAspectRatio })),
     on(CropResizeActions.setPadMode, (state, { padMode }) => ({ ...state, padMode })),
-    on(CropResizeActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(CropResizeActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(CropResizeActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(CropResizeActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(CropResizeActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(CropResizeActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(CropResizeActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(CropResizeActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectCropResizeState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectMode, selectCropRegion, selectTargetWidth, selectTargetHeight,
-  selectLockAspectRatio, selectPadMode,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectCropResizeState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectMode,
+  selectCropRegion,
+  selectTargetWidth,
+  selectTargetHeight,
+  selectLockAspectRatio,
+  selectPadMode,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = cropResizeFeature;

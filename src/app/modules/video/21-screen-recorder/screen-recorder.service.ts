@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
 import { WorkerMessage } from '../shared/types/video.types';
@@ -17,9 +17,11 @@ const BITRATE_MAP: Record<string, number> = {
 
 @Injectable({ providedIn: 'root' })
 export class ScreenRecorderService {
-  constructor(private bridge: WorkerBridgeService) {}
+  private bridge = inject(WorkerBridgeService);
 
-  /** Request display + optional audio streams from the browser. */
+  /**
+   * Request display + optional audio streams from the browser.
+   */
   async requestCapture(config: ScreenRecorderConfig): Promise<MediaStream> {
     const displayStream = await navigator.mediaDevices.getDisplayMedia({
       video: { frameRate: 30 },
@@ -48,7 +50,9 @@ export class ScreenRecorderService {
     return new MediaStream([...displayStream.getVideoTracks(), ...dest.stream.getAudioTracks()]);
   }
 
-  /** Build a MediaRecorder with best available codec. */
+  /**
+   * Build a MediaRecorder with best available codec.
+   */
   buildRecorder(stream: MediaStream, resolution: string): MediaRecorder {
     const bitrate = BITRATE_MAP[resolution] ?? BITRATE_MAP['720p'];
     const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')
@@ -57,21 +61,16 @@ export class ScreenRecorderService {
     return new MediaRecorder(stream, { mimeType, videoBitsPerSecond: bitrate });
   }
 
-  /** Combine recorded chunks into a single Blob. */
-  chunksToBlob(chunks: Blob[]): Blob {
-    return new Blob(chunks, { type: 'video/webm' });
-  }
-
-  /** Convert WebM blob to MP4 via FFmpeg worker (only when outputFormat === 'mp4'). */
+  /**
+   * Convert WebM blob to MP4 via FFmpeg worker.
+   */
   convertToMp4(blob: Blob): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.runTask(
-      new Worker(new URL('./screen-recorder.worker', import.meta.url), { type: 'module' }),
-      { blob }
-    );
+    const worker = new Worker(new URL('./screen-recorder.worker', import.meta.url), { type: 'module' });
+    return this.bridge.runTask(worker, { blob });
   }
 
   getOutputFilename(format: string): string {
     const ts = new Date().toISOString().replace(/[:.]/g, '-');
-    return `omni_screen_${ts}.${format}`;
+    return `omni_captis_${ts}.${format}`;
   }
 }

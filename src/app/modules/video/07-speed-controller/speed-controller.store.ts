@@ -7,7 +7,7 @@ export interface SpeedControllerState {
   videoMeta: VideoMeta | null;
   speed: number;
   audioMode: 'keep' | 'mute' | 'pitchCorrect';
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -20,7 +20,7 @@ const initialState: SpeedControllerState = {
   inputFile: null,
   videoMeta: null,
   speed: 1.0,
-  audioMode: 'keep',
+  audioMode: 'pitchCorrect',
   status: 'idle',
   progress: 0,
   outputBlob: null,
@@ -35,7 +35,6 @@ export const SpeedControllerActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Speed': props<{ speed: number }>(),
     'Set Audio Mode': props<{ audioMode: 'keep' | 'mute' | 'pitchCorrect' }>(),
     'Start Processing': emptyProps(),
@@ -50,21 +49,48 @@ export const speedControllerFeature = createFeature({
   name: 'speedController',
   reducer: createReducer(
     initialState,
-    on(SpeedControllerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const, progress: 0 })),
-    on(SpeedControllerActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const })),
-    on(SpeedControllerActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(SpeedControllerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(SpeedControllerActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta })),
     on(SpeedControllerActions.setSpeed, (state, { speed }) => ({ ...state, speed })),
     on(SpeedControllerActions.setAudioMode, (state, { audioMode }) => ({ ...state, audioMode })),
-    on(SpeedControllerActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(SpeedControllerActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(SpeedControllerActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(SpeedControllerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(SpeedControllerActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(SpeedControllerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(SpeedControllerActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(SpeedControllerActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectSpeedControllerState, selectStatus, selectProgress, selectInputFile,
-  selectVideoMeta, selectSpeed, selectAudioMode,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectSpeedControllerState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectSpeed,
+  selectAudioMode,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = speedControllerFeature;

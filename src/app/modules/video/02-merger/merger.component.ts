@@ -1,121 +1,204 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { MergerActions, selectMergerState, MergerState } from './merger.store';
 import { MergerService } from './merger.service';
 import { ProgressRingComponent } from '../shared/components/progress-ring/progress-ring.component';
 import { ExportPanelComponent } from '../shared/components/export-panel/export-panel.component';
+import { animate, style, transition, trigger, query, stagger } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-merger',
   standalone: true,
   imports: [AsyncPipe, ProgressRingComponent, ExportPanelComponent],
   template: `
-    <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
-      <div class="mb-8">
-        <h2 class="text-3xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-sm pb-1">Video Merger</h2>
-        <p class="text-gray-400 text-sm mt-1">Concatenate multiple video clips into a single seamless output using FFmpeg concat protocol.</p>
+    <div class="h-full w-full bg-gray-950/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl p-6 flex flex-col overflow-y-auto custom-scrollbar" [@fadeIn]>
+      
+      <!-- Header -->
+      <div class="mb-8 flex justify-between items-start">
+        <div>
+          <h2 class="text-4xl font-black bg-gradient-to-r from-purple-400 via-fuchsia-500 to-pink-400 bg-clip-text text-transparent drop-shadow-lg pb-1 tracking-tight">
+            Video Merger
+          </h2>
+          <p class="text-gray-400 text-sm mt-1 font-medium italic opacity-80 uppercase tracking-widest">Seamless Clip Concatenation</p>
+        </div>
+        @if (vm$ | async; as vm) {
+          @if (vm.inputFiles.length > 0) {
+            <button (click)="onReset()" class="group flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-rose-400 transition-all uppercase tracking-tighter">
+              <span class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-rose-950/30 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </span>
+              Reset
+            </button>
+          }
+        }
       </div>
 
       @if (vm$ | async; as vm) {
-        <!-- File Drop Area -->
+        
+        <!-- Pillar 5: I/O — File Drop Area -->
         <div
           role="button"
           tabindex="0"
           aria-label="Click or press Enter to add video files"
-          class="relative border-2 border-dashed border-gray-600 hover:border-purple-400 rounded-xl p-10 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 bg-gray-800 bg-opacity-50 hover:shadow-[0_0_15px_rgba(192,132,252,0.3)] mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400"
+          class="relative border-2 border-dashed border-gray-800/50 hover:border-purple-500/50 rounded-2xl p-12 flex flex-col items-center justify-center cursor-pointer transition-all duration-500 bg-gray-900/30 hover:bg-purple-500/5 hover:shadow-[0_0_30px_rgba(192,132,252,0.1)] mb-8 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/50"
           (click)="fileInput.click()"
           (keydown.enter)="fileInput.click()"
           (keydown.space)="$event.preventDefault(); fileInput.click()"
           (dragover)="$event.preventDefault()"
           (drop)="onDrop($event)">
-          <div class="w-16 h-16 rounded-full bg-purple-900/40 flex items-center justify-center mb-4">
-            <svg class="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+          
+          <div class="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500/20 to-fuchsia-500/10 flex items-center justify-center mb-6 border border-purple-500/20 shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all">
+            <svg class="h-10 w-10 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
           </div>
-          <span class="text-white font-medium text-lg">Add video files to merge</span>
-          <span class="text-gray-400 text-sm mt-2">Drag & drop or click to browse. Supports MP4, WebM, MOV</span>
+          <span class="text-white font-black text-xl tracking-tight uppercase">Import Fragments</span>
+          <span class="text-gray-500 text-xs mt-3 font-mono tracking-widest opacity-60">DRAG & DROP OR BROWSE • MP4 / WEBM / MOV</span>
           <input #fileInput type="file" accept="video/*" multiple class="hidden" (change)="onFilesSelected($event)">
         </div>
 
-        <!-- File List -->
+        <!-- File List with Staggered Animation -->
         @if (vm.inputFiles.length > 0) {
-          <div class="flex flex-col gap-3 mb-6">
-            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-widest">Merge Order ({{ vm.inputFiles.length }} files)</h3>
-            @for (file of vm.inputFiles; track file.name; let i = $index) {
-              <div class="flex items-center gap-4 bg-gray-800 border border-gray-700 rounded-xl p-4 group hover:border-purple-500 transition-colors">
-                <div class="w-8 h-8 rounded-lg bg-purple-900/40 flex items-center justify-center text-purple-300 font-bold text-sm flex-shrink-0">{{ i + 1 }}</div>
+          <div class="flex flex-col gap-3 mb-8" [@listAnimation]="vm.inputFiles.length">
+            <div class="flex items-center justify-between px-1">
+               <h3 class="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Sequence Chain ({{ vm.inputFiles.length }})</h3>
+               <span class="text-[10px] text-gray-600 font-mono">Total Size: {{ calculateTotalSize(vm.inputFiles) }} MB</span>
+            </div>
+            
+            @for (file of vm.inputFiles; track file.name + $index; let i = $index) {
+              <div class="flex items-center gap-4 bg-gray-900/40 backdrop-blur-sm border border-gray-800/80 rounded-2xl p-4 group hover:border-purple-500/40 transition-all hover:bg-gray-800/40 hover:translate-x-1 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/10 flex items-center justify-center text-purple-400 font-black text-xs shrink-0 shadow-inner">{{ i + 1 }}</div>
                 <div class="flex-1 min-w-0">
-                  <p class="text-white font-medium truncate">{{ file.name }}</p>
-                  <p class="text-gray-500 text-xs mt-0.5">{{ (file.size / 1024 / 1024).toFixed(2) }} MB</p>
+                  <p class="text-white font-bold text-sm truncate pr-4">{{ file.name }}</p>
+                  <p class="text-gray-500 text-[10px] font-mono mt-1 uppercase tracking-tighter">{{ (file.size / 1024 / 1024).toFixed(2) }} MB</p>
                 </div>
-                <div class="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button (click)="moveUp(i)" [disabled]="i === 0" aria-label="Move up"
-                    class="text-gray-400 hover:text-white disabled:opacity-30 p-1 rounded transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
-                  </button>
-                  <button (click)="moveDown(i, vm)" [disabled]="i === vm.inputFiles.length - 1" aria-label="Move down"
-                    class="text-gray-400 hover:text-white disabled:opacity-30 p-1 rounded transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
+                
+                <div class="flex items-center gap-2">
+                   <div class="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity mr-2">
+                     <button (click)="moveUp(i)" [disabled]="i === 0" aria-label="Move up"
+                       class="text-gray-500 hover:text-white disabled:opacity-10 p-1.5 rounded-lg bg-gray-800/50 hover:bg-gray-700 transition-all">
+                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+                     </button>
+                     <button (click)="moveDown(i, vm)" [disabled]="i === vm.inputFiles.length - 1" aria-label="Move down"
+                       class="text-gray-500 hover:text-white disabled:opacity-10 p-1.5 rounded-lg bg-gray-800/50 hover:bg-gray-700 transition-all">
+                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                     </button>
+                   </div>
+                   
+                   <button (click)="removeFile(i)" aria-label="Remove file"
+                     class="text-gray-600 hover:text-rose-400 transition-all p-3 rounded-xl bg-rose-500/0 hover:bg-rose-500/10 opacity-0 group-hover:opacity-100">
+                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                   </button>
                 </div>
-                <button (click)="removeFile(i)" aria-label="Remove file"
-                  class="text-gray-500 hover:text-red-400 transition-colors p-2 rounded-lg hover:bg-red-900/20 opacity-0 group-hover:opacity-100">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
               </div>
             }
           </div>
         }
 
-        <!-- Export Panel + Status -->
-        <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Export & Status Area -->
+        <div class="flex flex-col lg:flex-row gap-8 mt-auto pt-6 border-t border-gray-800/50">
           <div class="flex-1">
-            <app-export-panel
-              [disabled]="vm.status === 'processing' || vm.inputFiles.length < 2"
-              (formatChange)="onFormatSelected($event)"
-              (exportClicked)="onStartMerge(vm)">
-            </app-export-panel>
-            @if (vm.inputFiles.length < 2 && vm.inputFiles.length > 0) {
-              <p class="text-yellow-400 text-xs mt-2 px-1">Add at least 2 videos to merge.</p>
-            }
+             <div class="bg-gray-900/30 rounded-2xl p-6 border border-gray-800 shadow-xl">
+               <app-export-panel
+                 [disabled]="vm.status === 'processing' || vm.inputFiles.length < 2"
+                 (formatChange)="onFormatSelected($event)"
+                 (exportClicked)="onStartMerge(vm)">
+               </app-export-panel>
+               @if (vm.inputFiles.length < 2 && vm.inputFiles.length > 0) {
+                 <div class="mt-4 px-4 py-3 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center gap-3" [@fadeIn]>
+                    <svg class="w-5 h-5 text-amber-500 grow-0 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <p class="text-amber-200 text-[10px] font-bold uppercase tracking-widest">Sequence incomplete: Add at least 2 videos</p>
+                 </div>
+               }
+             </div>
           </div>
 
-          @if (vm.status === 'processing') {
-            <div class="w-full lg:w-80 bg-gray-800 rounded-xl p-8 border border-gray-700 flex flex-col items-center justify-center shadow-xl">
-              <app-progress-ring [progress]="vm.progress" [status]="'Merging...'"></app-progress-ring>
-              <p class="text-gray-400 text-sm mt-4 text-center">Concatenating clips via FFmpeg concat protocol...</p>
-            </div>
-          } @else if (vm.status === 'success') {
-            <div class="w-full lg:w-80 bg-gradient-to-br from-green-900/40 to-emerald-900/20 border border-green-800 rounded-xl p-6 flex flex-col items-center justify-center shadow-xl">
-              <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <div class="w-full lg:w-96">
+            @if (vm.status === 'processing') {
+              <div class="h-full bg-gray-900/50 backdrop-blur-md rounded-2xl p-8 border border-gray-800 flex flex-col items-center justify-center shadow-2xl relative overflow-hidden" [@fadeIn]>
+                <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-purple-500 via-fuchsia-500 to-pink-500"></div>
+                <app-progress-ring [progress]="vm.progress" [status]="'MERGING'"></app-progress-ring>
+                <p class="text-purple-400 font-mono text-[10px] mt-6 tracking-[0.4em] animate-pulse">FFMPEG CONCAT ENGINE ACTIVE</p>
+                <p class="text-gray-500 text-[9px] mt-2 font-mono uppercase tracking-tighter">Merging {{ vm.inputFiles.length }} video streams...</p>
               </div>
-              <h3 class="text-lg font-bold text-white mb-2">Merge Complete!</h3>
-              <button class="mt-2 w-full bg-green-600 hover:bg-green-500 text-white py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(34,197,94,0.3)]"
-                (click)="onDownload(vm)">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                Download Merged Video
-              </button>
-              <button class="mt-4 text-sm text-gray-400 hover:text-white transition-colors" (click)="onReset()">Start Over</button>
-            </div>
-          } @else if (vm.status === 'error') {
-            <div class="w-full lg:w-80 bg-red-900/20 border border-red-800 rounded-xl p-6 flex flex-col items-center justify-center">
-              <svg class="w-10 h-10 text-red-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
-              <p class="text-red-300 text-sm text-center">{{ vm.errorMessage }}</p>
-              <button class="mt-4 text-sm text-gray-400 hover:text-white" (click)="onReset()">Try Again</button>
-            </div>
-          }
+            } @else if (vm.status === 'success') {
+              <div class="h-full bg-gradient-to-br from-emerald-900/40 via-gray-900/90 to-gray-900/90 border border-emerald-500/30 rounded-2xl p-8 flex flex-col items-center justify-center shadow-2xl" [@slideUp]>
+                <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/20 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/10">
+                  <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h3 class="text-xl font-black text-white mb-2 uppercase tracking-tighter">Merge Unified</h3>
+                <p class="text-emerald-400/60 text-[10px] font-mono mb-6 tracking-widest">{{ vm.outputSizeMB?.toFixed(2) }} MB Rendered</p>
+                
+                <button class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white py-4 rounded-xl font-black text-xs uppercase tracking-[0.2em] shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-3 active:scale-95 mb-4"
+                  (click)="onDownload(vm)">
+                  <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  Finalize & Export
+                </button>
+                <button class="text-[10px] font-black uppercase text-gray-500 hover:text-white transition-colors tracking-widest underline underline-offset-4" (click)="onReset()">Clear Worklane</button>
+              </div>
+            } @else if (vm.status === 'error') {
+              <div class="h-full bg-rose-500/5 border border-rose-500/20 rounded-2xl p-8 flex flex-col items-center justify-center" [@fadeIn]>
+                <div class="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center mb-4 text-rose-500">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                </div>
+                <p class="text-white font-bold text-sm uppercase mb-1">Divergence Detected</p>
+                <p class="text-rose-400/80 text-[10px] text-center font-mono pr-2 leading-relaxed">{{ vm.errorMessage || 'Unknown engine failure' }}</p>
+                @if (vm.retryable) {
+                  <button (click)="onStartMerge(vm)" class="mt-6 px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest transition-all">Retry Merge</button>
+                }
+              </div>
+            } @else {
+               <div class="h-full bg-gray-950/20 border border-dashed border-gray-800 rounded-2xl p-8 flex flex-col items-center justify-center opacity-40">
+                  <svg class="w-12 h-12 text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                  <p class="text-xs font-mono text-gray-600 uppercase tracking-widest">Waiting for Fragments</p>
+               </div>
+            }
+          </div>
         </div>
       }
     </div>
   `,
+  styles: [`
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+  `],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('400ms ease-out', style({ opacity: 1 }))
+      ])
+    ]),
+    trigger('slideUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('500ms cubic-bezier(0.16, 1, 0.3, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':enter', [
+          style({ opacity: 0, transform: 'translateX(-20px)' }),
+          stagger(50, [
+            animate('300ms cubic-bezier(0.3, 0, 0, 1)', style({ opacity: 1, transform: 'translateX(0)' }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MergerComponent {
+export class MergerComponent implements OnDestroy {
   private store = inject(Store);
   private mergerService = inject(MergerService);
+  private subscription = new Subscription();
+  
   readonly vm$ = this.store.select(selectMergerState);
 
   onFilesSelected(event: Event): void {
@@ -131,35 +214,63 @@ export class MergerComponent {
     if (files.length) this.store.dispatch(MergerActions.addFiles({ files }));
   }
 
+  calculateTotalSize(files: File[]): string {
+    const bytes = files.reduce((acc, f) => acc + f.size, 0);
+    return (bytes / (1024 * 1024)).toFixed(2);
+  }
+
   removeFile(index: number): void { this.store.dispatch(MergerActions.removeFile({ index })); }
   moveUp(index: number): void { if (index > 0) this.store.dispatch(MergerActions.reorderFiles({ from: index, to: index - 1 })); }
   moveDown(index: number, vm: MergerState): void { if (index < vm.inputFiles.length - 1) this.store.dispatch(MergerActions.reorderFiles({ from: index, to: index + 1 })); }
   onFormatSelected(format: string): void { this.store.dispatch(MergerActions.setOutputFormat({ format })); }
 
   onStartMerge(state: MergerState): void {
+    if (state.inputFiles.length < 2) return;
+    
     this.store.dispatch(MergerActions.startProcessing());
-    if (state.inputFiles.length >= 2) {
+    
+    this.subscription.add(
       this.mergerService.process(state.inputFiles, state.outputFormat).subscribe({
         next: (msg) => {
-          if (msg.type === 'progress') this.store.dispatch(MergerActions.updateProgress({ progress: msg.value ?? 0 }));
-          else if (msg.type === 'complete') {
+          if (msg.type === 'progress') {
+            this.store.dispatch(MergerActions.updateProgress({ progress: msg.value ?? 0 }));
+          } else if (msg.type === 'complete') {
             const blob = new Blob([msg.data as BlobPart], { type: `video/${state.outputFormat}` });
-            this.store.dispatch(MergerActions.processingSuccess({ outputBlob: blob }));
+            this.store.dispatch(MergerActions.processingSuccess({ 
+              outputBlob: blob,
+              outputSizeMB: blob.size / (1024 * 1024)
+            }));
           }
         },
-        error: (err) => this.store.dispatch(MergerActions.processingFailure({ message: err.message ?? 'Unknown error' }))
-      });
-    }
+        error: (err) => {
+          this.store.dispatch(MergerActions.processingFailure({ 
+            errorCode: 'FFMPEG_COMMAND_FAILED', 
+            message: err.message ?? 'Concatenation failed. Check component compatibility.',
+            retryable: true
+          }));
+        }
+      })
+    );
   }
 
   onDownload(state: MergerState): void {
     if (state.outputBlob) {
       const url = URL.createObjectURL(state.outputBlob);
-      const a = Object.assign(document.createElement('a'), { href: url, download: `omni_merged.${state.outputFormat}` });
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      const filename = this.mergerService.getOutputFilename(state.outputFormat);
+      const a = Object.assign(document.createElement('a'), { 
+        href: url, 
+        download: filename 
+      });
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 150);
     }
   }
 
   onReset(): void { this.store.dispatch(MergerActions.resetState()); }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

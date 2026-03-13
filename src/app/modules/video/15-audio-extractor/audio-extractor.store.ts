@@ -8,7 +8,7 @@ export interface AudioExtractorState {
   outputFormat: 'wav' | 'mp3' | 'aac' | 'ogg' | 'flac';
   bitrate: 128 | 192 | 256 | 320;
   waveformData: Float32Array | null;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -18,10 +18,18 @@ export interface AudioExtractorState {
 }
 
 const initialState: AudioExtractorState = {
-  inputFile: null, videoMeta: null,
-  outputFormat: 'mp3', bitrate: 192, waveformData: null,
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  outputFormat: 'mp3',
+  bitrate: 192,
+  waveformData: null,
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const AudioExtractorActions = createActionGroup({
@@ -29,7 +37,6 @@ export const AudioExtractorActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Output Format': props<{ outputFormat: 'wav' | 'mp3' | 'aac' | 'ogg' | 'flac' }>(),
     'Set Bitrate': props<{ bitrate: 128 | 192 | 256 | 320 }>(),
     'Start Processing': emptyProps(),
@@ -44,21 +51,51 @@ export const audioExtractorFeature = createFeature({
   name: 'audioExtractor',
   reducer: createReducer(
     initialState,
-    on(AudioExtractorActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(AudioExtractorActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const })),
-    on(AudioExtractorActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(AudioExtractorActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(AudioExtractorActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta })),
     on(AudioExtractorActions.setOutputFormat, (state, { outputFormat }) => ({ ...state, outputFormat })),
     on(AudioExtractorActions.setBitrate, (state, { bitrate }) => ({ ...state, bitrate })),
-    on(AudioExtractorActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, waveformData: null, errorCode: null, errorMessage: null })),
+    on(AudioExtractorActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      waveformData: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(AudioExtractorActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(AudioExtractorActions.processingSuccess, (state, { outputBlob, outputSizeMB, waveformData }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, waveformData, progress: 100 })),
-    on(AudioExtractorActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(AudioExtractorActions.processingSuccess, (state, { outputBlob, outputSizeMB, waveformData }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      waveformData, 
+      progress: 100 
+    })),
+    on(AudioExtractorActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(AudioExtractorActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectAudioExtractorState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectOutputFormat, selectBitrate, selectWaveformData,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectAudioExtractorState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectOutputFormat,
+  selectBitrate,
+  selectWaveformData,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = audioExtractorFeature;

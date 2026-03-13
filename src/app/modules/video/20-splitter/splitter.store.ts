@@ -11,7 +11,7 @@ export interface SplitterState {
   markers: number[];
   equalParts: number;
   segments: SplitSegment[];
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlobs: Blob[];
   outputSizeMB: number | null;
@@ -21,10 +21,19 @@ export interface SplitterState {
 }
 
 const initialState: SplitterState = {
-  inputFile: null, videoMeta: null,
-  mode: 'markers', markers: [], equalParts: 3, segments: [],
-  status: 'idle', progress: 0, outputBlobs: [], outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  mode: 'markers',
+  markers: [],
+  equalParts: 3,
+  segments: [],
+  status: 'idle',
+  progress: 0,
+  outputBlobs: [],
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const SplitterActions = createActionGroup({
@@ -32,7 +41,6 @@ export const SplitterActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Mode': props<{ mode: 'markers' | 'equal' }>(),
     'Add Marker': props<{ time: number }>(),
     'Remove Marker': props<{ time: number }>(),
@@ -50,24 +58,59 @@ export const splitterFeature = createFeature({
   name: 'splitter',
   reducer: createReducer(
     initialState,
-    on(SplitterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(SplitterActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const })),
-    on(SplitterActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(SplitterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(SplitterActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta })),
     on(SplitterActions.setMode, (state, { mode }) => ({ ...state, mode })),
-    on(SplitterActions.addMarker, (state, { time }) => ({ ...state, markers: [...state.markers, time].sort((a, b) => a - b) })),
-    on(SplitterActions.removeMarker, (state, { time }) => ({ ...state, markers: state.markers.filter(m => m !== time) })),
+    on(SplitterActions.addMarker, (state, { time }) => ({ 
+      ...state, 
+      markers: [...state.markers, time].sort((a, b) => a - b) 
+    })),
+    on(SplitterActions.removeMarker, (state, { time }) => ({ 
+      ...state, 
+      markers: state.markers.filter(m => m !== time) 
+    })),
     on(SplitterActions.setEqualParts, (state, { parts }) => ({ ...state, equalParts: parts })),
     on(SplitterActions.setSegments, (state, { segments }) => ({ ...state, segments })),
-    on(SplitterActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlobs: [], errorCode: null, errorMessage: null })),
+    on(SplitterActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlobs: [], 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(SplitterActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(SplitterActions.processingSuccess, (state, { outputBlobs, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlobs, outputSizeMB, progress: 100 })),
-    on(SplitterActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(SplitterActions.processingSuccess, (state, { outputBlobs, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlobs, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(SplitterActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(SplitterActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectSplitterState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectMode, selectMarkers, selectEqualParts, selectSegments,
-  selectOutputBlobs, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectSplitterState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectMode,
+  selectMarkers,
+  selectEqualParts,
+  selectSegments,
+  selectOutputBlobs,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = splitterFeature;

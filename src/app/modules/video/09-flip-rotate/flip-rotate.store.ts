@@ -8,7 +8,7 @@ export interface FlipRotateState {
   flipH: boolean;
   flipV: boolean;
   rotation: number;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -18,10 +18,18 @@ export interface FlipRotateState {
 }
 
 const initialState: FlipRotateState = {
-  inputFile: null, videoMeta: null,
-  flipH: false, flipV: false, rotation: 0,
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  flipH: false,
+  flipV: false,
+  rotation: 0,
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const FlipRotateActions = createActionGroup({
@@ -29,7 +37,6 @@ export const FlipRotateActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Toggle Flip H': emptyProps(),
     'Toggle Flip V': emptyProps(),
     'Set Rotation': props<{ rotation: number }>(),
@@ -45,22 +52,50 @@ export const flipRotateFeature = createFeature({
   name: 'flipRotate',
   reducer: createReducer(
     initialState,
-    on(FlipRotateActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(FlipRotateActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const })),
-    on(FlipRotateActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(FlipRotateActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(FlipRotateActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta })),
     on(FlipRotateActions.toggleFlipH, (state) => ({ ...state, flipH: !state.flipH })),
     on(FlipRotateActions.toggleFlipV, (state) => ({ ...state, flipV: !state.flipV })),
     on(FlipRotateActions.setRotation, (state, { rotation }) => ({ ...state, rotation })),
-    on(FlipRotateActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(FlipRotateActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(FlipRotateActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(FlipRotateActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(FlipRotateActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(FlipRotateActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(FlipRotateActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(FlipRotateActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectFlipRotateState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectFlipH, selectFlipV, selectRotation,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectFlipRotateState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectFlipH,
+  selectFlipV,
+  selectRotation,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = flipRotateFeature;

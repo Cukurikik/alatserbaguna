@@ -5,14 +5,13 @@ import { VideoErrorCode } from '../shared/errors/video.errors';
 export interface SubtitleBurnerState {
   videoFile: File | null;
   videoMeta: VideoMeta | null;
-  subtitleContent: string;
+  srtFile: File | null;
   fontFamily: string;
   fontSize: number;
   fontColor: string;
   outlineColor: string;
   position: 'top' | 'bottom';
-  offsetSeconds: number;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -22,27 +21,33 @@ export interface SubtitleBurnerState {
 }
 
 const initialState: SubtitleBurnerState = {
-  videoFile: null, videoMeta: null,
-  subtitleContent: '', fontFamily: 'Arial', fontSize: 24,
-  fontColor: '#FFFFFF', outlineColor: '#000000',
-  position: 'bottom', offsetSeconds: 0,
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  videoFile: null,
+  videoMeta: null,
+  srtFile: null,
+  fontFamily: 'Arial',
+  fontSize: 24,
+  fontColor: '#FFFFFF',
+  outlineColor: '#000000',
+  position: 'bottom',
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const SubtitleBurnerActions = createActionGroup({
   source: 'SubtitleBurner',
   events: {
     'Load Video': props<{ file: File }>(),
+    'Load Srt': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
-    'Set Subtitle Content': props<{ content: string }>(),
     'Set Font Family': props<{ fontFamily: string }>(),
     'Set Font Size': props<{ fontSize: number }>(),
     'Set Font Color': props<{ color: string }>(),
-    'Set Outline Color': props<{ color: string }>(),
     'Set Position': props<{ position: 'top' | 'bottom' }>(),
-    'Set Offset': props<{ offsetSeconds: number }>(),
     'Start Processing': emptyProps(),
     'Update Progress': props<{ progress: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
@@ -55,27 +60,55 @@ export const subtitleBurnerFeature = createFeature({
   name: 'subtitleBurner',
   reducer: createReducer(
     initialState,
-    on(SubtitleBurnerActions.loadVideo, (state, { file }) => ({ ...state, videoFile: file, status: 'processing' as const })),
-    on(SubtitleBurnerActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const })),
-    on(SubtitleBurnerActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
-    on(SubtitleBurnerActions.setSubtitleContent, (state, { content }) => ({ ...state, subtitleContent: content })),
+    on(SubtitleBurnerActions.loadVideo, (state, { file }) => ({ ...state, videoFile: file, status: 'idle', progress: 0 })),
+    on(SubtitleBurnerActions.loadSrt, (state, { file }) => ({ ...state, srtFile: file })),
+    on(SubtitleBurnerActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta })),
     on(SubtitleBurnerActions.setFontFamily, (state, { fontFamily }) => ({ ...state, fontFamily })),
     on(SubtitleBurnerActions.setFontSize, (state, { fontSize }) => ({ ...state, fontSize })),
     on(SubtitleBurnerActions.setFontColor, (state, { color }) => ({ ...state, fontColor: color })),
-    on(SubtitleBurnerActions.setOutlineColor, (state, { color }) => ({ ...state, outlineColor: color })),
     on(SubtitleBurnerActions.setPosition, (state, { position }) => ({ ...state, position })),
-    on(SubtitleBurnerActions.setOffset, (state, { offsetSeconds }) => ({ ...state, offsetSeconds })),
-    on(SubtitleBurnerActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(SubtitleBurnerActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(SubtitleBurnerActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(SubtitleBurnerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(SubtitleBurnerActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(SubtitleBurnerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(SubtitleBurnerActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(SubtitleBurnerActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectSubtitleBurnerState, selectStatus, selectProgress, selectVideoFile, selectVideoMeta,
-  selectSubtitleContent, selectFontFamily, selectFontSize, selectFontColor,
-  selectOutlineColor, selectPosition, selectOffsetSeconds,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectSubtitleBurnerState,
+  selectStatus,
+  selectProgress,
+  selectVideoFile,
+  selectVideoMeta,
+  selectSrtFile,
+  selectFontFamily,
+  selectFontSize,
+  selectFontColor,
+  selectOutlineColor,
+  selectPosition,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = subtitleBurnerFeature;

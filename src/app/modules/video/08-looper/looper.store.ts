@@ -10,7 +10,7 @@ export interface LooperState {
   targetDuration: number;
   crossfade: boolean;
   crossfadeDuration: number;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -23,7 +23,7 @@ const initialState: LooperState = {
   inputFile: null,
   videoMeta: null,
   mode: 'count',
-  loopCount: 2,
+  loopCount: 3,
   targetDuration: 60,
   crossfade: false,
   crossfadeDuration: 0.5,
@@ -41,7 +41,6 @@ export const LooperActions = createActionGroup({
   events: {
     'Load File': props<{ file: File }>(),
     'Load Meta Success': props<{ meta: VideoMeta }>(),
-    'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Mode': props<{ mode: 'count' | 'duration' }>(),
     'Set Loop Count': props<{ count: number }>(),
     'Set Target Duration': props<{ duration: number }>(),
@@ -59,24 +58,54 @@ export const looperFeature = createFeature({
   name: 'looper',
   reducer: createReducer(
     initialState,
-    on(LooperActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const })),
-    on(LooperActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta, status: 'idle' as const })),
-    on(LooperActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
+    on(LooperActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle', progress: 0 })),
+    on(LooperActions.loadMetaSuccess, (state, { meta }) => ({ ...state, videoMeta: meta })),
     on(LooperActions.setMode, (state, { mode }) => ({ ...state, mode })),
     on(LooperActions.setLoopCount, (state, { count }) => ({ ...state, loopCount: count })),
     on(LooperActions.setTargetDuration, (state, { duration }) => ({ ...state, targetDuration: duration })),
     on(LooperActions.setCrossfade, (state, { enabled }) => ({ ...state, crossfade: enabled })),
     on(LooperActions.setCrossfadeDuration, (state, { duration }) => ({ ...state, crossfadeDuration: duration })),
-    on(LooperActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(LooperActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(LooperActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(LooperActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(LooperActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(LooperActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(LooperActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(LooperActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectLooperState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectMode, selectLoopCount, selectTargetDuration, selectCrossfade, selectCrossfadeDuration,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectLooperState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectMode,
+  selectLoopCount,
+  selectTargetDuration,
+  selectCrossfade,
+  selectCrossfadeDuration,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = looperFeature;

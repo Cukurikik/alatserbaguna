@@ -9,7 +9,7 @@ export interface SlideshowState {
   musicFile: File | null;
   musicVolume: number;
   loopMusic: boolean;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
   outputBlob: Blob | null;
   outputSizeMB: number | null;
@@ -19,10 +19,20 @@ export interface SlideshowState {
 }
 
 const initialState: SlideshowState = {
-  images: [], defaultDuration: 3, kenBurns: false,
-  perImageDuration: [], musicFile: null, musicVolume: 0.5, loopMusic: true,
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  images: [],
+  defaultDuration: 3,
+  kenBurns: false,
+  perImageDuration: [],
+  musicFile: null,
+  musicVolume: 0.5,
+  loopMusic: true,
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const SlideshowActions = createActionGroup({
@@ -52,7 +62,7 @@ export const slideshowFeature = createFeature({
     on(SlideshowActions.addImages, (state, { files }) => {
       const images = [...state.images, ...files];
       const perImageDuration = [...state.perImageDuration, ...files.map(() => state.defaultDuration)];
-      return { ...state, images, perImageDuration };
+      return { ...state, images, perImageDuration, status: 'idle', progress: 0 };
     }),
     on(SlideshowActions.removeImage, (state, { index }) => ({
       ...state,
@@ -69,16 +79,47 @@ export const slideshowFeature = createFeature({
     on(SlideshowActions.setMusicFile, (state, { file }) => ({ ...state, musicFile: file })),
     on(SlideshowActions.setMusicVolume, (state, { volume }) => ({ ...state, musicVolume: volume })),
     on(SlideshowActions.toggleLoopMusic, (state) => ({ ...state, loopMusic: !state.loopMusic })),
-    on(SlideshowActions.startProcessing, (state) => ({ ...state, status: 'processing' as const, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+    on(SlideshowActions.startProcessing, (state) => ({ 
+      ...state, 
+      status: 'processing', 
+      progress: 0, 
+      outputBlob: null, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(SlideshowActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
-    on(SlideshowActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as const, outputBlob, outputSizeMB, progress: 100 })),
-    on(SlideshowActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(SlideshowActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success', 
+      outputBlob, 
+      outputSizeMB, 
+      progress: 100 
+    })),
+    on(SlideshowActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(SlideshowActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectSlideshowState, selectStatus, selectProgress, selectImages, selectDefaultDuration,
-  selectPerImageDuration, selectKenBurns, selectMusicFile, selectMusicVolume, selectLoopMusic,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectSlideshowState,
+  selectStatus,
+  selectProgress,
+  selectImages,
+  selectDefaultDuration,
+  selectPerImageDuration,
+  selectKenBurns,
+  selectMusicFile,
+  selectMusicVolume,
+  selectLoopMusic,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = slideshowFeature;

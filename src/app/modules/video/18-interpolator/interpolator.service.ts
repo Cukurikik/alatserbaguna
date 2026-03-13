@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
 import { WorkerMessage, VideoMeta } from '../shared/types/video.types';
@@ -14,48 +14,18 @@ export interface InterpolatorConfig {
 
 @Injectable({ providedIn: 'root' })
 export class InterpolatorService {
-  constructor(private bridge: WorkerBridgeService) {}
+  private bridge = inject(WorkerBridgeService);
 
   /**
-   * Validate that target FPS is higher than input FPS.
+   * Fluid Engine processor.
    */
-  canInterpolate(inputFPS: number, targetFPS: number): boolean {
-    return targetFPS > inputFPS;
-  }
-
-  /**
-   * Build the duplicate-method fps filter string.
-   * This just instructs FFmpeg to output at the target rate by duplicating frames.
-   */
-  buildFpsFilter(targetFPS: string): string {
-    return `fps=${targetFPS}`;
-  }
-
-  /**
-   * Build the motion-compensated minterpolate filter string.
-   * Uses MCI (motion-compensated interpolation) with AOBMC refinement.
-   */
-  buildMinterpolateFilter(targetFPS: string): string {
-    return `minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=${targetFPS}'`;
-  }
-
-  /**
-   * Estimate processing time in seconds.
-   * duplicate: 10% of video duration
-   * motion: 20× video duration (very slow)
-   */
-  estimateProcessingTime(durationSeconds: number, algorithm: InterpolatorAlgorithm): number {
-    return algorithm === 'duplicate'
-      ? Math.round(durationSeconds * 0.1)
-      : Math.round(durationSeconds * 20);
-  }
-
   process(config: InterpolatorConfig): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.runTask(new Worker(new URL('./interpolator.worker', import.meta.url), { type: 'module' }), config);
+    const worker = new Worker(new URL('./interpolator.worker', import.meta.url), { type: 'module' });
+    return this.bridge.runTask(worker, config);
   }
 
   getOutputFilename(originalName: string, targetFPS: string): string {
     const base = originalName.replace(/\.[^.]+$/, '');
-    return `omni_${targetFPS}fps_${base}.mp4`;
+    return `omni_fluid_${targetFPS}fps_${base}.mp4`;
   }
 }
