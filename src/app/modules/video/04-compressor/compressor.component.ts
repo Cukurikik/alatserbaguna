@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { CommonModule, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { CompressorActions, selectCompressorState, CompressorState } from './compressor.store';
 import { CompressorService } from './compressor.service';
@@ -12,7 +12,7 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
 @Component({
   selector: 'app-compressor',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
+  imports: [AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">
@@ -20,20 +20,20 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
         <p class="text-gray-400 text-sm mt-1">Reduce file size with precision CRF control using H.264/H.265 encoding.</p>
       </div>
 
-      <ng-container *ngIf="vm$ | async as vm">
-        <ng-container *ngIf="!vm.inputFile">
+      @if (vm$ | async; as vm) {
+        @if (!vm.inputFile) {
           <div class="flex-1 flex flex-col justify-center">
             <app-file-drop-zone accept="video/*" (fileDropped)="onFile($event)"></app-file-drop-zone>
           </div>
-        </ng-container>
+        }
 
-        <ng-container *ngIf="vm.inputFile">
+        @if (vm.inputFile) {
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1">
               <app-video-preview [videoUrl]="videoUrl"></app-video-preview>
 
               <!-- Size comparison -->
-              <ng-container *ngIf="vm.status === 'success'">
+              @if (vm.status === 'success') {
                 <div class="mt-4 bg-gray-800 border border-gray-700 rounded-xl p-5 flex items-center justify-around">
                   <div class="text-center">
                     <p class="text-xs text-gray-500 uppercase mb-1">Original</p>
@@ -47,7 +47,7 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
                     <p class="text-2xl font-bold text-green-400">{{ vm.outputSizeMB.toFixed(1) }}<span class="text-sm text-gray-400"> MB</span></p>
                   </div>
                 </div>
-              </ng-container>
+              }
             </div>
 
             <div class="w-full lg:w-96 flex flex-col gap-4">
@@ -68,39 +68,39 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
               <div class="bg-gray-800 border border-gray-700 rounded-xl p-5">
                 <label class="block text-sm font-semibold text-gray-300 mb-3">Encoding Preset</label>
                 <div class="grid grid-cols-4 gap-1.5">
-                  <ng-container *ngFor="let preset of presets">
+                  @for (preset of presets; track preset) {
                     <button (click)="setPreset(preset)"
                       [class]="vm.preset === preset ? 'bg-teal-600 text-white shadow-md' : 'bg-gray-900 text-gray-400 hover:bg-gray-700'"
                       class="py-1.5 px-1 rounded-lg text-xs font-mono transition-all text-center">
                       {{ preset }}
                     </button>
-                  </ng-container>
+                  }
                 </div>
                 <p class="text-xs text-gray-500 mt-2">Slower = smaller file. Faster = quicker processing.</p>
               </div>
 
-              <ng-container *ngIf="vm.status === 'processing'">
+              @if (vm.status === 'processing') {
                 <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 flex flex-col items-center">
                   <app-progress-ring [progress]="vm.progress" [status]="'Compressing...'"></app-progress-ring>
                 </div>
-              </ng-container>
-              <ng-container *ngIf="vm.status === 'success'">
+              }
+              @if (vm.status === 'success') {
                 <button (click)="onDownload(vm)" class="w-full bg-green-600 hover:bg-green-500 text-white py-3 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(74,222,128,0.3)] flex items-center justify-center gap-2">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                   Download Compressed
                 </button>
                 <button (click)="onReset()" class="text-sm text-center text-gray-400 hover:text-white">Compress Another</button>
-              </ng-container>
-              <ng-container *ngIf="vm.status === 'idle' || vm.status === 'error'">
+              }
+              @if (vm.status === 'idle' || vm.status === 'error') {
                 <button (click)="onCompress(vm)" [disabled]="!vm.inputFile"
                   class="w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-white font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(74,222,128,0.4)] transition-all active:scale-95 disabled:opacity-50">
                   Start Compression
                 </button>
-              </ng-container>
+              }
             </div>
           </div>
-        </ng-container>
-      </ng-container>
+        }
+      }
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
