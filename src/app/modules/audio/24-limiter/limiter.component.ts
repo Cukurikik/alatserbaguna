@@ -44,7 +44,7 @@ import { ExportFormat } from '../shared/types/audio.types';
                 <!-- Ceiling -->
                 <div class="flex flex-col gap-2">
                   <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Ceiling</label><span class="text-red-400 font-mono font-black text-sm">{{ ceiling() }} dBFS</span></div>
-                  <input type="range" min="-6" max="0" step="0.1" [value]="ceiling()" (input)="ceiling.set(+(e.target as any).value)"
+                  <input type="range" min="-6" max="0" step="0.1" [value]="ceiling()" (input)="ceiling.set(+$any($event.target).value)"
                         class="w-full accent-red-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                   <div class="flex gap-2">
                     @for (v of [-3,-1,-0.3,0]; track v) {
@@ -57,14 +57,14 @@ import { ExportFormat } from '../shared/types/audio.types';
                 <!-- Lookahead -->
                 <div class="flex flex-col gap-2">
                   <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Lookahead</label><span class="text-rose-400 font-mono font-black text-sm">{{ lookahead() }} ms</span></div>
-                  <input type="range" min="0" max="20" step="0.5" [value]="lookahead()" (input)="lookahead.set(+(e.target as any).value)"
+                  <input type="range" min="0" max="20" step="0.5" [value]="lookahead()" (input)="lookahead.set(+$any($event.target).value)"
                         class="w-full accent-rose-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                 </div>
 
                 <!-- Release -->
                 <div class="flex flex-col gap-2">
                   <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Release</label><span class="text-pink-400 font-mono font-black text-sm">{{ release() }}s</span></div>
-                  <input type="range" min="0.01" max="1.0" step="0.01" [value]="release()" (input)="release.set(+(e.target as any).value)"
+                  <input type="range" min="0.01" max="1.0" step="0.01" [value]="release()" (input)="release.set(+$any($event.target).value)"
                         class="w-full accent-pink-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                 </div>
 
@@ -81,7 +81,7 @@ import { ExportFormat } from '../shared/types/audio.types';
                     @if (targetLUFS() !== null) { <span class="text-orange-400 font-mono font-black text-sm">{{ targetLUFS() }} LUFS</span> }
                   </div>
                   @if (targetLUFS() !== null) {
-                    <input type="range" min="-23" max="-6" step="0.5" [value]="targetLUFS()!" (input)="targetLUFS.set(+(e.target as any).value)"
+                    <input type="range" min="-23" max="-6" step="0.5" [value]="targetLUFS()!" (input)="targetLUFS.set(+$any($event.target).value)"
                         class="w-full accent-orange-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer" [@fadeIn]>
                     <div class="flex gap-2" [@fadeIn]>
                       @for (v of [[-14,'Spotify'],[-16,'Apple'],[-23,'EBU R128']]; track v[0]) {
@@ -110,7 +110,7 @@ import { ExportFormat } from '../shared/types/audio.types';
             <div class="w-full lg:w-80 flex flex-col gap-6">
               <div class="bg-[#12121a] rounded-2xl border border-gray-800 p-6 flex flex-col min-h-[300px]">
                 <label class="text-xs text-gray-400 uppercase tracking-widest mb-3 font-bold">Format</label>
-                <select [value]="outputFormat()" (change)="outputFormat.set((e.target as any).value as any)"
+                <select [value]="outputFormat()" (change)="outputFormat.set($any($event.target).value)"
                         class="w-full bg-gray-900 border border-gray-700 font-bold text-sm rounded-lg px-4 py-3 outline-none focus:border-red-500 transition-colors mb-6">
                   <option value="wav">WAV (Lossless)</option><option value="mp3">MP3</option><option value="aac">AAC</option>
                 </select>

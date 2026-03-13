@@ -200,10 +200,10 @@ export class SplitterComponent implements OnDestroy {
   increaseParts() { this.equalParts.update(v => Math.min(10, v + 1)); }
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(SplitterActions.loadFile({ file: files[0] })); }
-  onEqualPartsChange(e: Event) { this.equalParts.set(parseInt((e.target as any).value, 10)); }
-  onThresholdChange(e: Event) { this.silenceThresholdDb.set(parseInt((e.target as any).value, 10)); }
-  onSilenceDurChange(e: Event) { this.silenceMinDuration.set(parseFloat((e.target as any).value)); }
-  onFormatChange(e: Event) { this.outputFormat.set((e.target as any).value as ExportFormat); }
+  onEqualPartsChange(e: Event) { this.equalParts.set(parseInt((e.target as HTMLInputElement).value, 10)); }
+  onThresholdChange(e: Event) { this.silenceThresholdDb.set(parseInt((e.target as HTMLInputElement).value, 10)); }
+  onSilenceDurChange(e: Event) { this.silenceMinDuration.set(parseFloat((e.target as HTMLInputElement).value)); }
+  onFormatChange(e: Event) { this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat); }
 
   onProcess(state: any) {
     if (state.status === 'processing') return;

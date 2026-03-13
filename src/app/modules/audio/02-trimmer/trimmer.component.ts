@@ -191,12 +191,12 @@ export class TrimmerComponent implements OnDestroy {
   }
 
   onStartChange(event: Event, durationMs: number) {
-    const val = parseInt((e.target as any).value, 10);
+    const val = parseInt((e.target as HTMLInputElement).value, 10);
     this.store.dispatch(TrimmerActions.setInPoint({ ms: val }));
   }
 
   onEndChange(event: Event, durationMs: number) {
-    const val = parseInt((e.target as any).value, 10);
+    const val = parseInt((e.target as HTMLInputElement).value, 10);
     this.store.dispatch(TrimmerActions.setOutPoint({ ms: val }));
   }
 

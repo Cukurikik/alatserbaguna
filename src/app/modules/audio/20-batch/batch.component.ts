@@ -162,7 +162,7 @@ export class BatchComponent implements OnDestroy {
   ];
 
   onAddFiles(e: Event) {
-    const files = Array.from((e.target as any).files ?? []);
+    const files = (Array.from((e.target as HTMLInputElement).files ?? []) as File[]);
     if (files.length) this.store.dispatch(BatchActions.addFiles({ files }));
   }
 

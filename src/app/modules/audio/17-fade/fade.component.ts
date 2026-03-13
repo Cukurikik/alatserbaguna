@@ -179,9 +179,9 @@ export class FadeComponent implements OnDestroy {
   ];
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(FadeActions.loadFile({ file: files[0] })); }
-  onFadeInChange(e: Event) { this.fadeInDuration.set(parseFloat((e.target as any).value)); }
-  onFadeOutChange(e: Event) { this.fadeOutDuration.set(parseFloat((e.target as any).value)); }
-  onFormatChange(e: Event) { this.outputFormat.set((e.target as any).value as ExportFormat); }
+  onFadeInChange(e: Event) { this.fadeInDuration.set(parseFloat((e.target as HTMLInputElement).value)); }
+  onFadeOutChange(e: Event) { this.fadeOutDuration.set(parseFloat((e.target as HTMLInputElement).value)); }
+  onFormatChange(e: Event) { this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat); }
 
   onProcess(state: any) {
     if (state.status === 'processing') return;

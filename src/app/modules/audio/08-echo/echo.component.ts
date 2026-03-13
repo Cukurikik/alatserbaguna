@@ -220,7 +220,7 @@ export class EchoComponent implements OnDestroy {
   }
 
   onChange(type: 'delay' | 'feedback' | 'dry' | 'wet', event: Event): void {
-    const val = parseFloat((e.target as any).value);
+    const val = parseFloat((e.target as HTMLInputElement).value);
     switch (type) {
       case 'delay': this.delayMs.set(val); break;
       case 'feedback': this.feedback.set(val); break;
@@ -230,7 +230,7 @@ export class EchoComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as any).value as ExportFormat);
+    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
   }
 
   onProcess(state: any): void {

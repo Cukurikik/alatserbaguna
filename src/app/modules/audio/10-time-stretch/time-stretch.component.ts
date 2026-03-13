@@ -241,7 +241,7 @@ export class TimeStretchComponent implements OnDestroy {
   }
 
   onSpeedChange(event: Event): void {
-    const val = parseFloat((e.target as any).value);
+    const val = parseFloat((e.target as HTMLInputElement).value);
     this.speed.set(val);
   }
 
@@ -254,7 +254,7 @@ export class TimeStretchComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as any).value as ExportFormat);
+    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
   }
 
   onProcess(state: any): void {

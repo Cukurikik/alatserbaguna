@@ -261,17 +261,17 @@ export class NormalizerComponent implements OnDestroy {
   }
 
   onTargetChange(event: Event): void {
-    const val = parseInt((e.target as any).value, 10);
+    const val = parseInt((e.target as HTMLInputElement).value, 10);
     this.targetLevel.set(val);
   }
 
   onTruePeakChange(event: Event): void {
-    const val = parseFloat((e.target as any).value);
+    const val = parseFloat((e.target as HTMLInputElement).value);
     this.truePeak.set(val);
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as any).value as ExportFormat);
+    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
   }
 
   onProcess(state: any): void {

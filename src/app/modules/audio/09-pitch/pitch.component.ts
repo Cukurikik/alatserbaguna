@@ -221,7 +221,7 @@ export class PitchComponent implements OnDestroy {
   }
 
   onSemiChange(event: Event): void {
-    const val = parseInt((e.target as any).value, 10);
+    const val = parseInt((e.target as HTMLInputElement).value, 10);
     this.semitones.set(val);
   }
 
@@ -237,7 +237,7 @@ export class PitchComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as any).value as ExportFormat);
+    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
   }
 
   onProcess(state: any): void {

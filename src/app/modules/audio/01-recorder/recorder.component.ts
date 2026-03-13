@@ -201,7 +201,7 @@ export class RecorderComponent implements AfterViewInit, OnDestroy {
   private cachedBlobUrls = new Map<Blob, string>();
 
   onFormatChange(e: Event) {
-    const format = (e.target as any).value as ExportFormat;
+    const format = (e.target as HTMLSelectElement).value as ExportFormat;
     this.outputFormat.set(format);
     this.store.dispatch(RecorderActions.setOutputFormat({ format }));
   }

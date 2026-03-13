@@ -220,7 +220,7 @@ export class ReverbComponent implements OnDestroy {
   }
 
   onChange(type: 'room' | 'damping' | 'dry' | 'wet', event: Event): void {
-    const val = parseFloat((e.target as any).value);
+    const val = parseFloat((e.target as HTMLInputElement).value);
     switch (type) {
       case 'room': this.roomSizeMs.set(val); break;
       case 'damping': this.damping.set(val); break;
@@ -230,7 +230,7 @@ export class ReverbComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as any).value as ExportFormat);
+    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
   }
 
   onProcess(state: any): void {

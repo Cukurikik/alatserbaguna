@@ -1,4 +1,4 @@
 export { WatermarkComponent } from './watermark.component';
 export { WatermarkService } from './watermark.service';
 export * from './watermark.store';
-export { WatermarkModeSchema } from './watermark.schema';
+export { WatermarkModeConfigSchema } from './watermark.schema';

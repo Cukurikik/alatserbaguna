@@ -148,15 +148,15 @@ export class MixerComponent implements OnDestroy {
   private cachedBlobUrls = new Map<Blob, string>();
 
   onAddTrack(e: Event) {
-    const file = (e.target as any).files?.[0];
+    const file = (e.target as HTMLInputElement).files?.[0];
     if (file) this.store.dispatch(MixerActions.addTrack({ file }));
   }
   onRemoveTrack(id: string) { this.store.dispatch(MixerActions.removeTrack({ id })); }
-  onVolumeChange(e: Event, id: string) { this.store.dispatch(MixerActions.updateTrackVolume({ id, volume: parseFloat((e.target as any).value) })); }
-  onPanChange(e: Event, id: string) { this.store.dispatch(MixerActions.updateTrackPan({ id, pan: parseFloat((e.target as any).value) })); }
+  onVolumeChange(e: Event, id: string) { this.store.dispatch(MixerActions.updateTrackVolume({ id, volume: parseFloat((e.target as HTMLInputElement).value) })); }
+  onPanChange(e: Event, id: string) { this.store.dispatch(MixerActions.updateTrackPan({ id, pan: parseFloat((e.target as HTMLInputElement).value) })); }
   onToggleMute(id: string) { this.store.dispatch(MixerActions.toggleTrackMute({ id })); }
   onToggleSolo(id: string) { this.store.dispatch(MixerActions.toggleTrackSolo({ id })); }
-  onMasterVolChange(e: Event) { this.store.dispatch(MixerActions.setMasterVolume({ volume: parseFloat((e.target as any).value) })); }
+  onMasterVolChange(e: Event) { this.store.dispatch(MixerActions.setMasterVolume({ volume: parseFloat((e.target as HTMLInputElement).value) })); }
   onSetOutputMode(mode: 'stereo' | 'mono') { this.store.dispatch(MixerActions.setOutputMode({ mode })); }
 
   getPanDisplay(pan: number): string {
