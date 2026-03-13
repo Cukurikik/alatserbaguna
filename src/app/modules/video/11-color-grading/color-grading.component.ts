@@ -50,7 +50,7 @@ const colorGradingFeature = createFeature({ name: 'colorGrading', reducer: creat
   on(ColorGradingActions.resetState, () => initialState),
 )});
 
-interface SliderDef { label: string; key: keyof ColorGradingState; min: number; max: number; step: number; action: (v: number) => ReturnType<typeof ColorGradingActions.setBrightness>; color: string; }
+interface SliderDef { label: string; key: keyof ColorGradingState; min: number; max: number; step: number; action: (v: number) => any; color: string; }
 
 @Component({
   selector: 'app-color-grading',

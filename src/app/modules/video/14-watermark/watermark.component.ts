@@ -89,7 +89,7 @@ function posToFFmpegXY(pos: WatermarkPos): string {
               </div>
               <!-- Filter preview -->
               <div class="bg-gray-950 rounded-xl p-3 font-mono text-xs text-violet-300 break-all">
-                drawtext=text='{{ vm.text }}':{{ posToFFmpegXY(vm.position) }}:fontsize={{ vm.fontSize }}:fontcolor={{ vm.fontColor }}@{{ (vm.opacity * 255).toFixed(0) | toHex }}
+                drawtext=text='{{ vm.text }}':{{ posToFFmpegXY(vm.position) }}:fontsize={{ vm.fontSize }}:fontcolor={{ vm.fontColor }}@{{ opacityHex(vm.opacity) }}
               </div>
             </div>
 
@@ -167,6 +167,7 @@ export class WatermarkComponent {
   readonly positions = POSITIONS;
   readonly wmColors = COLORS_WM;
   readonly posToFFmpegXY = posToFFmpegXY;
+  opacityHex(opacity: number): string { return Math.round(opacity * 255).toString(16).padStart(2, '0'); }
 
   getPreviewClass(pos: WatermarkPos): string {
     const map: Record<WatermarkPos, string> = {
