@@ -26,7 +26,12 @@
   }
 
   body {
-    @apply bg-zinc-950 text-zinc-50 font-sans antialiased overflow-x-hidden;
+    background-color: #09090b;
+    color: #fafafa;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
     background-image:
       radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.05), transparent 40%),
       radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.05), transparent 40%),
@@ -60,7 +65,14 @@
 
   /* The S-Tier Glass Panel */
   .glass-card {
-    @apply relative overflow-hidden rounded-[2rem] border transition-all duration-500;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    border-width: 1px;
+    border-style: solid;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
     background: var(--glass-bg);
     border-color: var(--glass-border);
     backdrop-filter: var(--glass-blur);
@@ -76,21 +88,34 @@
 
   /* Interactive Glow Effect */
   .glow-hover {
-    @apply relative overflow-hidden;
+    position: relative;
+    overflow: hidden;
   }
 
   .glow-hover::after {
     content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+    pointer-events: none;
     background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.08) 0%, transparent 50%);
   }
 
   .glow-hover:hover::after {
-    @apply opacity-100;
+    opacity: 1;
   }
 
   /* Premium Typography Utils */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-white/90 to-white/40;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to bottom right, #ffffff, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
   }
 }
