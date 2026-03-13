@@ -78,8 +78,8 @@ export class AnalyserService {
   }
 
   analyse(file: File): Observable<WorkerMessage<string>> {
-    return this.bridge.process<{ file: File }, string>(
-      () => new Worker(new URL('./analyser.worker', import.meta.url), { type: 'module' }),
+    return this.bridge.runTask(
+      new Worker(new URL('./analyser.worker', import.meta.url), { type: 'module' }),
       { file }
     );
   }

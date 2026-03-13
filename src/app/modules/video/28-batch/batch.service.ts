@@ -24,8 +24,8 @@ export class BatchService {
     operation: string,
     operationConfig: Record<string, unknown>
   ): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<{ file: File; operation: string; config: Record<string, unknown> }, ArrayBuffer>(
-      () => new Worker(new URL('./batch.worker', import.meta.url), { type: 'module' }),
+    return this.bridge.runTask(
+      new Worker(new URL('./batch.worker', import.meta.url), { type: 'module' }),
       { file, operation, config: operationConfig }
     );
   }

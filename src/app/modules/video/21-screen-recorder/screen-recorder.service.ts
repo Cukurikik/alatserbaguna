@@ -64,8 +64,8 @@ export class ScreenRecorderService {
 
   /** Convert WebM blob to MP4 via FFmpeg worker (only when outputFormat === 'mp4'). */
   convertToMp4(blob: Blob): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.process<{ blob: Blob }, ArrayBuffer>(
-      () => new Worker(new URL('./screen-recorder.worker', import.meta.url), { type: 'module' }),
+    return this.bridge.runTask(
+      new Worker(new URL('./screen-recorder.worker', import.meta.url), { type: 'module' }),
       { blob }
     );
   }
