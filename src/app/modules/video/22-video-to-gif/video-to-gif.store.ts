@@ -35,7 +35,7 @@ export const VideoToGifActions = createActionGroup({
     'Load Meta Failure': props<{ errorCode: VideoErrorCode; message: string }>(),
     'Set Start Time': props<{ time: number }>(),
     'Set End Time': props<{ time: number }>(),
-    'Set FPS': props<{ fps: number }>(),
+    'Set Fps': props<{ fps: number }>(),
     'Set Width': props<{ width: number | 'auto' }>(),
     'Set Dither': props<{ dither: 'none' | 'bayer' | 'floyd_steinberg' }>(),
     'Set Estimated Size': props<{ sizeMB: number }>(),
@@ -56,7 +56,7 @@ export const videoToGifFeature = createFeature({
     on(VideoToGifActions.loadMetaFailure, (state, { errorCode, message }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable: true })),
     on(VideoToGifActions.setStartTime, (state, { time }) => ({ ...state, startTime: time })),
     on(VideoToGifActions.setEndTime, (state, { time }) => ({ ...state, endTime: time })),
-    on(VideoToGifActions.setFPS, (state, { fps }) => ({ ...state, fps })),
+    on(VideoToGifActions.setFps, (state, { fps }) => ({ ...state, fps })),
     on(VideoToGifActions.setWidth, (state, { width }) => ({ ...state, width })),
     on(VideoToGifActions.setDither, (state, { dither }) => ({ ...state, dither })),
     on(VideoToGifActions.setEstimatedSize, (state, { sizeMB }) => ({ ...state, estimatedSizeMB: sizeMB })),
@@ -70,6 +70,6 @@ export const videoToGifFeature = createFeature({
 
 export const {
   selectVideoToGifState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectStartTime, selectEndTime, selectFPS, selectWidth, selectDither, selectEstimatedSizeMB,
+  selectStartTime, selectEndTime, selectFps, selectWidth, selectDither, selectEstimatedSizeMB,
   selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
 } = videoToGifFeature;

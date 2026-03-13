@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
 import { VideoMeta, WorkerMessage } from '../shared/types/video.types';
@@ -11,7 +11,7 @@ export interface ReverserConfig {
 
 @Injectable({ providedIn: 'root' })
 export class ReverserService {
-  constructor(private bridge: WorkerBridgeService) {}
+  private readonly bridge = inject(WorkerBridgeService);
 
   /**
    * Determine if segmented reverse is needed (video > 120 seconds).

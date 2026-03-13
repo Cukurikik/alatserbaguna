@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
 import { WorkerMessage } from '../shared/types/video.types';
@@ -13,7 +13,7 @@ export interface CompareConfig {
 
 @Injectable({ providedIn: 'root' })
 export class CompareService {
-  constructor(private bridge: WorkerBridgeService) {}
+  private readonly bridge = inject(WorkerBridgeService);
 
   /**
    * Sync playback between two video elements (A drives B).

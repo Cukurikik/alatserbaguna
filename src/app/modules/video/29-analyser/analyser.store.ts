@@ -1,5 +1,6 @@
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
-import { VideoMeta, VideoStream, AudioStream, SubtitleStream, VideoErrorCode } from '../shared/types/video.types';
+import { VideoMeta, VideoStream, AudioStream, SubtitleStream } from '../shared/types/video.types';
+import { VideoErrorCode } from '../shared/errors/video.errors';
 
 export interface AnalyserState {
   inputFile: File | null;
