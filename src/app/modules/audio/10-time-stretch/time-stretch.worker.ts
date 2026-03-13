@@ -6,7 +6,7 @@ let ffmpeg: FFmpeg | null = null;
 
 const buildAtempoChain = (speed: number): string => {
   if (speed >= 0.5 && speed <= 2.0) {
-    return \`atempo=\${speed}\`;
+    return `atempo=${speed}`;
   }
   
   const chain: string[] = [];
@@ -22,7 +22,7 @@ const buildAtempoChain = (speed: number): string => {
   }
   
   if (remaining !== 1.0) {
-    chain.push(\`atempo=\${remaining}\`);
+    chain.push(`atempo=${remaining}`);
   }
   
   return chain.join(',');
@@ -42,8 +42,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -52,7 +52,7 @@ self.onmessage = async (event: MessageEvent) => {
     const inputName = 'input_' + file.name.replace(/[^a-zA-Z0-9.]/g, '');
     const outputName = 'output.' + format;
     
-    self.postMessage({ type: 'log', message: \`Writing \${file.name} to memory...\` });
+    self.postMessage({ type: 'log', message: `Writing ${file.name} to memory...` });
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
@@ -65,10 +65,10 @@ self.onmessage = async (event: MessageEvent) => {
     } else {
       // Vinyl mode: asetrate scales frequency effectively changing pitch and duration
       // speed = 1.5 -> plays 1.5x faster -> pitch goes up -> asetrate=44100*1.5
-      filter = \`asetrate=44100*\${speed},aresample=44100\`;
+      filter = `asetrate=44100*${speed},aresample=44100`;
     }
     
-    self.postMessage({ type: 'log', message: \`Applying Filter: \${filter}\` });
+    self.postMessage({ type: 'log', message: `Applying Filter: ${filter}` });
 
     const args = [
       '-i', inputName,
@@ -83,7 +83,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData as ArrayBuffer], { type: `audio/${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

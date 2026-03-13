@@ -52,7 +52,7 @@ self.onmessage = async (event: MessageEvent) => {
           '-y', segOutput
         ]);
         const data = await ffmpeg.readFile(segOutput);
-        blobs.push(new Blob([data], { type: `audio/${format}` }));
+        blobs.push(new Blob([data as unknown as Uint8Array<ArrayBuffer>], { type: `audio/${format}` }));
         await ffmpeg.deleteFile(segOutput);
         self.postMessage({ type: 'progress', value: 10 + Math.round(((i + 1) / equalParts) * 80) });
       }
@@ -98,7 +98,7 @@ self.onmessage = async (event: MessageEvent) => {
           '-y', segOutput
         ]);
         const data = await ffmpeg.readFile(segOutput);
-        blobs.push(new Blob([data], { type: `audio/${format}` }));
+        blobs.push(new Blob([data as unknown as Uint8Array<ArrayBuffer>], { type: `audio/${format}` }));
         await ffmpeg.deleteFile(segOutput);
         self.postMessage({ type: 'progress', value: 10 + Math.round(((i + 1) / (splitPoints.length - 1)) * 80) });
       }

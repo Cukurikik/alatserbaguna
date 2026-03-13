@@ -96,7 +96,7 @@ self.onmessage = async (event: MessageEvent) => {
 
     self.postMessage({ type: 'progress', value: 95 });
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: `audio/${format}` });
+    const blob = new Blob([outputData as unknown as Uint8Array<ArrayBuffer>], { type: `audio/${format}` });
     await ffmpeg.deleteFile(inputName);
     await ffmpeg.deleteFile('loop_list.txt');
     await ffmpeg.deleteFile(outputName);

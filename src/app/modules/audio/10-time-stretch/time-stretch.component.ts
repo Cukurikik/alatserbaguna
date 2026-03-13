@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy, signal, computed } from '@angular/core';
-import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { TimeStretchActions, selectTimeStretchState } from './time-stretch.store';
@@ -10,7 +10,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   selector: 'app-time-stretch',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe, AudioDropZoneComponent],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -105,7 +105,12 @@ import { ExportFormat } from '../shared/types/audio.types';
                 <!-- Pitch Lock Toggle -->
                 <div class="mt-4 p-5 rounded-xl border transition-colors flex items-start gap-4 cursor-pointer" 
                      [class]="pitchLock() ? 'bg-orange-500/5 border-orange-500/30' : 'bg-gray-900/50 border-gray-800'"
-                     (click)="togglePitchLock()">
+                     (click)="togglePitchLock()"
+                     (keydown.enter)="togglePitchLock()"
+                     (keydown.space)="togglePitchLock()"
+                     tabindex="0"
+                     role="checkbox"
+                     [attr.aria-checked]="pitchLock()">
                      
                      <div class="w-6 h-6 rounded flex items-center justify-center border transition-colors mt-0.5"
                           [class]="pitchLock() ? 'bg-orange-500 border-orange-400' : 'bg-gray-800 border-gray-600'">
@@ -266,7 +271,7 @@ export class TimeStretchComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_speed_\${this.speedDisplay()}x_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}.\${this.outputFormat()}\`;
+    a.download = `omni_speed_${this.speedDisplay()}x_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

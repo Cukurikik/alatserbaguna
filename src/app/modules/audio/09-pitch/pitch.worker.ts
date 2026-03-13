@@ -18,8 +18,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -28,7 +28,7 @@ self.onmessage = async (event: MessageEvent) => {
     const inputName = 'input_' + file.name.replace(/[^a-zA-Z0-9.]/g, '');
     const outputName = 'output.' + format;
     
-    self.postMessage({ type: 'log', message: \`Writing \${file.name} to memory...\` });
+    self.postMessage({ type: 'log', message: `Writing ${file.name} to memory...` });
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
@@ -45,12 +45,12 @@ self.onmessage = async (event: MessageEvent) => {
     // If we shift +12 semitones, ratio = 2.0 -> 1/ratio = 0.5 (Valid)
     // So the +/- 12 semitones range is safely within one atempo filter pass.
 
-    let filter = \`asetrate=44100*\${ratio},aresample=44100\`;
+    let filter = `asetrate=44100*${ratio},aresample=44100`;
     if (preserveTempo && semitones !== 0) {
-       filter += \`,atempo=\${1/ratio}\`;
+       filter += `,atempo=${1/ratio}`;
     }
     
-    self.postMessage({ type: 'log', message: \`Applying Pitch Filter: \${filter}\` });
+    self.postMessage({ type: 'log', message: `Applying Pitch Filter: ${filter}` });
 
     const args = [
       '-i', inputName,
@@ -65,7 +65,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData as ArrayBuffer], { type: `audio/${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

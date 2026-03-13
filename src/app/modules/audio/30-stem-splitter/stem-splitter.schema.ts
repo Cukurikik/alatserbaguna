@@ -1,10 +1,20 @@
 import { z } from 'zod';
 import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-export const StemSplitterSchema = z.object({
-  inputFile: AudioFileSchema,
-  outputFormat: ExportFormatSchema,
-  model: z.enum(['demucs-v4', 'htdemucs', 'spleeter-2stem']).default('htdemucs'),
+export const StemLabelSchema = z.enum(['vocals', 'drums', 'bass', 'other']);
+
+export const StemSplitterConfigSchema = z.object({
+  file: AudioFileSchema,
+  format: ExportFormatSchema,
+  selectedStems: z.array(StemLabelSchema).default(['vocals', 'drums', 'bass', 'other']),
 });
 
-export type StemSplitterConfig = z.infer<typeof StemSplitterSchema>;
+export type StemLabel = z.infer<typeof StemLabelSchema>;
+export type StemSplitterConfig = z.infer<typeof StemSplitterConfigSchema>;
+
+export interface StemOutput {
+  label: StemLabel;
+  blob: Blob | null;
+  sizeMB: number | null;
+  isReady: boolean;
+}

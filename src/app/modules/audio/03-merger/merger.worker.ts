@@ -19,8 +19,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -34,16 +34,16 @@ self.onmessage = async (event: MessageEvent) => {
     // Write all files to MEMFS
     for (let i = 0; i < filesList.length; i++) {
         const f = filesList[i];
-        const vName = \`input\${i}_\${f.name.replace(/[^a-zA-Z0-9.]/g, '')}\`;
+        const vName = `input${i}_${f.name.replace(/[^a-zA-Z0-9.]/g, '')}`;
         virtualFiles.push(vName);
         
-        self.postMessage({ type: 'log', message: \`Writing \${f.name} to memory...\` });
+        self.postMessage({ type: 'log', message: `Writing ${f.name} to memory...` });
         const data = await f.arrayBuffer();
         await ffmpeg.writeFile(vName, new Uint8Array(data));
         self.postMessage({ type: 'progress', value: 10 + Math.round((i/filesList.length)*10) });
     }
 
-    self.postMessage({ type: 'log', message: \`Building FFmpeg arguments for \${filesList.length} files...\` });
+    self.postMessage({ type: 'log', message: `Building FFmpeg arguments for ${filesList.length} files...` });
 
     if (crossfadeMs > 0) {
       // Crossfade logic using acrossfade filter
@@ -51,10 +51,10 @@ self.onmessage = async (event: MessageEvent) => {
       let currentPad = '[0:a]';
       
       for (let i = 1; i < virtualFiles.length; i++) {
-          const nextPad = \`[\${i}:a]\`;
-          const outPad = i === virtualFiles.length - 1 ? '[outa]' : \`[xfade\${i}]\`;
-          filterComplex += \`\${currentPad}\${nextPad}acrossfade=d=\${crossfadeSec}:c1=tri:c2=tri\${outPad};\`;
-          currentPad = \`[xfade\${i}]\`;
+          const nextPad = `[${i}:a]`;
+          const outPad = i === virtualFiles.length - 1 ? '[outa]' : `[xfade${i}]`;
+          filterComplex += `${currentPad}${nextPad}acrossfade=d=${crossfadeSec}:c1=tri:c2=tri${outPad};`;
+          currentPad = `[xfade${i}]`;
       }
       
       const args = [];
@@ -68,15 +68,14 @@ self.onmessage = async (event: MessageEvent) => {
 
     } else if (gapMs > 0) {
       // Gap insertion using adelay and amix, or concat with anullsrc
-      // Simplest method for concat with gaps is generating a silent track and concatenating
       const gapSec = (gapMs / 1000).toFixed(2);
-      await ffmpeg.exec(['-f', 'lavfi', '-i', \`anullsrc=r=44100:cl=stereo\`, '-t', gapSec, 'gap.wav']);
+      await ffmpeg.exec(['-f', 'lavfi', '-i', `anullsrc=r=44100:cl=stereo`, '-t', gapSec, 'gap.wav']);
       
       let listContent = '';
       for (let i = 0; i < virtualFiles.length; i++) {
-          listContent += \`file '\${virtualFiles[i]}'\n\`;
+          listContent += `file '${virtualFiles[i]}'\n`;
           if (i < virtualFiles.length - 1) {
-              listContent += \`file 'gap.wav'\n\`;
+              listContent += `file 'gap.wav'\n`;
           }
       }
       await ffmpeg.writeFile('list.txt', listContent);
@@ -87,12 +86,11 @@ self.onmessage = async (event: MessageEvent) => {
       await ffmpeg.deleteFile('list.txt');
     } else {
       // Pure concat using demuxer (fastest, requires same codec usually, but ffmpeg can re-encode if needed)
-      // Since users might upload mixed codecs, we better use concat filter
       let concatParams = '';
       for (let i = 0; i < virtualFiles.length; i++) {
-          concatParams += \`[\${i}:0]\`;
+          concatParams += `[${i}:0]`;
       }
-      concatParams += \`concat=n=\${virtualFiles.length}:v=0:a=1[out]\`;
+      concatParams += `concat=n=${virtualFiles.length}:v=0:a=1[out]`;
       
       const args = [];
       virtualFiles.forEach(vf => { args.push('-i', vf); });
@@ -107,11 +105,11 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData as ArrayBuffer], { type: `audio/${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup memfs
-    virtualFiles.forEach(async (vf) => await ffmpeg.deleteFile(vf));
+    for (const vf of virtualFiles) { await ffmpeg.deleteFile(vf); }
     await ffmpeg.deleteFile(outputName);
 
     self.postMessage({ type: 'complete', data: { blob, sizeMB } });

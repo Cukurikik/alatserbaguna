@@ -10,7 +10,12 @@ import { AudioErrorCode } from '../../types/audio.types';
       class="relative border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center gap-4 cursor-pointer transition-all duration-300 min-h-[200px]"
       [class]="isDragging() ? 'border-cyan-400 bg-cyan-500/10 scale-[1.01]' : 'border-gray-700 bg-gray-900/30 hover:border-gray-600 hover:bg-gray-900/50'"
       (dragover)="onDragOver($event)" (dragleave)="onDragLeave()" (drop)="onDrop($event)"
-      (click)="fileInput.click()">
+      (click)="fileInput.click()"
+      (keydown.enter)="fileInput.click()"
+      (keydown.space)="fileInput.click()"
+      tabindex="0"
+      role="button"
+      aria-label="Drop audio file here or click to browse">
       <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl transition-transform duration-300"
            [class]="isDragging() ? 'scale-110 bg-cyan-500/20' : 'bg-gray-800'">🎵</div>
       <div class="text-center">
@@ -30,6 +35,7 @@ export class AudioDropZoneComponent {
   @Input() accept = 'audio/*,video/*';
   @Input() multiple = false;
   @Input() maxSizeMB = 500;
+  @Output() fileSelected = new EventEmitter<File[]>();
   @Output() filesSelected = new EventEmitter<File[]>();
   @Output() validationError = new EventEmitter<AudioErrorCode>();
   isDragging = signal(false);
@@ -57,6 +63,6 @@ export class AudioDropZoneComponent {
       }
       return true;
     });
-    if (valid.length) this.filesSelected.emit(valid);
+    if (valid.length) { this.fileSelected.emit(valid); this.filesSelected.emit(valid); }
   }
 }

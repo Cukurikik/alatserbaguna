@@ -1,15 +1,14 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy, signal } from '@angular/core';
-import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { MixerActions, selectMixerState } from './mixer.store';
-import { AudioDropZoneComponent } from '../shared/components/audio-drop-zone/audio-drop-zone.component';
 
 @Component({
   selector: 'app-mixer',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -65,7 +64,12 @@ import { AudioDropZoneComponent } from '../shared/components/audio-drop-zone/aud
 
           <!-- Add Track Button -->
           <div class="w-44 shrink-0 bg-[#12121a] border-2 border-dashed border-gray-800 rounded-2xl p-4 flex flex-col items-center justify-center gap-3 hover:border-pink-500/40 transition-colors cursor-pointer"
-               (click)="fileInput.click()">
+               (click)="fileInput.click()"
+               (keydown.enter)="fileInput.click()"
+               (keydown.space)="fileInput.click()"
+               tabindex="0"
+               role="button"
+               aria-label="Add audio track">
             <div class="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center text-pink-500 text-2xl">+</div>
             <p class="text-xs text-gray-500 font-bold text-center">Add Track</p>
             <input #fileInput type="file" accept="audio/*" class="hidden" (change)="onAddTrack($event)">

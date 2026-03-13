@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy, signal } from '@angular/core';
-import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ReverserActions, selectReverserState } from './reverser.store';
@@ -10,7 +10,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   selector: 'app-reverser',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe, AudioDropZoneComponent],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -80,7 +80,12 @@ import { ExportFormat } from '../shared/types/audio.types';
                   <!-- Crossfade Toggle -->
                   <div class="p-4 rounded-xl border transition-colors flex items-center justify-between cursor-pointer" 
                       [class]="crossfadeEdges() ? 'bg-teal-500/5 border-teal-500/30' : 'bg-gray-900/50 border-gray-800'"
-                      (click)="toggleCrossfade()">
+                      (click)="toggleCrossfade()"
+                      (keydown.enter)="toggleCrossfade()"
+                      (keydown.space)="toggleCrossfade()"
+                      tabindex="0"
+                      role="checkbox"
+                      [attr.aria-checked]="crossfadeEdges()">
                       <div class="text-left pr-4">
                         <h4 class="text-sm font-bold text-gray-200">Anti-Pop Fade</h4>
                         <p class="text-[10px] text-gray-500 mt-1">Applies a 50ms fade-in/out at the boundaries to prevent sudden speaker clicks.</p>
@@ -222,7 +227,7 @@ export class ReverserComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_reversed_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}.\${this.outputFormat()}\`;
+    a.download = `omni_reversed_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

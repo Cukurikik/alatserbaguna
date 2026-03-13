@@ -47,17 +47,20 @@ self.onmessage = async (event: MessageEvent) => {
 
     self.postMessage({ type: 'progress', value: 55 });
 
-    // --- RMS and True Peak ---
-    let sumSquares = 0;
-    let truePeak = 0;
+    let rmsChannelSamples = 0;
+    let sumSquaresVal = 0;
+    let truePeakVal = 0;
     for (let c = 0; c < channels; c++) {
       const cd = audioBuffer.getChannelData(c);
-      for (let i = 0; i < cd.length; i++) {
-        const abs = Math.abs(cd[i]);
-        sumSquares += cd[i] * cd[i];
-        if (abs > truePeak) truePeak = abs;
+      for (const sample of Array.from(cd)) {
+        const abs = Math.abs(sample);
+        sumSquaresVal += sample * sample;
+        if (abs > truePeakVal) truePeakVal = abs;
+        rmsChannelSamples++;
       }
     }
+    const sumSquares = sumSquaresVal;
+    const truePeak = truePeakVal;
     const rmsLinear = Math.sqrt(sumSquares / (channelData.length * channels));
     const rmsDb = rmsLinear > 0 ? 20 * Math.log10(rmsLinear) : -Infinity;
     const peakDb = truePeak > 0 ? 20 * Math.log10(truePeak) : -Infinity;

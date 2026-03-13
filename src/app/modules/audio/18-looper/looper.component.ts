@@ -51,9 +51,9 @@ import { ExportFormat } from '../shared/types/audio.types';
                   <div class="flex justify-between items-center">
                     <label class="text-sm font-bold text-gray-300">Repeat Count</label>
                     <div class="flex items-center gap-2">
-                      <button (click)="repeatCount.update(v => Math.max(2, v - 1))" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">-</button>
+                      <button (click)="decrementRepeat()" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">-</button>
                       <span class="text-2xl font-black text-lime-400 font-mono w-10 text-center">{{ repeatCount() }}x</span>
-                      <button (click)="repeatCount.update(v => Math.min(50, v + 1))" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">+</button>
+                      <button (click)="incrementRepeat()" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">+</button>
                     </div>
                   </div>
                   <input type="range" min="2" max="50" step="1" [value]="repeatCount()" (input)="onRepeatChange($event)"
@@ -142,6 +142,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   styles: [`:host { display: block; height: 100%; }`]
 })
 export class LooperComponent implements OnDestroy {
+  protected readonly Math = Math;
   private store = inject(Store);
   readonly state$ = this.store.select(selectLooperState);
   outputFormat = signal<ExportFormat>('wav');
@@ -150,6 +151,8 @@ export class LooperComponent implements OnDestroy {
   private cachedBlobUrls = new Map<Blob, string>();
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(LooperActions.loadFile({ file: files[0] })); }
+  decrementRepeat() { this.repeatCount.update(v => Math.max(2, v - 1)); }
+  incrementRepeat() { this.repeatCount.update(v => Math.min(50, v + 1)); }
   onRepeatChange(e: Event) { this.repeatCount.set(parseInt((e.target as HTMLInputElement).value, 10)); }
   onCrossfadeChange(e: Event) { this.crossfade.set(parseFloat((e.target as HTMLInputElement).value)); }
   onFormatChange(e: Event) { this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat); }
