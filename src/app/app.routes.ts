@@ -14,6 +14,10 @@ export const routes: Routes = [
         loadChildren: () => import('./modules/video/video.routes').then(m => m.VIDEO_ROUTES)
       },
       {
+        path: 'audio',
+        loadChildren: () => import('./modules/audio/audio.routes').then(m => m.AUDIO_ROUTES)
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
