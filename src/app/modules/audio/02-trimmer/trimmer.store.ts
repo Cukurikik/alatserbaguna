@@ -2,14 +2,17 @@ import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { concatMap, of, Observable } from 'rxjs';
+import { catchError, concatMap, exhaustMap, map, of, tap } from 'rxjs';
 import { withLatestFrom } from 'rxjs/operators';
-import { AudioErrorCode, ProcessingStatus, ExportFormat, AudioMeta } from '../shared/types/audio.types';
-import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
+import { ProcessingStatus, AudioErrorCode, ExportFormat } from '../shared/types/audio.types';
+import { TrimmerService } from './trimmer.service';
 
 export interface TrimmerState {
   inputFile: File | null;
-  audioMeta: AudioMeta | null;
+  waveformPeaks: number[];
+  durationMs: number;
+  startTimeMs: number;
+  endTimeMs: number;
   status: ProcessingStatus;
   progress: number;
   outputBlob: Blob | null;
@@ -18,65 +21,98 @@ export interface TrimmerState {
   errorMessage: string | null;
   retryable: boolean;
 }
+
 const initialState: TrimmerState = {
-  inputFile: null, audioMeta: null, status: 'idle', progress: 0,
-  outputBlob: null, outputSizeMB: null, errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  waveformPeaks: [],
+  durationMs: 0,
+  startTimeMs: 0,
+  endTimeMs: 0,
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: true
 };
+
 export const TrimmerActions = createActionGroup({
-  source: '[Trimmer]', events: {
+  source: '[Trimmer]',
+  events: {
     'Load File': props<{ file: File }>(),
-    'Load File Success': props<{ meta: AudioMeta }>(),
-    'Load File Failure': props<{ errorCode: AudioErrorCode; message: string }>(),
+    'Waveform Extracted': props<{ peaks: number[], durationMs: number }>(),
+    'Set In Point': props<{ ms: number }>(),
+    'Set Out Point': props<{ ms: number }>(),
     'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
-    'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
-    'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
-    'Download Output': emptyProps(),
+    'Processing Success': props<{ outputBlob: Blob, sizeMB: number }>(),
+    'Processing Failure': props<{ errorCode: AudioErrorCode; message: string }>(),
     'Reset State': emptyProps(),
   }
 });
+
 export const trimmerReducer = createReducer(
   initialState,
-  on(TrimmerActions.loadFile, (s, { file }) => ({ ...s, inputFile: file, status: 'loading' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(TrimmerActions.loadFileSuccess, (s, { meta }) => ({ ...s, audioMeta: meta, status: 'idle' as ProcessingStatus })),
-  on(TrimmerActions.loadFileFailure, (s, { errorCode, message }) => ({ ...s, status: 'error' as ProcessingStatus, errorCode, errorMessage: message })),
-  on(TrimmerActions.startProcessing, (s) => ({ ...s, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null })),
+  on(TrimmerActions.loadFile, (s, { file }) => ({ ...s, inputFile: file, status: 'loading' as ProcessingStatus, errorMessage: null, errorCode: null })),
+  on(TrimmerActions.waveformExtracted, (s, { peaks, durationMs }) => ({ 
+    ...s, 
+    waveformPeaks: peaks, 
+    durationMs, 
+    startTimeMs: 0, 
+    endTimeMs: durationMs, 
+    status: 'idle' as ProcessingStatus 
+  })),
+  on(TrimmerActions.setInPoint, (s, { ms }) => ({ ...s, startTimeMs: Math.max(0, Math.min(ms, s.endTimeMs - 100)) })),
+  on(TrimmerActions.setOutPoint, (s, { ms }) => ({ ...s, endTimeMs: Math.max(s.startTimeMs + 100, Math.min(ms, s.durationMs)) })),
+  on(TrimmerActions.startProcessing, (s) => ({ ...s, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorMessage: null })),
   on(TrimmerActions.updateProgress, (s, { value }) => ({ ...s, progress: value })),
-  on(TrimmerActions.processingSuccess, (s, { outputBlob, outputSizeMB }) => ({ ...s, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
-  on(TrimmerActions.processingFailure, (s, { errorCode, message, retryable }) => ({ ...s, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
-  on(TrimmerActions.resetState, () => ({ ...initialState })),
+  on(TrimmerActions.processingSuccess, (s, { outputBlob, sizeMB }) => ({ ...s, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB: sizeMB })),
+  on(TrimmerActions.processingFailure, (s, { errorCode, message }) => ({ ...s, status: 'error' as ProcessingStatus, errorCode, errorMessage: message })),
+  on(TrimmerActions.resetState, () => ({ ...initialState }))
 );
+
 export const selectTrimmerState = createFeatureSelector<TrimmerState>('trimmer');
 export const selectTrimmerStatus = createSelector(selectTrimmerState, s => s.status);
-export const selectTrimmerInputFile = createSelector(selectTrimmerState, s => s.inputFile);
-export const selectTrimmerAudioMeta = createSelector(selectTrimmerState, s => s.audioMeta);
-export const selectTrimmerOutputBlob = createSelector(selectTrimmerState, s => s.outputBlob);
-export const selectTrimmerOutputSizeMB = createSelector(selectTrimmerState, s => s.outputSizeMB);
-export const selectTrimmerIsLoading = createSelector(selectTrimmerState, s => s.status === 'loading' || s.status === 'processing');
-export const selectTrimmerIsDone = createSelector(selectTrimmerState, s => s.status === 'done');
-export const selectTrimmerHasError = createSelector(selectTrimmerState, s => s.status === 'error');
-export const selectTrimmerErrorMessage = createSelector(selectTrimmerState, s => s.errorMessage);
-export const selectTrimmerRetryable = createSelector(selectTrimmerState, s => s.retryable);
-export const selectTrimmerCanProcess = createSelector(selectTrimmerState, s => !!s.inputFile && s.status === 'idle');
 
-export const trimmerProcessingEffect = createEffect(
-  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+export const extractWaveformEffect = createEffect(
+  (actions$ = inject(Actions), trimmerService = inject(TrimmerService)) => {
+    return actions$.pipe(
+      ofType(TrimmerActions.loadFile),
+      concatMap(({ file }) => {
+        return trimmerService.extractWaveformData(file).then(
+          res => TrimmerActions.waveformExtracted(res)
+        ).catch(err => 
+          TrimmerActions.processingFailure({ errorCode: 'DECODE_FAILED', message: 'Failed to extract waveform: ' + err.message })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const processTrimmerEffect = createEffect(
+  (actions$ = inject(Actions), trimmerService = inject(TrimmerService), store = inject(Store)) => {
     return actions$.pipe(
       ofType(TrimmerActions.startProcessing),
       withLatestFrom(store.select(selectTrimmerState)),
-      concatMap(([{ format }, state]) => {
-        if (!state.inputFile) return of(TrimmerActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file', retryable: false }));
-        return new Observable<any>(obs => {
-          let aborted = false;
-          ffmpeg.processAudio(state.inputFile!, format, ['-i', '{in}', '{out}'], (p) => {
-            if (!aborted) store.dispatch(TrimmerActions.updateProgress({ value: p }));
-          }).then(blob => {
-            if (!aborted) { obs.next(TrimmerActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 })); obs.complete(); }
-          }).catch(err => {
-            if (!aborted) { obs.next(TrimmerActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Processing failed', retryable: true })); obs.complete(); }
-          });
-          return () => { aborted = true; };
-        });
+      exhaustMap(([{ format }, state]) => {
+        if (!state.inputFile) return of(TrimmerActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file' }));
+        
+        return trimmerService.trimAudio(state.inputFile, state.startTimeMs, state.endTimeMs, format).pipe(
+          map(event => {
+            if (event.type === 'progress') {
+              return TrimmerActions.updateProgress({ value: event.value || 0 });
+            } else if (event.type === 'complete' && event.data) {
+              return TrimmerActions.processingSuccess({ outputBlob: event.data.blob, sizeMB: event.data.sizeMB });
+            }
+            return TrimmerActions.updateProgress({ value: 0 }); // Fallback
+          }),
+          catchError(err => of(TrimmerActions.processingFailure({ 
+            errorCode: err.errorCode || 'ENCODE_FAILED', 
+            message: err.message || 'Unknown processing error' 
+          })))
+        );
       })
     );
   },
