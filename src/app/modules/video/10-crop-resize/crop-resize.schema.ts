@@ -8,16 +8,12 @@ export const CropResizeInputSchema = z.object({
     x: z.number().min(0),
     y: z.number().min(0),
     w: z.number().min(16),
-    h: z.number().min(16)
+    h: z.number().min(16),
   }).optional(),
-  targetWidth: z.number().int().min(16).max(7680).optional(),
+  targetWidth: z.number().int().min(16).max(7680).optional(),  // max 8K
   targetHeight: z.number().int().min(16).max(4320).optional(),
   lockAspectRatio: z.boolean(),
-  padMode: z.enum(['stretch', 'pad', 'crop-to-fit'])
-}).refine(data => {
-  if (data.mode === 'crop') return data.cropRegion !== undefined;
-  if (data.mode === 'resize') return data.targetWidth !== undefined && data.targetHeight !== undefined;
-  return false;
-}, { message: 'Invalid configuration for selected mode' });
+  padMode: z.enum(['stretch', 'pad', 'crop-to-fit']),
+});
 
-export type CropResizeConfig = z.infer<typeof CropResizeInputSchema>;
+export type CropResizeInput = z.infer<typeof CropResizeInputSchema>;

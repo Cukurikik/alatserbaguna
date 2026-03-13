@@ -5,13 +5,9 @@ export const LooperInputSchema = z.object({
   inputFile: VideoFileSchema,
   mode: z.enum(['count', 'duration']),
   loopCount: z.number().int().min(1).max(100).optional(),
-  targetDuration: z.number().min(1).max(86400).optional(),
+  targetDuration: z.number().min(1).max(86_400).optional(), // max 24 hours
   crossfade: z.boolean(),
-  crossfadeDuration: z.number().min(0).max(1)
-}).refine(data => {
-  if (data.mode === 'count') return data.loopCount !== undefined;
-  if (data.mode === 'duration') return data.targetDuration !== undefined;
-  return false;
-}, { message: 'Invalid configuration for selected mode' });
+  crossfadeDuration: z.number().min(0).max(1),
+});
 
-export type LooperConfig = z.infer<typeof LooperInputSchema>;
+export type LooperInput = z.infer<typeof LooperInputSchema>;
