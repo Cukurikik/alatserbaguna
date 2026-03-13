@@ -1,65 +1,71 @@
 import { Injectable } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { WorkerMessage } from '../types/video.types';
-import { getVideoError, VideoErrorCode } from '../errors/video.errors';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkerBridgeService {
-  process<TConfig, TOutput>(
-    workerFactory: () => Worker,
-    config: TConfig
-  ): Observable<WorkerMessage<TOutput>> {
-    return new Observable<WorkerMessage<TOutput>>(observer => {
-      let worker: Worker;
-      try {
-        worker = workerFactory();
-      } catch {
-        observer.error(getVideoError('WORKER_INIT_FAILED'));
-        return;
-      }
+  private worker: Worker | null = null;
+  private messageSubject = new Subject<any>();
 
-      worker.onmessage = (event: MessageEvent<WorkerMessage<TOutput>>) => {
-        const msg = event.data;
-        observer.next(msg);
-        if (msg.type === 'complete' || msg.type === 'error') {
+  initWorker(scriptPath: string): void {
+    if (this.worker) {
+      this.worker.terminate();
+    }
+    // E.g. new Worker(new URL('./app.worker', import.meta.url), { type: 'module' });
+    this.worker = new Worker(new URL(scriptPath, import.meta.url), { type: 'module' });
+    
+    this.worker.onmessage = ({ data }) => {
+      this.messageSubject.next(data);
+    };
+    
+    this.worker.onerror = (error) => {
+      this.messageSubject.error(error);
+    };
+  }
+
+  postMessage(message: any, transfer: Transferable[] = []): void {
+    if (this.worker) {
+      this.worker.postMessage(message, transfer);
+    }
+  }
+
+  getMessages(): Observable<any> {
+    return this.messageSubject.asObservable();
+  }
+
+  terminateWorker(): void {
+    if (this.worker) {
+      this.worker.terminate();
+      this.worker = null;
+    }
+  }
+
+  runTask(worker: Worker, config: any): Observable<any> {
+    return new Observable(observer => {
+      worker.onmessage = ({ data }) => {
+        if (data.type === 'progress') {
+          observer.next(data);
+        } else if (data.type === 'complete' || data.type === 'done') {
+          observer.next(data);
+          observer.complete();
           worker.terminate();
-          if (msg.type === 'error') {
-            observer.error(getVideoError((msg.errorCode as VideoErrorCode) || 'WORKER_CRASHED'));
-          } else {
-            observer.complete();
-          }
+        } else if (data.type === 'error') {
+          observer.error(data);
+          worker.terminate();
         }
       };
-
-      worker.onerror = () => {
+      
+      worker.onerror = (error) => {
+        observer.error(error);
         worker.terminate();
-        observer.error(getVideoError('WORKER_CRASHED'));
       };
-
+      
       worker.postMessage({ type: 'start', config });
-
-      // 15-second watchdog timer
-      const timeout$ = timer(15000).pipe(
-        tap(() => {
-          worker.terminate();
-          observer.error(getVideoError('FFMPEG_TIMEOUT'));
-        })
-      );
-
-      const subscription = timeout$.subscribe();
-
+      
       return () => {
-        subscription.unsubscribe();
         worker.terminate();
       };
     });
-  }
-
-  async buildTransferable(file: File): Promise<{ buffer: ArrayBuffer }> {
-    const buffer = await file.arrayBuffer();
-    return { buffer };
   }
 }

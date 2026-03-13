@@ -1,66 +1,46 @@
-import { Component, ChangeDetectionStrategy, Input, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-progress-ring',
   standalone: true,
-  imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DecimalPipe],
   template: `
-    <div class="flex flex-col items-center justify-center animate-in fade-in zoom-in duration-300">
-      <div class="relative flex items-center justify-center" [style.width.px]="size" [style.height.px]="size">
+    <div class="relative flex items-center justify-center w-32 h-32">
+      <svg class="transform -rotate-90 w-full h-full" viewBox="0 0 100 100">
         <!-- Background circle -->
-        <svg class="absolute inset-0 transform -rotate-90" [attr.width]="size" [attr.height]="size">
-          <circle
-            class="text-gray-800"
-            stroke="currentColor"
-            fill="transparent"
-            [attr.stroke-width]="strokeWidth"
-            [attr.r]="radius()"
-            [attr.cx]="size / 2"
-            [attr.cy]="size / 2"
-          />
-          
-          <!-- Progress circle -->
-          <circle
-            class="transition-all duration-300 ease-out"
-            [attr.stroke]="color"
-            fill="transparent"
-            [attr.stroke-width]="strokeWidth"
-            [attr.stroke-dasharray]="circumference()"
-            [attr.stroke-dashoffset]="strokeDashoffset()"
-            stroke-linecap="round"
-            [attr.r]="radius()"
-            [attr.cx]="size / 2"
-            [attr.cy]="size / 2"
-          />
-        </svg>
+        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-gray-700" />
         
-        <!-- Center text -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <span class="text-2xl font-bold font-mono text-white" [style.color]="color">
-            {{ Math.round(progress) }}%
-          </span>
-        </div>
+        <!-- Foreground circle -->
+        <circle 
+          cx="50" cy="50" r="40" 
+          stroke="url(#gradient)" 
+          stroke-width="8" 
+          fill="none" 
+          stroke-linecap="round"
+          [style.stroke-dasharray]="circumference"
+          [style.stroke-dashoffset]="circumference - (progress / 100 * circumference)"
+          class="transition-all duration-300 ease-out" />
+          
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f5ff" />
+            <stop offset="100%" stop-color="#3b82f6" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="absolute flex flex-col items-center justify-center">
+        <span class="text-2xl font-bold text-white">{{ progress | number:'1.0-0' }}%</span>
+        @if (status) {
+          <span class="text-xs text-gray-400 capitalize">{{ status }}</span>
+        }
       </div>
-      
-      @if (label) {
-        <p class="mt-4 text-sm font-medium text-gray-400 animate-pulse">{{ label }}</p>
-      }
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressRingComponent {
   @Input() progress = 0;
-  @Input() size = 120;
-  @Input() strokeWidth = 8;
-  @Input() color = '#00f5ff';
-  @Input() label = 'Processing...';
-
-  Math = Math;
-
-  radius = computed(() => (this.size / 2) - this.strokeWidth);
-  circumference = computed(() => 2 * Math.PI * this.radius());
-  strokeDashoffset = computed(() => this.circumference() * (1 - Math.min(Math.max(this.progress, 0), 100) / 100));
+  @Input() status = '';
+  circumference = 2 * Math.PI * 40;
 }
-

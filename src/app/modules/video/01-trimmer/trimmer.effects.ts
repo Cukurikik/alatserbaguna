@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, exhaustMap, map, of, switchMap, tap, withLatestFrom } from 'rxjs';
 import { TrimmerActions, selectTrimmerState } from './trimmer.store';
-import { FFmpegService } from '../shared/engine/ffmpeg.service';
+import { FfmpegService } from '../shared/engine/ffmpeg.service';
 import { TrimmerService } from './trimmer.service';
 import { VideoFileSchema } from '../shared/schemas/video.schemas';
 import { TrimmerInputSchema } from './trimmer.schema';
@@ -13,7 +13,7 @@ import { VideoErrorMessages, VideoErrorCode } from '../shared/errors/video.error
 export class TrimmerEffects {
   private actions$ = inject(Actions);
   private store = inject(Store);
-  private ffmpegService = inject(FFmpegService);
+  private ffmpegService = inject(FfmpegService);
   private trimmerService = inject(TrimmerService);
 
   loadFile$ = createEffect(() =>

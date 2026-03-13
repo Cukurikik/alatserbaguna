@@ -1,144 +1,69 @@
-import { createActionGroup, emptyProps, props, createReducer, on, createFeature, createSelector } from '@ngrx/store';
-import { VideoMeta } from '../shared/types/video.types';
-import { VideoErrorCode, VideoErrorMessages } from '../shared/errors/video.errors';
+import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
+import { VideoMetadata } from '../shared/types/video.types';
 
 export interface TrimmerState {
+  status: 'idle' | 'processing' | 'success' | 'error';
+  progress: number;
   inputFile: File | null;
-  videoMeta: VideoMeta | null;
+  outputBlob: Blob | null;
   startTime: number;
   endTime: number;
-  outputFormat: 'mp4' | 'webm' | 'mov';
-  status: 'idle' | 'loading' | 'processing' | 'done' | 'error';
-  progress: number;
-  outputBlob: Blob | null;
-  outputSizeMB: number | null;
-  errorCode: VideoErrorCode | null;
-  errorMessage: string | null;
-  retryable: boolean;
+  outputFormat: string;
 }
 
-
 const initialState: TrimmerState = {
-  inputFile: null,
-  videoMeta: null,
-  startTime: 0,
-  endTime: 0,
-  outputFormat: 'mp4',
   status: 'idle',
   progress: 0,
+  inputFile: null,
   outputBlob: null,
-  outputSizeMB: null,
-  errorCode: null,
-  errorMessage: null,
-  retryable: false
+  startTime: 0,
+  endTime: 0,
+  outputFormat: 'mp4'
 };
 
 export const TrimmerActions = createActionGroup({
   source: 'Trimmer',
   events: {
-    loadFile: props<{ file: File }>(),
-    clearFile: emptyProps(),
-    updateConfig: props<{ config: Partial<TrimmerState> }>(),
-    startProcessing: emptyProps(),
-    updateProgress: props<{ progress: number }>(),
-    processingSuccess: props<{ outputBlob: Blob; outputSizeMB: number }>(),
-    processingFailure: props<{ errorCode: VideoErrorCode; message: string }>(),
-    downloadOutput: emptyProps(),
-    resetState: emptyProps(),
-    loadMetaSuccess: props<{ meta: VideoMeta }>(),
-    loadMetaFailure: props<{ errorCode: VideoErrorCode }>()
+    'Load File': props<{ file: File }>(),
+    'Load Meta Success': props<{ meta: VideoMetadata }>(),
+    'Load Meta Failure': props<{ errorCode: string }>(),
+    'Set Start Time': props<{ time: number }>(),
+    'Set End Time': props<{ time: number }>(),
+    'Set Output Format': props<{ format: string }>(),
+    'Start Processing': emptyProps(),
+    'Update Progress': props<{ progress: number }>(),
+    'Processing Success': props<{ outputBlob: Blob, outputSizeMB: number }>(),
+    'Processing Failure': props<{ errorCode: string, message: string }>(),
+    'Download Output': emptyProps(),
+    'Reset State': emptyProps()
   }
 });
 
-export const trimmerReducer = createReducer(
-  initialState,
-  on(TrimmerActions.loadFile, (state, { file }) => ({
-    ...state,
-    inputFile: file,
-    status: 'loading',
-    outputBlob: null,
-    errorMessage: null,
-    progress: 0
-  })),
-  on(TrimmerActions.loadMetaSuccess, (state, { meta }) => ({
-    ...state,
-    videoMeta: meta,
-    endTime: meta.duration,
-    status: 'idle'
-  })),
-  on(TrimmerActions.loadMetaFailure, (state, { errorCode }) => ({
-    ...state,
-    status: 'error',
-    errorCode,
-    errorMessage: VideoErrorMessages[errorCode]
-  })),
-  on(TrimmerActions.updateConfig, (state, { config }) => ({
-    ...state,
-    ...config
-  })),
-  on(TrimmerActions.startProcessing, (state) => ({
-    ...state,
-    status: 'processing',
-    progress: 0,
-    outputBlob: null,
-    errorMessage: null
-  })),
-  on(TrimmerActions.updateProgress, (state, { progress }) => ({
-    ...state,
-    progress
-  })),
-  on(TrimmerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({
-    ...state,
-    status: 'done',
-    progress: 100,
-    outputBlob,
-    outputSizeMB
-  })),
-  on(TrimmerActions.processingFailure, (state, { errorCode, message }) => ({
-    ...state,
-    status: 'error',
-    errorCode,
-    errorMessage: message
-  })),
-  on(TrimmerActions.resetState, () => initialState)
-);
-
 export const trimmerFeature = createFeature({
   name: 'trimmer',
-  reducer: trimmerReducer,
+  reducer: createReducer(
+    initialState,
+    on(TrimmerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing', progress: 0 })),
+    on(TrimmerActions.loadMetaSuccess, (state, { meta }) => ({ ...state, startTime: 0, endTime: meta.duration, status: 'idle' })),
+    on(TrimmerActions.loadMetaFailure, (state) => ({ ...state, status: 'error' })),
+    on(TrimmerActions.setStartTime, (state, { time }) => ({ ...state, startTime: time })),
+    on(TrimmerActions.setEndTime, (state, { time }) => ({ ...state, endTime: time })),
+    on(TrimmerActions.setOutputFormat, (state, { format }) => ({ ...state, outputFormat: format })),
+    on(TrimmerActions.startProcessing, (state) => ({ ...state, status: 'processing', progress: 0 })),
+    on(TrimmerActions.updateProgress, (state, { progress }) => ({ ...state, progress })),
+    on(TrimmerActions.processingSuccess, (state, { outputBlob }) => ({ ...state, status: 'success', outputBlob, progress: 100 })),
+    on(TrimmerActions.processingFailure, (state) => ({ ...state, status: 'error' })),
+    on(TrimmerActions.resetState, () => initialState)
+  )
 });
 
-export const {
-  selectTrimmerState,
-  selectInputFile,
-  selectVideoMeta,
-  selectStatus,
-  selectProgress,
-  selectOutputBlob,
-  selectOutputSizeMB,
-  selectErrorCode,
-  selectErrorMessage,
-  selectRetryable
+export const { 
+  selectTrimmerState, 
+  selectStatus, 
+  selectProgress, 
+  selectInputFile, 
+  selectOutputBlob, 
+  selectStartTime, 
+  selectEndTime, 
+  selectOutputFormat 
 } = trimmerFeature;
-
-export const selectIsLoading = createSelector(
-  selectStatus,
-  (status) => status === 'processing' || status === 'loading'
-);
-
-export const selectIsDone = createSelector(
-  selectStatus,
-  (status) => status === 'done'
-);
-
-export const selectHasError = createSelector(
-  selectStatus,
-  (status) => status === 'error'
-);
-
-export const selectCanProcess = createSelector(
-  selectInputFile,
-  selectStatus,
-  selectVideoMeta,
-  (file, status, meta) => file !== null && status === 'idle' && meta !== null
-);
