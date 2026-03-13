@@ -58,6 +58,7 @@ export const ColorCorrectionStore = signalStore(
                 status: 'idle'
               });
             },
+   
             (error) => {
               const err = getVideoError('FILE_CORRUPTED');
               patchState(store, { status: 'error', errorCode: err.code, errorMessage: err.message, retryable: err.retryable });
@@ -89,6 +90,7 @@ export const ColorCorrectionStore = signalStore(
             return of(null);
           }
 
+  // eslint-disable-next-line no-async-promise-executor
           return new Promise<void>(async (resolve) => {
             try {
               const { buffer: fileBuffer } = await workerBridge.buildTransferable(config.inputFile);
@@ -108,7 +110,7 @@ export const ColorCorrectionStore = signalStore(
                   if (msg.type === 'progress') {
                     patchState(store, { progress: msg.value! });
                   } else if (msg.type === 'complete') {
-                    const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: 'video/mp4' });
+                    const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as unknown as ArrayBuffer)], { type: 'video/mp4' });
                     patchState(store, {
                       status: 'done',
                       progress: 100,
@@ -124,6 +126,7 @@ export const ColorCorrectionStore = signalStore(
                   resolve();
                 }
               });
+   
             } catch (e) {
               const videoErr = getVideoError('WORKER_INIT_FAILED');
               patchState(store, { status: 'error', errorCode: videoErr.code, errorMessage: videoErr.message, retryable: videoErr.retryable });

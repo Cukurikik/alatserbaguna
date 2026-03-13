@@ -29,5 +29,8 @@
     {
       "path": "./tsconfig.spec.json"
     }
+  ],
+  "exclude": [
+    "src/app/generated"
   ]
 }

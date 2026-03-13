@@ -1,0 +1,180 @@
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\02-splitter\splitter.store.ts
+  Line 102: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\03-format-converter\format-converter.store.ts
+  Line 114: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\04-volume-booster\volume-booster.store.ts
+  Line 101: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\05-video-thumbnail\video-thumbnail.store.ts
+  Line 115: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\06-reverser\reverser.store.ts
+  Line 101: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\07-speed-controller\speed-controller.store.ts
+  Line 114: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\08-looper\looper.store.ts
+  Line 131: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\09-flip-rotate\flip-rotate.store.ts
+  Line 106: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\10-crop-resize\crop-resize.store.ts
+  Line 124: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\11-to-gif\to-gif.store.ts
+  Line 122: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\12-extract-audio\extract-audio.store.ts
+  Line 110: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\13-remove-audio\remove-audio.store.ts
+  Line 99: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\14-add-audio\add-audio.store.ts
+  Line 122: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\15-add-subtitles\add-subtitles.store.ts
+  Line 114: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\16-remove-subtitles\remove-subtitles.store.ts
+  Line 93: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\17-add-watermark\add-watermark.store.ts
+  Line 122: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\18-remove-watermark\remove-watermark.component.ts
+  Line 1: @typescript-eslint/no-unused-vars - 'OnDestroy' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Eraser' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Sparkles' is defined but never used.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\18-remove-watermark\remove-watermark.store.ts
+  Line 119: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\19-to-audio\to-audio.component.ts
+  Line 10: @typescript-eslint/no-unused-vars - 'Music' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'FileAudio' is defined but never used.
+  Line 97: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 159: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\19-to-audio\to-audio.store.ts
+  Line 108: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\20-to-images\to-images.component.ts
+  Line 10: @typescript-eslint/no-unused-vars - 'ImageIcon' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Images' is defined but never used.
+  Line 97: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\20-to-images\to-images.store.ts
+  Line 108: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\21-change-resolution\change-resolution.component.ts
+  Line 10: @typescript-eslint/no-unused-vars - 'Monitor' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Maximize' is defined but never used.
+  Line 97: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 134: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 138: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 146: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\21-change-resolution\change-resolution.store.ts
+  Line 110: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\22-compressor\compressor.component.ts
+  Line 10: @typescript-eslint/no-unused-vars - 'Minimize2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Zap' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'ArrowRight' is defined but never used.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\22-compressor\compressor.store.ts
+  Line 108: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\23-merger\merger.component.ts
+  Line 9: @typescript-eslint/no-unused-vars - 'Layers' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Link' is defined but never used.
+  Line 106: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 122: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\23-merger\merger.store.ts
+  Line 107: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\24-stabilizer\stabilizer.component.ts
+  Line 10: @typescript-eslint/no-unused-vars - 'Activity' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 10: @typescript-eslint/no-unused-vars - 'Video' is defined but never used.
+  Line 98: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 117: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\24-stabilizer\stabilizer.store.ts
+  Line 59: @typescript-eslint/no-unused-vars - 'error' is defined but never used.
+  Line 89: no-async-promise-executor - Promise executor functions should not be async.
+  Line 107: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 123: @typescript-eslint/no-unused-vars - 'e' is defined but never used.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\24-stabilizer\stabilizer.worker.ts
+  Line 66: @typescript-eslint/no-unused-vars - 'e' is defined but never used.
+  Line 66: no-empty - Empty block statement.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\25-color-correction\color-correction.component.ts
+  Line 9: @typescript-eslint/no-unused-vars - 'Palette' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Video' is defined but never used.
+  Line 230: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 100: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 119: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 138: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 157: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\25-color-correction\color-correction.store.ts
+  Line 61: @typescript-eslint/no-unused-vars - 'error' is defined but never used.
+  Line 92: no-async-promise-executor - Promise executor functions should not be async.
+  Line 111: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 127: @typescript-eslint/no-unused-vars - 'e' is defined but never used.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\26-video-to-hls\video-to-hls.component.ts
+  Line 9: @typescript-eslint/no-unused-vars - 'Radio' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Video' is defined but never used.
+  Line 188: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 97: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 116: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\26-video-to-hls\video-to-hls.store.ts
+  Line 57: @typescript-eslint/no-unused-vars - 'error' is defined but never used.
+  Line 86: no-async-promise-executor - Promise executor functions should not be async.
+  Line 103: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 119: @typescript-eslint/no-unused-vars - 'e' is defined but never used.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\27-video-to-dash\video-to-dash.component.ts
+  Line 9: @typescript-eslint/no-unused-vars - 'Radio' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'RefreshCw' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Settings2' is defined but never used.
+  Line 9: @typescript-eslint/no-unused-vars - 'Video' is defined but never used.
+  Line 188: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 97: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+  Line 116: @angular-eslint/template/label-has-associated-control - A label component must be associated with a form element
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\27-video-to-dash\video-to-dash.store.ts
+  Line 57: @typescript-eslint/no-unused-vars - 'error' is defined but never used.
+  Line 86: no-async-promise-executor - Promise executor functions should not be async.
+  Line 103: @typescript-eslint/no-explicit-any - Unexpected any. Specify a different type.
+  Line 119: @typescript-eslint/no-unused-vars - 'e' is defined but never used.
+
+C:\Users\IKYY\Downloads\generated\src\app\modules\video\27-video-to-dash\video-to-dash.worker.ts
+  Line 25: @typescript-eslint/no-unused-vars - 'segmentDuration' is assigned a value but never used.

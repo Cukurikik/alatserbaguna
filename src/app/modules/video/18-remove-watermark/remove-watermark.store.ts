@@ -116,7 +116,7 @@ export const RemoveWatermarkStore = signalStore(
                     if (msg.type === 'progress') {
                       patchState(store, { progress: msg.value! });
                     } else if (msg.type === 'complete') {
-                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: 'video/mp4' });
+                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as unknown as ArrayBuffer)], { type: 'video/mp4' });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

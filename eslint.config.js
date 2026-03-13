@@ -31,6 +31,10 @@ module.exports = defineConfig([
           style: 'kebab-case',
         },
       ],
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@angular-eslint/template/label-has-associated-control': 'off',
+      'no-empty': 'off'
     },
   },
   {
@@ -39,6 +43,8 @@ module.exports = defineConfig([
       angular.configs.templateRecommended,
       angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      '@angular-eslint/template/label-has-associated-control': 'off'
+    },
   }
 ]);

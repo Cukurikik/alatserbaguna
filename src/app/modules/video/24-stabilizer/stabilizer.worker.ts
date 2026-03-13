@@ -63,6 +63,8 @@ addEventListener('message', async (event: MessageEvent<{ type: string; config: S
     // Cleanup
     await ff.deleteFile(fileName);
     await ff.deleteFile(outputName);
+   
+   
     try { await ff.deleteFile(trfName); } catch (e) {}
 
     postMessage({ type: 'complete', data: new Uint8Array(data as Uint8Array) } as WorkerMessage<Uint8Array>);

@@ -121,7 +121,7 @@ export const CropResizeStore = signalStore(
                     } else if (msg.type === 'complete') {
                       const buffer = msg.data!.buffer;
                       const arrayBuffer = buffer instanceof SharedArrayBuffer ? buffer.slice(0) : buffer;
-                      const blob = new Blob([new Uint8Array(arrayBuffer as any)], { type: 'video/mp4' });
+                      const blob = new Blob([new Uint8Array(arrayBuffer as unknown as ArrayBuffer)], { type: 'video/mp4' });
                       patchState(store, {
                         status: 'done',
                         progress: 100,
