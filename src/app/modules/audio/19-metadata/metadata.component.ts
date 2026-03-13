@@ -146,7 +146,7 @@ export class MetadataComponent implements OnDestroy {
   ];
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(MetadataActions.loadFile({ file: files[0] })); }
-  onTagChange(key: keyof AudioTags, e: Event) { this.store.dispatch(MetadataActions.updateTag({ key, value: (e.target as HTMLInputElement).value })); }
+  onTagChange(key: keyof AudioTags, e: Event) { this.store.dispatch(MetadataActions.updateTag({ key, value: (e.target as any).value })); }
   onToggleStrip() { this.store.dispatch(MetadataActions.toggleStripAll()); }
 
   onProcess(state: any) { if (state.status === 'processing') return; this.store.dispatch(MetadataActions.startProcessing()); }

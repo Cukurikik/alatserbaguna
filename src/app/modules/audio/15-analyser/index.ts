@@ -1,4 +1,4 @@
 export { AnalyserComponent } from './analyser.component';
 export { AnalyserService } from './analyser.service';
 export * from './analyser.store';
-export { AnalyserSchema } from './analyser.schema';
+export { AnalyserConfigSchema } from './analyser.schema';

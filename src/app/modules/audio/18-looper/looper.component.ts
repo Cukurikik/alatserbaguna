@@ -153,9 +153,9 @@ export class LooperComponent implements OnDestroy {
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(LooperActions.loadFile({ file: files[0] })); }
   decrementRepeat() { this.repeatCount.update(v => Math.max(2, v - 1)); }
   incrementRepeat() { this.repeatCount.update(v => Math.min(50, v + 1)); }
-  onRepeatChange(e: Event) { this.repeatCount.set(parseInt((e.target as HTMLInputElement).value, 10)); }
-  onCrossfadeChange(e: Event) { this.crossfade.set(parseFloat((e.target as HTMLInputElement).value)); }
-  onFormatChange(e: Event) { this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat); }
+  onRepeatChange(e: Event) { this.repeatCount.set(parseInt((e.target as any).value, 10)); }
+  onCrossfadeChange(e: Event) { this.crossfade.set(parseFloat((e.target as any).value)); }
+  onFormatChange(e: Event) { this.outputFormat.set((e.target as any).value as ExportFormat); }
 
   onProcess(state: any) {
     if (state.status === 'processing') return;

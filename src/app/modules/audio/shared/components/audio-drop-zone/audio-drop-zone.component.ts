@@ -49,9 +49,9 @@ export class AudioDropZoneComponent {
     this.validate(files);
   }
   onFileChange(e: Event) {
-    const files = Array.from((e.target as HTMLInputElement).files ?? []);
+    const files = Array.from((e.target as any).files ?? []);
     this.validate(files);
-    (e.target as HTMLInputElement).value = '';
+    (e.target as any).value = '';
   }
   private validate(files: File[]) {
     this.errorMsg.set(null);

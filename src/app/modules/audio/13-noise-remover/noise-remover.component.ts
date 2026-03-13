@@ -156,9 +156,9 @@ export class NoiseRemoverComponent implements OnDestroy {
   private cachedBlobUrls = new Map<Blob, string>();
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(NoiseRemoverActions.loadFile({ file: files[0] })); }
-  onStrengthChange(e: Event) { this.strength.set(parseInt((e.target as HTMLInputElement).value, 10)); }
-  onNoiseFloorChange(e: Event) { this.noiseFloor.set(parseInt((e.target as HTMLInputElement).value, 10)); }
-  onFormatChange(e: Event) { this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat); }
+  onStrengthChange(e: Event) { this.strength.set(parseInt((e.target as any).value, 10)); }
+  onNoiseFloorChange(e: Event) { this.noiseFloor.set(parseInt((e.target as any).value, 10)); }
+  onFormatChange(e: Event) { this.outputFormat.set((e.target as any).value as ExportFormat); }
 
   onProcess(state: any) {
     if (state.status === 'processing') return;

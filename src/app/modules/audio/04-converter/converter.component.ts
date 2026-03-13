@@ -234,7 +234,7 @@ export class ConverterComponent implements OnDestroy {
   }
 
   onBitrateChange(e: Event) {
-    const idx = parseInt((e.target as HTMLInputElement).value, 10);
+    const idx = parseInt((e.target as any).value, 10);
     this.bitrate.set(this.bitrateOptions[idx]);
   }
 

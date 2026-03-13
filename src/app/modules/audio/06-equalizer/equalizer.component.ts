@@ -259,7 +259,7 @@ export class EqualizerComponent implements OnDestroy {
   }
 
   onChange(band: string, event: Event): void {
-    const val = parseInt((event.target as HTMLInputElement).value, 10);
+    const val = parseInt((e.target as any).value, 10);
     switch (band) {
       case 'hz31': this.b31.set(val); break;
       case 'hz62': this.b62.set(val); break;
@@ -275,7 +275,7 @@ export class EqualizerComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
+    this.outputFormat.set((e.target as any).value as ExportFormat);
   }
 
   onProcess(state: any): void {

@@ -69,7 +69,7 @@ import { KaraokeOutput } from './karaoke.schema';
                 @if (outputTarget() === 'karaoke') {
                   <div class="flex flex-col gap-2" [@fadeIn]>
                     <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Vocal Suppression Strength</label><span class="text-pink-400 font-mono font-black text-sm">{{ (strength() * 100).toFixed(0) }}%</span></div>
-                    <input type="range" min="0.1" max="1.0" step="0.05" [value]="strength()" (input)="strength.set(+($event.target as HTMLInputElement).value)"
+                    <input type="range" min="0.1" max="1.0" step="0.05" [value]="strength()" (input)="strength.set(+(e.target as any).value)"
                           class="w-full accent-pink-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                     <p class="text-xs text-gray-500">Higher = more vocals removed (may affect instruments if not perfectly centered)</p>
                   </div>
@@ -85,7 +85,7 @@ import { KaraokeOutput } from './karaoke.schema';
             <div class="w-full lg:w-80 flex flex-col gap-6">
               <div class="bg-[#12121a] rounded-2xl border border-gray-800 p-6 flex flex-col min-h-[300px]">
                 <label class="text-xs text-gray-400 uppercase tracking-widest mb-3 font-bold">Format</label>
-                <select [value]="outputFormat()" (change)="outputFormat.set(($event.target as HTMLSelectElement).value as any)"
+                <select [value]="outputFormat()" (change)="outputFormat.set((e.target as any).value as any)"
                         class="w-full bg-gray-900 border border-gray-700 font-bold text-sm rounded-lg px-4 py-3 outline-none focus:border-pink-500 transition-colors mb-6">
                   <option value="mp3">MP3</option><option value="wav">WAV</option><option value="aac">AAC</option>
                 </select>

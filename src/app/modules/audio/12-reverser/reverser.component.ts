@@ -211,7 +211,7 @@ export class ReverserComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
+    this.outputFormat.set((e.target as any).value as ExportFormat);
   }
 
   onProcess(state: any): void {

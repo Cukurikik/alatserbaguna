@@ -221,15 +221,15 @@ export class MergerComponent implements OnDestroy {
   }
 
   onFormatChange(e: Event) {
-    this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat);
+    this.outputFormat.set((e.target as any).value as ExportFormat);
   }
 
   onCrossfadeChange(e: Event) {
-    this.crossfadeMs.set(parseInt((e.target as HTMLInputElement).value, 10));
+    this.crossfadeMs.set(parseInt((e.target as any).value, 10));
   }
 
   onGapChange(e: Event) {
-    this.gapMs.set(parseInt((e.target as HTMLInputElement).value, 10));
+    this.gapMs.set(parseInt((e.target as any).value, 10));
   }
 
   onProcess(state: any): void {

@@ -131,7 +131,7 @@ export class ChannelMixerComponent implements OnDestroy {
   ];
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(ChannelMixerActions.loadFile({ file: files[0] })); }
-  onFormatChange(e: Event) { this.outputFormat.set((e.target as HTMLSelectElement).value as ExportFormat); }
+  onFormatChange(e: Event) { this.outputFormat.set((e.target as any).value as ExportFormat); }
   onProcess(state: any) {
     if (state.status === 'processing') return;
     this.store.dispatch(ChannelMixerActions.startProcessing({ format: this.outputFormat(), operation: this.selectedOp(), monoMode: this.monoMode() }));

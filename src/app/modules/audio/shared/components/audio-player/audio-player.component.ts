@@ -48,7 +48,7 @@ export class AudioPlayerComponent implements OnChanges, OnDestroy {
   }
   onTimeUpdate(el: HTMLAudioElement) { this.currentTime.set(el.currentTime); }
   onMeta(el: HTMLAudioElement) { this.duration.set(el.duration); }
-  seek(el: HTMLAudioElement, e: Event) { el.currentTime = Number((e.target as HTMLInputElement).value); }
+  seek(el: HTMLAudioElement, e: Event) { el.currentTime = Number((e.target as any).value); }
   fmt(s: number): string {
     const m = Math.floor(s / 60), sec = Math.floor(s % 60);
     return `${m}:${sec.toString().padStart(2, '0')}`;

@@ -162,7 +162,7 @@ export class BatchComponent implements OnDestroy {
   ];
 
   onAddFiles(e: Event) {
-    const files = Array.from((e.target as HTMLInputElement).files ?? []);
+    const files = Array.from((e.target as any).files ?? []);
     if (files.length) this.store.dispatch(BatchActions.addFiles({ files }));
   }
 
@@ -171,7 +171,7 @@ export class BatchComponent implements OnDestroy {
   }
 
   onSetOperation(operation: BatchOperation) { this.store.dispatch(BatchActions.setOperation({ operation })); }
-  onFormatChange(e: Event) { this.store.dispatch(BatchActions.setFormat({ format: (e.target as HTMLSelectElement).value as ExportFormat })); }
+  onFormatChange(e: Event) { this.store.dispatch(BatchActions.setFormat({ format: (e.target as any).value as ExportFormat })); }
   onRemoveFile(id: string) { this.store.dispatch(BatchActions.removeFile({ id })); }
 
   async onStartBatch(state: any) {
