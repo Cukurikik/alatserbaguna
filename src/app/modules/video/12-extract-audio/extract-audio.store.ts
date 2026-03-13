@@ -97,7 +97,8 @@ export const ExtractAudioStore = signalStore(
                   fileBuffer: buffer,
                   fileName: config.inputFile.name,
                   format: config.format,
-                  bitrate: config.bitrate
+                  bitrate: config.bitrate,
+                  quality: config.quality
                 }).subscribe({
                   next: (msg: WorkerMessage<Uint8Array>) => {
                     if (msg.type === 'progress') {
@@ -106,7 +107,7 @@ export const ExtractAudioStore = signalStore(
                       const mimeType = config.format === 'mp3' ? 'audio/mpeg' : 
                                        config.format === 'wav' ? 'audio/wav' : 
                                        config.format === 'ogg' ? 'audio/ogg' : 'audio/aac';
-                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0))], { type: mimeType });
+                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: mimeType });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

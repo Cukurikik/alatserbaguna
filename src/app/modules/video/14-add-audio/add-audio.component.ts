@@ -77,7 +77,7 @@ import { LucideAngularModule } from 'lucide-angular';
                     <span>{{ store.videoMeta()!.duration | number:'1.1-1' }}s</span>
                     <span class="flex items-center space-x-1">
                       <lucide-icon name="volume-2" class="w-3 h-3"></lucide-icon>
-                      <span>{{ store.videoMeta()!.audioStreams.length > 0 ? 'Audio Present' : 'No Audio Detected' }}</span>
+                      <span>{{ store.videoMeta()!.hasAudio ? 'Audio Present' : 'No Audio Detected' }}</span>
                     </span>
                   </div>
                 }

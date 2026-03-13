@@ -105,7 +105,7 @@ export const ToImagesStore = signalStore(
                     if (msg.type === 'progress') {
                       patchState(store, { progress: msg.value! });
                     } else if (msg.type === 'complete') {
-                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0))], { type: 'application/zip' });
+                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: 'application/zip' });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

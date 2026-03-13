@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VideoThumbnailStore } from './video-thumbnail.store';
+import { VideoThumbnailConfig } from './video-thumbnail.schema';
 import { FileDropZoneComponent } from '../shared/components/file-drop-zone/file-drop-zone.component';
 import { VideoPreviewComponent } from '../shared/components/video-preview/video-preview.component';
 import { ProgressRingComponent } from '../shared/components/progress-ring/progress-ring.component';

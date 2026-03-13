@@ -1,0 +1,424 @@
+
+> ai-studio-angular-app@0.0.0 build
+> ng build
+
+[33m❯[39m Building...
+[32m✔[39m Building...
+[35mPrerendered 0 static routes.[39m
+Application bundle generation failed. [4.774 seconds] - 2026-03-13T04:21:45.366Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: VideoPreviewComponent is not used within the template of FlipRotateComponent[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/09-flip-rotate/flip-rotate.component.ts:15:83:
+[37m      15 │ ...leDropZoneComponent, [32mVideoPreviewComponent[37m, ExportPanelComponen...
+         ╵                         [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/02-splitter/splitter.store.ts:102:45:
+[37m      102 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'appli...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/03-format-converter/format-converter.store.ts:114:45:
+[37m      114 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: mimeTy...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'VolumeBoosterConfig'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/04-volume-booster/volume-booster.component.ts:174:56:
+[37m      174 │ ...e.updateConfig({ [key]: value } as Partial<[32mVolumeBoosterConfig[37m>);
+          ╵                                               [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/04-volume-booster/volume-booster.store.ts:101:45:
+[37m      101 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'video...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'VideoThumbnailConfig'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/05-video-thumbnail/video-thumbnail.component.ts:222:56:
+[37m      222 │ ....updateConfig({ [key]: value } as Partial<[32mVideoThumbnailConfig[37m>);
+          ╵                                              [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/05-video-thumbnail/video-thumbnail.store.ts:115:45:
+[37m      115 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: mimeTy...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/06-reverser/reverser.store.ts:101:45:
+[37m      101 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'video...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/07-speed-controller/speed-controller.store.ts:114:45:
+[37m      114 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'video...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/08-looper/looper.store.ts:131:45:
+[37m      131 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'video...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/09-flip-rotate/flip-rotate.store.ts:106:45:
+[37m      106 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'video...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/10-crop-resize/crop-resize.store.ts:124:45:
+[37m      124 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'video...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/11-to-gif/to-gif.store.ts:122:45:
+[37m      122 │ ... blob = new Blob([[32mnew Uint8Array(arrayBuffer)[37m], { type: 'image...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type '{ inputFile: File; fileBuffer: ArrayBuffer; fileName: string; format: "wav" | "mp3" | "aac" | "ogg"; bitrate: number; }' is not assignable to parameter of type '{ inputFile: File; format: "wav" | "mp3" | "aac" | "ogg"; quality: "medium" | "low" | "high"; bitrate: number; } & { fileBuffer: ArrayBuffer; fileName: string; }'.
+  Property 'quality' is missing in type '{ inputFile: File; fileBuffer: ArrayBuffer; fileName: string; format: "wav" | "mp3" | "aac" | "ogg"; bitrate: number; }' but required in type '{ inputFile: File; format: "wav" | "mp3" | "aac" | "ogg"; quality: "medium" | "low" | "high"; bitrate: number; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/12-extract-audio/extract-audio.store.ts:95:132:
+[37m      95 │ ...fer: ArrayBuffer, fileName: string }, Uint8Array>(workerFactory, [32m{[37m
+         ╵                                                                     [32m^[0m
+
+  'quality' is declared here.
+
+    src/app/modules/video/12-extract-audio/extract-audio.schema.ts:7:2:
+[37m      7 │   [32mquality: z.enum(['low', 'medium', 'high']).default('high')[37m,
+        ╵   [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/12-extract-audio/extract-audio.store.ts:109:45:
+[37m      109 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/13-remove-audio/remove-audio.store.ts:99:45:
+[37m      99 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type: ...
+         ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'audioStreams' does not exist on type 'VideoMeta'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/14-add-audio/add-audio.component.ts:80:50:
+[37m      80 │ ...pan>{{ store.videoMeta()!.[32maudioStreams[37m.length > 0 ? 'Audio Pres...
+         ╵                              [32m~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'fileName' does not exist in type '{ inputFile: File; audioFile: File; mode: "replace" | "mix"; videoVolume: number; audioVolume: number; loopAudio: boolean; } & { fileBuffer: ArrayBuffer; audioBuffer: ArrayBuffer; audioFileName: string; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/14-add-audio/add-audio.store.ts:110:18:
+[37m      110 │                   [32mfileName[37m: config.inputFile.name,
+          ╵                   [32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/14-add-audio/add-audio.store.ts:122:45:
+[37m      122 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'fileName' does not exist in type '{ inputFile: File; subtitleFile: File; mode: "hard" | "soft"; language: string; } & { fileBuffer: ArrayBuffer; subtitleBuffer: ArrayBuffer; subtitleFileName: string; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/15-add-subtitles/add-subtitles.store.ts:104:18:
+[37m      104 │                   [32mfileName[37m: config.inputFile.name,
+          ╵                   [32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/15-add-subtitles/add-subtitles.store.ts:114:45:
+[37m      114 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/16-remove-subtitles/remove-subtitles.store.ts:93:45:
+[37m      93 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type: ...
+         ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'fileName' does not exist in type '{ inputFile: File; watermarkFile: File; position: "top-left" | "top-right" | "bottom-left" | "bottom-right" | "center"; opacity: number; scale: number; padding: number; } & { ...; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/17-add-watermark/add-watermark.store.ts:110:18:
+[37m      110 │                   [32mfileName[37m: config.inputFile.name,
+          ╵                   [32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/17-add-watermark/add-watermark.store.ts:122:45:
+[37m      122 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/18-remove-watermark/remove-watermark.store.ts:119:45:
+[37m      119 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2532: Object is possibly 'undefined'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/19-to-audio/to-audio.component.ts:235:72:
+[37m      235 │ ..._' + store.inputFile()?.name.[32msplit[37m('.')[0] + '.' + store.forma...
+          ╵                                 [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/19-to-audio/to-audio.store.ts:108:45:
+[37m      108 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2532: Object is possibly 'undefined'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/20-to-images/to-images.component.ts:200:73:
+[37m      200 │ ..."'omni_frames_' + store.inputFile()?.name.[32msplit[37m('.')[0] + '.zip'"
+          ╵                                              [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/20-to-images/to-images.store.ts:108:45:
+[37m      108 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/21-change-resolution/change-resolution.store.ts:110:45:
+[37m      110 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/22-compressor/compressor.store.ts:108:45:
+[37m      108 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/23-merger/merger.store.ts:107:45:
+[37m      107 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/24-stabilizer/stabilizer.store.ts:107:43:
+[37m      107 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/25-color-correction/color-correction.store.ts:111:43:
+[37m      111 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/26-video-to-hls/video-to-hls.store.ts:103:43:
+[37m      103 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBuffer | SharedArrayBuffer>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBuffer | SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/video/27-video-to-dash/video-to-dash.store.ts:103:43:
+[37m      103 │ ... new Blob([[32mnew Uint8Array(msg.data!.buffer.slice(0))[37m], { type:...
+          ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

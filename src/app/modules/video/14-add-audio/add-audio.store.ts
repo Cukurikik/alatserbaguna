@@ -103,7 +103,7 @@ export const AddAudioStore = signalStore(
                 
                 const workerFactory = () => new Worker(new URL('./add-audio.worker', import.meta.url), { type: 'module' });
                 
-                workerBridge.process<AddAudioConfig & { fileBuffer: ArrayBuffer, audioBuffer: ArrayBuffer, audioFileName: string }, Uint8Array>(workerFactory, {
+                workerBridge.process<AddAudioConfig & { fileBuffer: ArrayBuffer, fileName: string, audioBuffer: ArrayBuffer, audioFileName: string }, Uint8Array>(workerFactory, {
                   inputFile: config.inputFile,
                   audioFile: config.audioFile,
                   fileBuffer,
@@ -119,7 +119,7 @@ export const AddAudioStore = signalStore(
                     if (msg.type === 'progress') {
                       patchState(store, { progress: msg.value! });
                     } else if (msg.type === 'complete') {
-                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0))], { type: 'video/mp4' });
+                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: 'video/mp4' });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

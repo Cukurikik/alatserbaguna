@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { FlipRotateStore } from './flip-rotate.store';
 import { FlipRotateService } from './flip-rotate.service';
 import { FileDropZoneComponent } from '../shared/components/file-drop-zone/file-drop-zone.component';
-import { VideoPreviewComponent } from '../shared/components/video-preview/video-preview.component';
 import { ExportPanelComponent } from '../shared/components/export-panel/export-panel.component';
 import { ProgressRingComponent } from '../shared/components/progress-ring/progress-ring.component';
 import { LucideAngularModule, FlipHorizontal, FlipVertical, RotateCw } from 'lucide-angular';
@@ -12,7 +11,7 @@ import { LucideAngularModule, FlipHorizontal, FlipVertical, RotateCw } from 'luc
 @Component({
   selector: 'app-flip-rotate',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, FileDropZoneComponent, VideoPreviewComponent, ExportPanelComponent, ProgressRingComponent],
+  imports: [CommonModule, FormsModule, LucideAngularModule, FileDropZoneComponent, ExportPanelComponent, ProgressRingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-6 max-w-4xl mx-auto space-y-8">

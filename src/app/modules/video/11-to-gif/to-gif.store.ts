@@ -119,7 +119,7 @@ export const ToGifStore = signalStore(
                     } else if (msg.type === 'complete') {
                       const buffer = msg.data!.buffer;
                       const arrayBuffer = buffer instanceof SharedArrayBuffer ? buffer.slice(0) : buffer;
-                      const blob = new Blob([new Uint8Array(arrayBuffer)], { type: 'image/gif' });
+                      const blob = new Blob([new Uint8Array(arrayBuffer as any)], { type: 'image/gif' });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

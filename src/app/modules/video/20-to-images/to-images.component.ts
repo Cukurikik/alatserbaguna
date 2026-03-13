@@ -197,7 +197,7 @@ import { LucideAngularModule, Image as ImageIcon, RefreshCw, Settings2, Images }
                 @if (store.status() === 'done' && store.outputBlob()) {
                   <app-export-panel
                     [blob]="store.outputBlob()!"
-                    [filename]="'omni_frames_' + store.inputFile()?.name.split('.')[0] + '.zip'"
+                    [filename]="'omni_frames_' + (store.inputFile()?.name || 'video').split('.')[0] + '.zip'"
                     [sizeMB]="store.outputSizeMB()!">
                   </app-export-panel>
                 }

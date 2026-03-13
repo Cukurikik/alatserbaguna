@@ -105,7 +105,7 @@ export const ToAudioStore = signalStore(
                                        config.format === 'wav' ? 'audio/wav' : 
                                        config.format === 'aac' ? 'audio/aac' : 
                                        config.format === 'ogg' ? 'audio/ogg' : 'audio/flac';
-                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0))], { type: mimeType });
+                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: mimeType });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

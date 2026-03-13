@@ -232,7 +232,7 @@ import { LucideAngularModule, Music, RefreshCw, Settings2, FileAudio } from 'luc
                 @if (store.status() === 'done' && store.outputBlob()) {
                   <app-export-panel
                     [blob]="store.outputBlob()!"
-                    [filename]="'omni_audio_' + store.inputFile()?.name.split('.')[0] + '.' + store.format()"
+                    [filename]="'omni_audio_' + (store.inputFile()?.name || 'video').split('.')[0] + '.' + store.format()"
                     [sizeMB]="store.outputSizeMB()!">
                   </app-export-panel>
                 }

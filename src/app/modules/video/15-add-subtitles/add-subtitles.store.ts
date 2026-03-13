@@ -97,7 +97,7 @@ export const AddSubtitlesStore = signalStore(
                 
                 const workerFactory = () => new Worker(new URL('./add-subtitles.worker', import.meta.url), { type: 'module' });
                 
-                workerBridge.process<AddSubtitlesConfig & { fileBuffer: ArrayBuffer, subtitleBuffer: ArrayBuffer, subtitleFileName: string }, Uint8Array>(workerFactory, {
+                workerBridge.process<AddSubtitlesConfig & { fileBuffer: ArrayBuffer, fileName: string, subtitleBuffer: ArrayBuffer, subtitleFileName: string }, Uint8Array>(workerFactory, {
                   inputFile: config.inputFile,
                   subtitleFile: config.subtitleFile,
                   fileBuffer,
@@ -111,7 +111,7 @@ export const AddSubtitlesStore = signalStore(
                     if (msg.type === 'progress') {
                       patchState(store, { progress: msg.value! });
                     } else if (msg.type === 'complete') {
-                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0))], { type: 'video/mp4' });
+                      const blob = new Blob([new Uint8Array(msg.data!.buffer.slice(0) as any)], { type: 'video/mp4' });
                       patchState(store, {
                         status: 'done',
                         progress: 100,

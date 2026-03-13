@@ -112,7 +112,7 @@ export const VideoThumbnailStore = signalStore(
                       };
                       const buffer = msg.data!.buffer;
                       const arrayBuffer = buffer instanceof SharedArrayBuffer ? buffer.slice(0) : buffer;
-                      const blob = new Blob([new Uint8Array(arrayBuffer)], { type: mimeTypes[config.format] });
+                      const blob = new Blob([new Uint8Array(arrayBuffer as any)], { type: mimeTypes[config.format] });
                       patchState(store, {
                         status: 'done',
                         progress: 100,
