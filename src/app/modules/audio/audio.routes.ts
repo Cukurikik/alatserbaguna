@@ -6,11 +6,11 @@ import { mergerReducer } from './03-merger/merger.store';
 import { converterReducer } from './04-converter/converter.store';
 import { compressorReducer } from './05-compressor/compressor.store';
 import { equalizerReducer } from './06-equalizer/equalizer.store';
-import { pitchShifterReducer } from './07-pitch-shifter/pitch-shifter.store';
-import { timeStretchReducer } from './08-time-stretch/time-stretch.store';
+import { pitchshifterReducer } from './07-pitch-shifter/pitch-shifter.store';
+import { timestretchReducer } from './08-time-stretch/time-stretch.store';
 import { normalizerReducer } from './09-normalizer/normalizer.store';
 import { reverbReducer } from './10-reverb/reverb.store';
-import { noiseRemoverReducer } from './11-noise-remover/noise-remover.store';
+import { noiseremoverReducer } from './11-noise-remover/noise-remover.store';
 import { splitterReducer } from './12-splitter/splitter.store';
 import { metadataReducer } from './13-metadata/metadata.store';
 import { batchReducer } from './14-batch/batch.store';
@@ -19,17 +19,17 @@ import { reverserReducer } from './16-reverser/reverser.store';
 import { mixerReducer } from './17-mixer/mixer.store';
 import { fadeReducer } from './18-fade/fade.store';
 import { looperReducer } from './19-looper/looper.store';
-import { channelMixerReducer } from './20-channel-mixer/channel-mixer.store';
-import { silenceRemoverReducer } from './21-silence-remover/silence-remover.store';
+import { channelmixerReducer } from './20-channel-mixer/channel-mixer.store';
+import { silenceremoverReducer } from './21-silence-remover/silence-remover.store';
 import { speedReducer } from './22-speed/speed.store';
 import { limiterReducer } from './23-limiter/limiter.store';
-import { stereoWidenerReducer } from './24-stereo-widener/stereo-widener.store';
-import { voiceChangerReducer } from './25-voice-changer/voice-changer.store';
+import { stereowidenerReducer } from './24-stereo-widener/stereo-widener.store';
+import { voicechangerReducer } from './25-voice-changer/voice-changer.store';
 import { karaokeReducer } from './26-karaoke/karaoke.store';
 import { visualizerReducer } from './27-visualizer/visualizer.store';
 import { transcriberReducer } from './28-transcriber/transcriber.store';
 import { watermarkReducer } from './29-watermark/watermark.store';
-import { stemSplitterReducer } from './30-stem-splitter/stem-splitter.store';
+import { stemsplitterReducer } from './30-stem-splitter/stem-splitter.store';
 
 export const AUDIO_ROUTES: Routes = [
   {
@@ -41,11 +41,11 @@ export const AUDIO_ROUTES: Routes = [
       provideState('converter', converterReducer),
       provideState('compressor', compressorReducer),
       provideState('equalizer', equalizerReducer),
-      provideState('pitch-shifter', pitchShifterReducer),
-      provideState('time-stretch', timeStretchReducer),
+      provideState('pitch-shifter', pitchshifterReducer),
+      provideState('time-stretch', timestretchReducer),
       provideState('normalizer', normalizerReducer),
       provideState('reverb', reverbReducer),
-      provideState('noise-remover', noiseRemoverReducer),
+      provideState('noise-remover', noiseremoverReducer),
       provideState('splitter', splitterReducer),
       provideState('metadata', metadataReducer),
       provideState('batch', batchReducer),
@@ -54,17 +54,17 @@ export const AUDIO_ROUTES: Routes = [
       provideState('mixer', mixerReducer),
       provideState('fade', fadeReducer),
       provideState('looper', looperReducer),
-      provideState('channel-mixer', channelMixerReducer),
-      provideState('silence-remover', silenceRemoverReducer),
+      provideState('channel-mixer', channelmixerReducer),
+      provideState('silence-remover', silenceremoverReducer),
       provideState('speed', speedReducer),
       provideState('limiter', limiterReducer),
-      provideState('stereo-widener', stereoWidenerReducer),
-      provideState('voice-changer', voiceChangerReducer),
+      provideState('stereo-widener', stereowidenerReducer),
+      provideState('voice-changer', voicechangerReducer),
       provideState('karaoke', karaokeReducer),
       provideState('visualizer', visualizerReducer),
       provideState('transcriber', transcriberReducer),
       provideState('watermark', watermarkReducer),
-      provideState('stem-splitter', stemSplitterReducer),
+      provideState('stem-splitter', stemsplitterReducer),
     ],
     children: [
       { path: 'recorder', loadComponent: () => import('./01-recorder/recorder.component').then(m => m.RecorderComponent), title: 'Audio Recorder — Omni-Tool', data: { category: 'audio' } },
