@@ -1,3 +1,4 @@
+import { fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState } from '../../../shared/animations';
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
 import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';

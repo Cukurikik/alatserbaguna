@@ -1,10 +1,11 @@
+import { fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState } from '../../../../../shared/animations';
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-video-preview',
   standalone: true,
   template: `
-    <div class="rounded-xl overflow-hidden bg-black shadow-lg border border-gray-700">
+    <div class="rounded-xl overflow-hidden bg-black shadow-lg border border-gray-700" [@fadeIn]>
       @if (videoUrl) {
         <video 
           controls 
@@ -19,6 +20,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
       }
     </div>
   `,
+  animations: [fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VideoPreviewComponent {

@@ -1,3 +1,4 @@
+import { fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState } from '../../../../../shared/animations';
 import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output } from 
       (dragover)="onDragOver($event)"
       (click)="fileInput.click()"
       (keydown.enter)="fileInput.click()"
-      (keydown.space)="fileInput.click()">
+      (keydown.space)="fileInput.click()" [@fadeIn]>
 
       <div class="w-16 h-16 rounded-full bg-gray-700 bg-opacity-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400 group-hover:text-cyan-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,6 +28,7 @@ import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output } from 
       <input #fileInput type="file" [attr.accept]="accept" class="hidden" (change)="onFileSelected($event)">
     </div>
   `,
+  animations: [fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileDropZoneComponent {

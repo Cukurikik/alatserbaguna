@@ -1,10 +1,11 @@
+import { fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState } from '../../../../../shared/animations';
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-export-panel',
   standalone: true,
   template: `
-    <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-xl mt-6">
+    <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-xl mt-6" [@fadeIn]>
       <h3 class="text-lg font-semibold text-white mb-4">Export Options</h3>
       
       <div class="flex flex-col sm:flex-row gap-4">
@@ -32,6 +33,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
       </div>
     </div>
   `,
+  animations: [fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExportPanelComponent {

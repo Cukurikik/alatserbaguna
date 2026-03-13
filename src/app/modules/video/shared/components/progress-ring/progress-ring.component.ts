@@ -1,3 +1,4 @@
+import { fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState } from '../../../../../shared/animations';
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
@@ -6,7 +7,7 @@ import { DecimalPipe } from '@angular/common';
   standalone: true,
   imports: [DecimalPipe],
   template: `
-    <div class="relative flex items-center justify-center w-32 h-32">
+    <div class="relative flex items-center justify-center w-32 h-32" [@fadeIn]>
       <svg class="transform -rotate-90 w-full h-full" viewBox="0 0 100 100">
         <!-- Background circle -->
         <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-gray-700" />
@@ -37,6 +38,7 @@ import { DecimalPipe } from '@angular/common';
       </div>
     </div>
   `,
+  animations: [fadeIn, slideUp, slideInRight, popIn, staggerFade, buttonState],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressRingComponent {
