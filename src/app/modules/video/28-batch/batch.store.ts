@@ -1,7 +1,7 @@
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 import { VideoErrorCode } from '../shared/errors/video.errors';
 
-export type BatchFileStatus = 'queued' | 'processing' | 'done' | 'error';
+export type BatchFileStatus = 'queued' | 'processing' | 'success' | 'error';
 
 export interface BatchFileEntry {
   file: File;
@@ -17,7 +17,7 @@ export interface BatchState {
   operationConfig: Record<string, unknown>;
   currentIndex: number;
   overallProgress: number;
-  status: 'idle' | 'processing' | 'done' | 'paused' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'paused' | 'error';
   outputBlobs: Blob[];
   outputSizeMB: number | null;
   errorCode: VideoErrorCode | null;
@@ -26,10 +26,17 @@ export interface BatchState {
 }
 
 const initialState: BatchState = {
-  files: [], operation: 'compress', operationConfig: {},
-  currentIndex: 0, overallProgress: 0,
-  status: 'idle', outputBlobs: [], outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  files: [],
+  operation: 'compress',
+  operationConfig: {},
+  currentIndex: 0,
+  overallProgress: 0,
+  status: 'idle',
+  outputBlobs: [],
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const BatchActions = createActionGroup({
@@ -60,14 +67,24 @@ export const batchFeature = createFeature({
       ...state,
       files: files.map(f => ({ file: f, status: 'queued' as const, progress: 0, outputSizeMB: null, errorMessage: null })),
       outputBlobs: [],
+      status: 'idle',
+      overallProgress: 0
     })),
     on(BatchActions.setOperation, (state, { operation }) => ({ ...state, operation })),
     on(BatchActions.setOperationConfig, (state, { config }) => ({ ...state, operationConfig: config })),
-    on(BatchActions.startQueue, (state) => ({ ...state, status: 'processing' as const, currentIndex: 0, overallProgress: 0, errorCode: null, errorMessage: null })),
+    on(BatchActions.startQueue, (state) => ({ 
+      ...state, 
+      status: 'processing' as const, 
+      currentIndex: 0, 
+      overallProgress: 0, 
+      errorCode: null, 
+      errorMessage: null 
+    })),
     on(BatchActions.pauseQueue, (state) => ({ ...state, status: 'paused' as const })),
     on(BatchActions.resumeQueue, (state) => ({ ...state, status: 'processing' as const })),
     on(BatchActions.fileProcessingStart, (state, { index }) => ({
-      ...state, currentIndex: index,
+      ...state, 
+      currentIndex: index,
       files: state.files.map((f, i) => i === index ? { ...f, status: 'processing' as const } : f),
     })),
     on(BatchActions.fileProgress, (state, { index, progress }) => ({
@@ -78,7 +95,7 @@ export const batchFeature = createFeature({
     on(BatchActions.fileDone, (state, { index, blob, outputSizeMB }) => ({
       ...state,
       outputBlobs: [...state.outputBlobs, blob],
-      files: state.files.map((f, i) => i === index ? { ...f, status: 'done' as const, progress: 100, outputSizeMB } : f),
+      files: state.files.map((f, i) => i === index ? { ...f, status: 'success' as const, progress: 100, outputSizeMB } : f),
     })),
     on(BatchActions.fileError, (state, { index, message }) => ({
       ...state,
@@ -88,14 +105,34 @@ export const batchFeature = createFeature({
       ...state,
       files: state.files.map((f, i) => i === index ? { ...f, status: 'queued' as const, errorMessage: null, progress: 0 } : f),
     })),
-    on(BatchActions.queueComplete, (state, { outputSizeMB }) => ({ ...state, status: 'done' as const, overallProgress: 100, outputSizeMB })),
-    on(BatchActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as const, errorCode, errorMessage: message, retryable })),
+    on(BatchActions.queueComplete, (state, { outputSizeMB }) => ({ 
+      ...state, 
+      status: 'success' as const, 
+      overallProgress: 100, 
+      outputSizeMB 
+    })),
+    on(BatchActions.processingFailure, (state, { errorCode, message, retryable }) => ({ 
+      ...state, 
+      status: 'error', 
+      errorCode, 
+      errorMessage: message, 
+      retryable 
+    })),
     on(BatchActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectBatchState, selectStatus, selectFiles, selectOperation, selectOperationConfig,
-  selectCurrentIndex, selectOverallProgress, selectOutputBlobs, selectOutputSizeMB,
-  selectErrorCode, selectErrorMessage, selectRetryable,
+  selectBatchState,
+  selectStatus,
+  selectFiles,
+  selectOperation,
+  selectOperationConfig,
+  selectCurrentIndex,
+  selectOverallProgress,
+  selectOutputBlobs,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = batchFeature;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
 import { VideoMeta, VideoStream, AudioStream, SubtitleStream, WorkerMessage } from '../shared/types/video.types';
@@ -13,11 +13,18 @@ export interface AnalyserResult {
 
 @Injectable({ providedIn: 'root' })
 export class AnalyserService {
-  constructor(private bridge: WorkerBridgeService) {}
+  private readonly bridge = inject(WorkerBridgeService);
+
+  /**
+   * Sentry Engine processor.
+   */
+  analyse(file: File): Observable<WorkerMessage<string>> {
+    const worker = new Worker(new URL('./analyser.worker', import.meta.url), { type: 'module' });
+    return this.bridge.runTask(worker, { file });
+  }
 
   /**
    * Parse FFprobe JSON output into typed stream arrays.
-   * Filters streams by codec_type field.
    */
   parseFFprobeStreams(json: string): Pick<AnalyserResult, 'videoStreams' | 'audioStreams' | 'subtitleStreams'> {
     const data = JSON.parse(json);
@@ -63,24 +70,15 @@ export class AnalyserService {
     return { videoStreams, audioStreams, subtitleStreams };
   }
 
-  /** Parse r_frame_rate fractional string to float fps. */
   parseFPS(rFrameRate: string): number {
     const [num, den] = rFrameRate.split('/').map(Number);
     if (!den || den === 0) return num;
     return parseFloat((num / den).toFixed(3));
   }
 
-  /** Format raw bps value to human-readable string. */
   formatBitrate(bps: string | number): string {
     const n = typeof bps === 'string' ? parseInt(bps, 10) : bps;
     if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)} Mbps`;
     return `${Math.round(n / 1000)} Kbps`;
-  }
-
-  analyse(file: File): Observable<WorkerMessage<string>> {
-    return this.bridge.runTask(
-      new Worker(new URL('./analyser.worker', import.meta.url), { type: 'module' }),
-      { file }
-    );
   }
 }

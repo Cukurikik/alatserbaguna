@@ -9,20 +9,29 @@ export interface AnalyserState {
   audioStreams: AudioStream[];
   subtitleStreams: SubtitleStream[];
   rawJson: string;
-  status: 'idle' | 'processing' | 'done' | 'error';
+  status: 'idle' | 'processing' | 'success' | 'error';
   progress: number;
-  outputBlob: null;
-  outputSizeMB: null;
+  outputBlob: Blob | null;
+  outputSizeMB: number | null;
   errorCode: VideoErrorCode | null;
   errorMessage: string | null;
   retryable: boolean;
 }
 
 const initialState: AnalyserState = {
-  inputFile: null, videoMeta: null,
-  videoStreams: [], audioStreams: [], subtitleStreams: [], rawJson: '',
-  status: 'idle', progress: 0, outputBlob: null, outputSizeMB: null,
-  errorCode: null, errorMessage: null, retryable: false,
+  inputFile: null,
+  videoMeta: null,
+  videoStreams: [],
+  audioStreams: [],
+  subtitleStreams: [],
+  rawJson: '',
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: false,
 };
 
 export const AnalyserActions = createActionGroup({
@@ -39,20 +48,48 @@ export const analyserFeature = createFeature({
   name: 'analyser',
   reducer: createReducer(
     initialState,
-    on(AnalyserActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'processing' as const, progress: 50 })),
+    on(AnalyserActions.loadFile, (state, { file }) => ({ 
+      ...state, 
+      inputFile: file, 
+      status: 'processing' as const, 
+      progress: 50,
+      errorCode: null,
+      errorMessage: null
+    })),
     on(AnalyserActions.analysisSuccess, (state, { meta, videoStreams, audioStreams, subtitleStreams, rawJson }) => ({
-      ...state, videoMeta: meta, videoStreams, audioStreams, subtitleStreams, rawJson,
-      status: 'done' as const, progress: 100,
+      ...state, 
+      videoMeta: meta, 
+      videoStreams, 
+      audioStreams, 
+      subtitleStreams, 
+      rawJson,
+      status: 'success' as const, 
+      progress: 100,
     })),
     on(AnalyserActions.analysisFailure, (state, { errorCode, message, retryable }) => ({
-      ...state, status: 'error' as const, errorCode, errorMessage: message, retryable,
+      ...state, 
+      status: 'error' as const, 
+      errorCode, 
+      errorMessage: message, 
+      retryable,
     })),
     on(AnalyserActions.resetState, () => initialState),
   ),
 });
 
 export const {
-  selectAnalyserState, selectStatus, selectProgress, selectInputFile, selectVideoMeta,
-  selectVideoStreams, selectAudioStreams, selectSubtitleStreams, selectRawJson,
-  selectOutputBlob, selectOutputSizeMB, selectErrorCode, selectErrorMessage, selectRetryable,
+  selectAnalyserState,
+  selectStatus,
+  selectProgress,
+  selectInputFile,
+  selectVideoMeta,
+  selectVideoStreams,
+  selectAudioStreams,
+  selectSubtitleStreams,
+  selectRawJson,
+  selectOutputBlob,
+  selectOutputSizeMB,
+  selectErrorCode,
+  selectErrorMessage,
+  selectRetryable,
 } = analyserFeature;

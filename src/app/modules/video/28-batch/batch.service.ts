@@ -1,46 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
 import { WorkerMessage } from '../shared/types/video.types';
 
-export interface BatchFile { file: File; status: 'queued' | 'processing' | 'done' | 'error'; }
+export interface BatchFileEntry { file: File; status: 'queued' | 'processing' | 'success' | 'error'; }
 
 export interface BatchConfig {
-  files: File[];
+  file: File;
   operation: string;
-  operationConfig: Record<string, unknown>;
+  config: Record<string, unknown>;
 }
 
 @Injectable({ providedIn: 'root' })
 export class BatchService {
-  constructor(private bridge: WorkerBridgeService) {}
+  private readonly bridge = inject(WorkerBridgeService);
 
   /**
-   * Process a single file in the batch queue.
-   * Always sequential — called by NgRx Effect one file at a time.
+   * Hive Engine processor.
    */
-  processFile(
-    file: File,
-    operation: string,
-    operationConfig: Record<string, unknown>
-  ): Observable<WorkerMessage<ArrayBuffer>> {
-    return this.bridge.runTask(
-      new Worker(new URL('./batch.worker', import.meta.url), { type: 'module' }),
-      { file, operation, config: operationConfig }
-    );
-  }
-
-  /**
-   * Build operation-specific FFmpeg args by delegating to the raw config.
-   * The actual arg building happens inside batch.worker.ts by routing to
-   * the appropriate sub-service approach.
-   */
-  buildOperationSummary(operation: string, fileCount: number): string {
-    return `${operation} × ${fileCount} files`;
+  processFile(config: BatchConfig): Observable<WorkerMessage<ArrayBuffer>> {
+    const worker = new Worker(new URL('./batch.worker', import.meta.url), { type: 'module' });
+    return this.bridge.runTask(worker, config);
   }
 
   getOutputFilename(originalName: string, operation: string): string {
     const base = originalName.replace(/\.[^.]+$/, '');
-    return `omni_batch_${operation}_${base}.mp4`;
+    return `omni_hive_${operation}_${base}.mp4`;
   }
 }
