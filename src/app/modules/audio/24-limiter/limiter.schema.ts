@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-export const LimiterConfigSchema = z.object({
+export const LimiterSchema = z.object({
   file: AudioFileSchema,
   format: ExportFormatSchema,
   ceiling: z.number().min(-6).max(0).default(-1),
@@ -11,4 +11,4 @@ export const LimiterConfigSchema = z.object({
   truePeak: z.boolean().default(false),
 });
 
-export type LimiterConfig = z.infer<typeof LimiterConfigSchema>;
+export type LimiterConfig = z.infer<typeof LimiterSchema>;

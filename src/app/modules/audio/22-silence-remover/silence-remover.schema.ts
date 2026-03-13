@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-export const SilenceRemoverConfigSchema = z.object({
+export const SilenceRemoverSchema = z.object({
   file: AudioFileSchema,
   format: ExportFormatSchema,
   thresholdDb: z.number().min(-60).max(-10).default(-40),
@@ -9,4 +9,4 @@ export const SilenceRemoverConfigSchema = z.object({
   paddingDuration: z.number().min(0).max(2).default(0.1),
 });
 
-export type SilenceRemoverConfig = z.infer<typeof SilenceRemoverConfigSchema>;
+export type SilenceRemoverConfig = z.infer<typeof SilenceRemoverSchema>;

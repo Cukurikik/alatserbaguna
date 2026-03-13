@@ -57,7 +57,7 @@ import { ExportFormat } from '../shared/types/audio.types';
                 @if (selectedOp() === 'toMono') {
                   <div class="mt-4 flex gap-2" [@fadeIn]>
                     @for (m of [['average','Average L+R'],['left','Left Only'],['right','Right Only']]; track m[0]) {
-                      <button (click)="monoMode.set(m[0] as any)" class="flex-1 py-2 text-xs font-bold rounded-lg border transition-colors"
+                      <button (click)="monoMode.set($any(m[0]))" class="flex-1 py-2 text-xs font-bold rounded-lg border transition-colors"
                               [class]="monoMode() === m[0] ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400' : 'bg-gray-900 border-gray-700 text-gray-400'">{{ m[1] }}</button>
                     }
                   </div>

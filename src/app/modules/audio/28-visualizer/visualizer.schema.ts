@@ -4,7 +4,7 @@ import { AudioFileSchema } from '../shared/schemas/audio.schemas';
 export const VisualizerStyleSchema = z.enum(['bars', 'waveform', 'circle']);
 export const VisualizerColorSchema = z.enum(['cyan', 'purple', 'rainbow', 'green']);
 
-export const VisualizerConfigSchema = z.object({
+export const VisualizerSchema = z.object({
   file: AudioFileSchema,
   style: VisualizerStyleSchema,
   colorTheme: VisualizerColorSchema,
@@ -15,4 +15,4 @@ export const VisualizerConfigSchema = z.object({
 
 export type VisualizerStyle = z.infer<typeof VisualizerStyleSchema>;
 export type VisualizerColor = z.infer<typeof VisualizerColorSchema>;
-export type VisualizerConfig = z.infer<typeof VisualizerConfigSchema>;
+export type VisualizerConfig = z.infer<typeof VisualizerSchema>;
