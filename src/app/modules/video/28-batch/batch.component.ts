@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
-import { ProgressRingComponent } from '../shared/components/progress-ring/progress-ring.component';
+
 
 type BatchOp = 'compress'|'convert'|'extract-audio'|'thumbnail';
 interface BatchJob { id: string; file: File; status: 'queued'|'processing'|'done'|'error'; progress: number; }
@@ -40,7 +40,7 @@ const BATCH_OPS: { value: BatchOp; label: string; icon: string; desc: string }[]
 @Component({
   selector: 'app-batch',
   standalone: true,
-  imports: [AsyncPipe, ProgressRingComponent],
+  imports: [AsyncPipe],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 
@@ -35,7 +35,7 @@ const QUALITY_MAP = { high: { videoBitsPerSecond: 8000000 }, medium: { videoBits
 @Component({
   selector: 'app-screen-recorder',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, UpperCasePipe],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">

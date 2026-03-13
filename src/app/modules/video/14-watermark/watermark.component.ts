@@ -134,6 +134,7 @@ function posToFFmpegXY(pos: WatermarkPos): string {
                 <div class="flex gap-2">
                   @for (c of wmColors; track c) {
                     <button (click)="setFontColor(c)"
+                      [attr.aria-label]="'Set color ' + c"
                       [class]="vm.fontColor === c ? 'ring-2 ring-white scale-110' : 'hover:scale-105'"
                       [style.background]="c" class="w-8 h-8 rounded-full border border-gray-500 transition-transform"></button>
                   }

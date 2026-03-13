@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { AsyncPipe, DecimalPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 import { FileDropZoneComponent } from '../shared/components/file-drop-zone/file-drop-zone.component';
@@ -25,7 +25,7 @@ interface InfoRow { label: string; value: string; color: string; }
 @Component({
   selector: 'app-analyser',
   standalone: true,
-  imports: [AsyncPipe, DecimalPipe, FileDropZoneComponent],
+  imports: [AsyncPipe, FileDropZoneComponent],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">
