@@ -1,5 +1,5 @@
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
-import { VideoErrorCode } from '../shared/types/video.types';
+import { VideoErrorCode } from '../shared/errors/video.errors';
 
 export interface ScreenRecorderState {
   audioSource: 'mic' | 'system' | 'both' | 'none';

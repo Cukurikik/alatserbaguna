@@ -1,5 +1,6 @@
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
-import { VideoMeta, VideoErrorCode } from '../shared/types/video.types';
+import { VideoMeta } from '../shared/types/video.types';
+import { VideoErrorCode } from '../shared/errors/video.errors';
 import { PipPosition } from './pip.service';
 
 export interface PipState {
