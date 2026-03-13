@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { CommonModule, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
@@ -9,6 +9,7 @@ import { ProgressRingComponent } from '../shared/components/progress-ring/progre
 
 type FlipDir = 'none' | 'horizontal' | 'vertical' | 'both';
 type RotAngle = 0 | 90 | 180 | 270;
+const ROT_ANGLES: RotAngle[] = [0, 90, 180, 270];
 
 interface FlipRotateState { status: 'idle'|'processing'|'success'|'error'; progress: number; inputFile: File|null; outputBlob: Blob|null; flip: FlipDir; rotation: RotAngle; }
 const initialState: FlipRotateState = { status: 'idle', progress: 0, inputFile: null, outputBlob: null, flip: 'none', rotation: 0 };
@@ -36,7 +37,7 @@ const flipRotateFeature = createFeature({ name: 'flipRotate', reducer: createRed
 @Component({
   selector: 'app-flip-rotate',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
+  imports: [AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">
@@ -44,14 +45,12 @@ const flipRotateFeature = createFeature({ name: 'flipRotate', reducer: createRed
         <p class="text-gray-400 text-sm mt-1">Mirror or rotate video using FFmpeg vflip/hflip/transpose filters (GPU re-encode).</p>
       </div>
 
-      <ng-container *ngIf="vm$ | async as vm">
-        <ng-container *ngIf="!vm.inputFile">
+      @if (vm$ | async; as vm) {
+        @if (!vm.inputFile) {
           <div class="flex-1 flex flex-col justify-center">
             <app-file-drop-zone accept="video/*" (fileDropped)="onFile($event)"></app-file-drop-zone>
           </div>
-        </ng-container>
-
-        <ng-container *ngIf="vm.inputFile">
+        } @else {
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1">
               <div [style.transform]="getTransform(vm.flip, vm.rotation)" [style.transition]="'transform 0.4s ease'">
@@ -64,13 +63,13 @@ const flipRotateFeature = createFeature({ name: 'flipRotate', reducer: createRed
               <div class="bg-gray-800 border border-gray-700 rounded-xl p-5">
                 <label class="block text-sm font-semibold text-gray-300 mb-3">Flip</label>
                 <div class="grid grid-cols-2 gap-2">
-                  <ng-container *ngFor="let option of flipOptions">
+                  @for (option of flipOptions; track option.value) {
                     <button (click)="setFlip(option.value)"
                       [class]="vm.flip === option.value ? 'bg-fuchsia-600 text-white shadow-md' : 'bg-gray-900 text-gray-400 hover:bg-gray-700'"
                       class="py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2">
                       {{ option.icon }} {{ option.label }}
                     </button>
-                  </ng-container>
+                  }
                 </div>
               </div>
 
@@ -78,35 +77,33 @@ const flipRotateFeature = createFeature({ name: 'flipRotate', reducer: createRed
               <div class="bg-gray-800 border border-gray-700 rounded-xl p-5">
                 <label class="block text-sm font-semibold text-gray-300 mb-3">Rotation</label>
                 <div class="grid grid-cols-4 gap-2">
-                  <ng-container *ngFor="let deg of [0, 90, 180, 270]">
+                  @for (deg of rotAngles; track deg) {
                     <button (click)="setRotation(deg)"
                       [class]="vm.rotation === deg ? 'bg-pink-600 text-white shadow-md' : 'bg-gray-900 text-gray-400 hover:bg-gray-700'"
                       class="py-2.5 rounded-lg text-sm font-mono transition-all">
                       {{ deg }}°
                     </button>
-                  </ng-container>
+                  }
                 </div>
               </div>
 
-              <ng-container *ngIf="vm.status === 'processing'">
+              @if (vm.status === 'processing') {
                 <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 flex flex-col items-center">
                   <app-progress-ring [progress]="vm.progress" [status]="'Transforming...'"></app-progress-ring>
                 </div>
-              </ng-container>
-              <ng-container *ngIf="vm.status === 'success'">
+              } @else if (vm.status === 'success') {
                 <button (click)="onDownload(vm)" class="w-full bg-fuchsia-600 hover:bg-fuchsia-500 text-white py-3 rounded-xl font-bold transition-all flex justify-center gap-2">Download Transformed</button>
                 <button (click)="onReset()" class="text-sm text-center text-gray-400 hover:text-white">Try Another</button>
-              </ng-container>
-              <ng-container *ngIf="vm.status === 'idle' || vm.status === 'error'">
+              } @else {
                 <button (click)="onProcess(vm)" [disabled]="vm.flip === 'none' && vm.rotation === 0"
                   class="w-full bg-gradient-to-r from-fuchsia-500 to-pink-500 hover:from-fuchsia-400 hover:to-pink-400 text-white font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(217,70,239,0.4)] transition-all active:scale-95 disabled:opacity-50">
                   Apply Transform
                 </button>
-              </ng-container>
+              }
             </div>
           </div>
-        </ng-container>
-      </ng-container>
+        }
+      }
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -115,13 +112,14 @@ export class FlipRotateComponent {
   private store = inject(Store);
   private workerBridge = inject(WorkerBridgeService);
   readonly vm$ = this.store.select(flipRotateFeature.selectFlipRotateState);
+  readonly rotAngles = ROT_ANGLES;
   videoUrl: string | null = null;
 
   readonly flipOptions = [
-    { value: 'none', label: 'None', icon: '↔' },
-    { value: 'horizontal', label: 'Horizontal', icon: '⟺' },
-    { value: 'vertical', label: 'Vertical', icon: '⟾' },
-    { value: 'both', label: 'Both', icon: '⤢' },
+    { value: 'none' as FlipDir, label: 'None', icon: '↔' },
+    { value: 'horizontal' as FlipDir, label: 'Horizontal', icon: '⟺' },
+    { value: 'vertical' as FlipDir, label: 'Vertical', icon: '⟾' },
+    { value: 'both' as FlipDir, label: 'Both', icon: '⤢' },
   ];
 
   getTransform(flip: string, rotation: number): string {
@@ -130,9 +128,14 @@ export class FlipRotateComponent {
     return `scale(${scaleX}, ${scaleY}) rotate(${rotation}deg)`;
   }
 
-  setFlip(flip: string): void { this.store.dispatch(FlipRotateActions.setFlip({ flip: flip as FlipDir })); }
+  setFlip(flip: FlipDir): void { this.store.dispatch(FlipRotateActions.setFlip({ flip })); }
   setRotation(rotation: number): void { this.store.dispatch(FlipRotateActions.setRotation({ rotation })); }
-  onFile(file: File): void { if (this.videoUrl) URL.revokeObjectURL(this.videoUrl); this.videoUrl = URL.createObjectURL(file); this.store.dispatch(FlipRotateActions.loadFile({ file })); }
+
+  onFile(file: File): void {
+    if (this.videoUrl) URL.revokeObjectURL(this.videoUrl);
+    this.videoUrl = URL.createObjectURL(file);
+    this.store.dispatch(FlipRotateActions.loadFile({ file }));
+  }
 
   onProcess(state: FlipRotateState): void {
     this.store.dispatch(FlipRotateActions.startProcessing());
@@ -156,5 +159,8 @@ export class FlipRotateComponent {
     }
   }
 
-  onReset(): void { if (this.videoUrl) { URL.revokeObjectURL(this.videoUrl); this.videoUrl = null; } this.store.dispatch(FlipRotateActions.resetState()); }
+  onReset(): void {
+    if (this.videoUrl) { URL.revokeObjectURL(this.videoUrl); this.videoUrl = null; }
+    this.store.dispatch(FlipRotateActions.resetState());
+  }
 }

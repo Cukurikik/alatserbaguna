@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
@@ -27,20 +27,20 @@ const looperFeature = createFeature({ name: 'looper', reducer: createReducer(ini
   on(LooperActions.processingSuccess, (s, { outputBlob }) => ({ ...s, status: 'success', outputBlob, progress: 100 })),
   on(LooperActions.resetState, () => initialState),
 )});
-const { selectLooperState } = looperFeature;
 
 @Component({
   selector: 'app-looper',
   standalone: true,
-  imports: [CommonModule, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
+  imports: [AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">
         <h2 class="text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent pb-1">Video Looper</h2>
         <p class="text-gray-400 text-sm mt-1">Create seamless loops using FFmpeg concat protocol for perfect repetition.</p>
       </div>
-      @if ((state$ | async) as state) {
-        @if (!state.inputFile) {
+
+      @if (vm$ | async; as vm) {
+        @if (!vm.inputFile) {
           <div class="flex-1 flex flex-col justify-center">
             <app-file-drop-zone accept="video/*" (fileDropped)="onFile($event)"></app-file-drop-zone>
           </div>
@@ -48,29 +48,31 @@ const { selectLooperState } = looperFeature;
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1"><app-video-preview [videoUrl]="videoUrl"></app-video-preview></div>
             <div class="w-full lg:w-80 flex flex-col gap-4">
-              <!-- Loop counter -->
+
               <div class="bg-gray-800 border border-gray-700 rounded-xl p-5">
                 <label class="block text-sm font-semibold text-gray-300 mb-4">Number of Loops</label>
                 <div class="flex items-center justify-center gap-6">
-                  <button (click)="decLoop(state.loops)" class="w-12 h-12 rounded-full bg-gray-700 hover:bg-gray-600 text-white text-2xl flex items-center justify-center transition-colors font-bold">−</button>
-                  <span class="text-5xl font-extrabold text-cyan-400 font-mono w-16 text-center">{{ state.loops }}</span>
-                  <button (click)="incLoop(state.loops)" class="w-12 h-12 rounded-full bg-gray-700 hover:bg-gray-600 text-white text-2xl flex items-center justify-center transition-colors font-bold">+</button>
+                  <button (click)="setLoops(vm.loops - 1)" [disabled]="vm.loops <= 2" aria-label="Decrease loops"
+                    class="w-12 h-12 rounded-full bg-gray-700 hover:bg-gray-600 text-white text-2xl flex items-center justify-center transition-colors font-bold disabled:opacity-40">−</button>
+                  <span class="text-5xl font-extrabold text-cyan-400 font-mono w-16 text-center">{{ vm.loops }}</span>
+                  <button (click)="setLoops(vm.loops + 1)" [disabled]="vm.loops >= 20" aria-label="Increase loops"
+                    class="w-12 h-12 rounded-full bg-gray-700 hover:bg-gray-600 text-white text-2xl flex items-center justify-center transition-colors font-bold disabled:opacity-40">+</button>
                 </div>
-                <p class="text-xs text-gray-500 text-center mt-3">Output = original × {{ state.loops }}</p>
+                <p class="text-xs text-gray-500 text-center mt-3">Output = original × {{ vm.loops }}</p>
               </div>
 
-              @if (state.status === 'processing') {
+              @if (vm.status === 'processing') {
                 <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 flex flex-col items-center">
-                  <app-progress-ring [progress]="state.progress" [status]="'Looping...'"></app-progress-ring>
+                  <app-progress-ring [progress]="vm.progress" [status]="'Looping...'"></app-progress-ring>
                 </div>
-              } @else if (state.status === 'success') {
-                <button (click)="onDownload()" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-bold transition-all flex justify-center gap-2">
-                  Download {{ state.loops }}x Loop
+              } @else if (vm.status === 'success') {
+                <button (click)="onDownload(vm)" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-bold transition-all flex justify-center gap-2">
+                  Download {{ vm.loops }}x Loop
                 </button>
                 <button (click)="onReset()" class="text-sm text-center text-gray-400 hover:text-white">Try Another</button>
               } @else {
-                <button (click)="onProcess()" class="w-full bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 text-white font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all active:scale-95">
-                  🔁 Create {{ state.loops }}-Loop Video
+                <button (click)="onProcess(vm)" class="w-full bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 text-white font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all active:scale-95">
+                  🔁 Create {{ vm.loops }}-Loop Video
                 </button>
               }
             </div>
@@ -82,10 +84,14 @@ const { selectLooperState } = looperFeature;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LooperComponent {
-  readonly store = inject(Store);
+  private store = inject(Store);
   private workerBridge = inject(WorkerBridgeService);
-  state$ = this.store.select(selectLooperState);
+  readonly vm$ = this.store.select(looperFeature.selectLooperState);
   videoUrl: string | null = null;
+
+  setLoops(loops: number): void {
+    this.store.dispatch(LooperActions.setLoops({ loops: Math.max(2, Math.min(20, loops)) }));
+  }
 
   onFile(file: File): void {
     if (this.videoUrl) URL.revokeObjectURL(this.videoUrl);
@@ -93,29 +99,30 @@ export class LooperComponent {
     this.store.dispatch(LooperActions.loadFile({ file }));
   }
 
-  incLoop(v: number): void { this.store.dispatch(LooperActions.setLoops({ loops: Math.min(v + 1, 20) })); }
-  decLoop(v: number): void { this.store.dispatch(LooperActions.setLoops({ loops: Math.max(v - 1, 2) })); }
-
-  onProcess(): void {
+  onProcess(state: LooperState): void {
     this.store.dispatch(LooperActions.startProcessing());
-    this.state$.subscribe(state => {
-      if (state.status === 'processing' && state.inputFile) {
-        const worker = new Worker(new URL('./looper.worker', import.meta.url), { type: 'module' });
-        this.workerBridge.runTask(worker, { file: state.inputFile, loops: state.loops }).subscribe({
-          next: (msg) => {
-            if (msg.type === 'progress') this.store.dispatch(LooperActions.updateProgress({ progress: msg.value }));
-            else if (msg.type === 'complete') this.store.dispatch(LooperActions.processingSuccess({ outputBlob: new Blob([msg.data as BlobPart], { type: 'video/mp4' }) }));
-          }
-        });
-      }
-    }).unsubscribe();
+    if (state.inputFile) {
+      const worker = new Worker(new URL('./looper.worker', import.meta.url), { type: 'module' });
+      this.workerBridge.runTask(worker, { file: state.inputFile, loops: state.loops }).subscribe({
+        next: (msg) => {
+          if (msg.type === 'progress') this.store.dispatch(LooperActions.updateProgress({ progress: msg.value }));
+          else if (msg.type === 'complete') this.store.dispatch(LooperActions.processingSuccess({ outputBlob: new Blob([msg.data as BlobPart], { type: 'video/mp4' }) }));
+        }
+      });
+    }
   }
 
-  onDownload(): void {
-    this.state$.subscribe(s => {
-      if (s.outputBlob) { const url = URL.createObjectURL(s.outputBlob); const a = Object.assign(document.createElement('a'), { href: url, download: `omni_loop_${s.loops}x.mp4` }); document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(() => URL.revokeObjectURL(url), 150); }
-    }).unsubscribe();
+  onDownload(state: LooperState): void {
+    if (state.outputBlob) {
+      const url = URL.createObjectURL(state.outputBlob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: `omni_loop_${state.loops}x.mp4` });
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 150);
+    }
   }
 
-  onReset(): void { if (this.videoUrl) { URL.revokeObjectURL(this.videoUrl); this.videoUrl = null; } this.store.dispatch(LooperActions.resetState()); }
+  onReset(): void {
+    if (this.videoUrl) { URL.revokeObjectURL(this.videoUrl); this.videoUrl = null; }
+    this.store.dispatch(LooperActions.resetState());
+  }
 }

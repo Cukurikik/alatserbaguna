@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { createActionGroup, createFeature, createReducer, emptyProps, on, props } from '@ngrx/store';
 import { WorkerBridgeService } from '../shared/engine/worker-bridge.service';
@@ -29,20 +29,20 @@ const speedControllerFeature = createFeature({ name: 'speedController', reducer:
   on(SpeedControllerActions.processingSuccess, (s, { outputBlob }) => ({ ...s, status: 'success', outputBlob, progress: 100 })),
   on(SpeedControllerActions.resetState, () => initialState),
 )});
-const { selectSpeedControllerState } = speedControllerFeature;
 
 @Component({
   selector: 'app-speed-controller',
   standalone: true,
-  imports: [CommonModule, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
+  imports: [AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col overflow-y-auto">
       <div class="mb-8">
         <h2 class="text-3xl font-extrabold bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent pb-1">Speed Controller</h2>
-        <p class="text-gray-400 text-sm mt-1">Speed up or slow down any video with precise setpts & atempo filters.</p>
+        <p class="text-gray-400 text-sm mt-1">Speed up or slow down any video with precise setpts &amp; atempo filters.</p>
       </div>
-      @if ((state$ | async) as state) {
-        @if (!state.inputFile) {
+
+      @if (vm$ | async; as vm) {
+        @if (!vm.inputFile) {
           <div class="flex-1 flex flex-col justify-center">
             <app-file-drop-zone accept="video/*" (fileDropped)="onFile($event)"></app-file-drop-zone>
           </div>
@@ -50,33 +50,37 @@ const { selectSpeedControllerState } = speedControllerFeature;
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1"><app-video-preview [videoUrl]="videoUrl"></app-video-preview></div>
             <div class="w-full lg:w-80 flex flex-col gap-4">
+
               <div class="bg-gray-800 border border-gray-700 rounded-xl p-5">
                 <label class="block text-sm font-semibold text-gray-300 mb-3">Speed Multiplier</label>
                 <div class="grid grid-cols-4 gap-2">
                   @for (sp of speeds; track sp) {
-                    <button (click)="store.dispatch(SpeedControllerActions.setSpeed({ speed: sp }))"
-                      [class]="state.speed === sp
+                    <button (click)="setSpeed(sp)"
+                      [class]="vm.speed === sp
                         ? 'bg-yellow-500 text-gray-900 font-bold shadow-[0_0_10px_rgba(234,179,8,0.5)]'
                         : 'bg-gray-900 text-gray-400 hover:bg-gray-700'"
                       class="py-2 rounded-lg text-sm transition-all text-center">
                       {{ sp }}x
                     </button>
                   }
-                  <div class="col-span-4 bg-gray-900 p-2 rounded-lg font-mono text-xs text-yellow-300 mt-1">
-                    setpts={{ getSetpts(state.speed) }}*PTS<br>atempo={{ getAtempo(state.speed) }}
-                  </div>
+                </div>
+                <div class="bg-gray-900 p-2 rounded-lg font-mono text-xs text-yellow-300 mt-3">
+                  setpts={{ getSetpts(vm.speed) }}*PTS<br>atempo={{ getAtempo(vm.speed) }}
                 </div>
               </div>
-              @if (state.status === 'processing') {
+
+              @if (vm.status === 'processing') {
                 <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 flex flex-col items-center">
-                  <app-progress-ring [progress]="state.progress" [status]="'Processing...'"></app-progress-ring>
+                  <app-progress-ring [progress]="vm.progress" [status]="'Processing...'"></app-progress-ring>
                 </div>
-              } @else if (state.status === 'success') {
-                <button (click)="onDownload()" class="w-full bg-yellow-500 hover:bg-yellow-400 text-gray-900 py-3 rounded-xl font-bold transition-all flex justify-center gap-2">Download {{ state.speed }}x Video</button>
+              } @else if (vm.status === 'success') {
+                <button (click)="onDownload(vm)" class="w-full bg-yellow-500 hover:bg-yellow-400 text-gray-900 py-3 rounded-xl font-bold transition-all flex justify-center gap-2">
+                  Download {{ vm.speed }}x Video
+                </button>
                 <button (click)="onReset()" class="text-sm text-center text-gray-400 hover:text-white">Try Another</button>
               } @else {
-                <button (click)="onProcess()" class="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-gray-900 font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(234,179,8,0.4)] transition-all active:scale-95">
-                  Apply {{ state.speed }}x Speed
+                <button (click)="onProcess(vm)" class="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-gray-900 font-bold py-3 rounded-xl shadow-[0_0_15px_rgba(234,179,8,0.4)] transition-all active:scale-95">
+                  Apply {{ vm.speed }}x Speed
                 </button>
               }
             </div>
@@ -88,10 +92,9 @@ const { selectSpeedControllerState } = speedControllerFeature;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpeedControllerComponent {
-  readonly store = inject(Store);
+  private store = inject(Store);
   private workerBridge = inject(WorkerBridgeService);
-  state$ = this.store.select(selectSpeedControllerState);
-  readonly SpeedControllerActions = SpeedControllerActions;
+  readonly vm$ = this.store.select(speedControllerFeature.selectSpeedControllerState);
   readonly speeds = SPEEDS;
   videoUrl: string | null = null;
 
@@ -102,32 +105,38 @@ export class SpeedControllerComponent {
     return `0.5,atempo=${(speed / 0.5).toFixed(2)}`;
   }
 
+  setSpeed(speed: number): void { this.store.dispatch(SpeedControllerActions.setSpeed({ speed })); }
+
   onFile(file: File): void {
     if (this.videoUrl) URL.revokeObjectURL(this.videoUrl);
     this.videoUrl = URL.createObjectURL(file);
     this.store.dispatch(SpeedControllerActions.loadFile({ file }));
   }
 
-  onProcess(): void {
+  onProcess(state: SpeedState): void {
     this.store.dispatch(SpeedControllerActions.startProcessing());
-    this.state$.subscribe(state => {
-      if (state.status === 'processing' && state.inputFile) {
-        const worker = new Worker(new URL('./speed-controller.worker', import.meta.url), { type: 'module' });
-        this.workerBridge.runTask(worker, { file: state.inputFile, speed: state.speed }).subscribe({
-          next: (msg) => {
-            if (msg.type === 'progress') this.store.dispatch(SpeedControllerActions.updateProgress({ progress: msg.value }));
-            else if (msg.type === 'complete') this.store.dispatch(SpeedControllerActions.processingSuccess({ outputBlob: new Blob([msg.data as BlobPart], { type: 'video/mp4' }) }));
-          }
-        });
-      }
-    }).unsubscribe();
+    if (state.inputFile) {
+      const worker = new Worker(new URL('./speed-controller.worker', import.meta.url), { type: 'module' });
+      this.workerBridge.runTask(worker, { file: state.inputFile, speed: state.speed }).subscribe({
+        next: (msg) => {
+          if (msg.type === 'progress') this.store.dispatch(SpeedControllerActions.updateProgress({ progress: msg.value }));
+          else if (msg.type === 'complete') this.store.dispatch(SpeedControllerActions.processingSuccess({ outputBlob: new Blob([msg.data as BlobPart], { type: 'video/mp4' }) }));
+        }
+      });
+    }
   }
 
-  onDownload(): void {
-    this.state$.subscribe(s => {
-      if (s.outputBlob) { const url = URL.createObjectURL(s.outputBlob); const a = Object.assign(document.createElement('a'), { href: url, download: `omni_${s.speed}x.mp4` }); document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(() => URL.revokeObjectURL(url), 150); }
-    }).unsubscribe();
+  onDownload(state: SpeedState): void {
+    if (state.outputBlob) {
+      const url = URL.createObjectURL(state.outputBlob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: `omni_${state.speed}x.mp4` });
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 150);
+    }
   }
 
-  onReset(): void { if (this.videoUrl) { URL.revokeObjectURL(this.videoUrl); this.videoUrl = null; } this.store.dispatch(SpeedControllerActions.resetState()); }
+  onReset(): void {
+    if (this.videoUrl) { URL.revokeObjectURL(this.videoUrl); this.videoUrl = null; }
+    this.store.dispatch(SpeedControllerActions.resetState());
+  }
 }
