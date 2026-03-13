@@ -4,18 +4,20 @@ import { FfmpegService } from '../../video/shared/engine/ffmpeg.service';
 import { WorkerMessage, ExportFormat } from '../shared/types/audio.types';
 
 @Injectable({ providedIn: 'root' })
-export class MergerService {
+export class EchoService {
   private ffmpegService = inject(FfmpegService);
 
-  mergeAudio(
-    files: File[], 
+  applyEcho(
+    file: File, 
     format: ExportFormat, 
-    crossfadeMs: number, 
-    gapMs: number
+    delayMs: number,
+    feedback: number,
+    dryMix: number,
+    wetMix: number
   ): Observable<WorkerMessage<{ blob: Blob, sizeMB: number }>> {
     return new Observable(observer => {
       let isCancelled = false;
-      const worker = new Worker(new URL('./merger.worker', import.meta.url), { type: 'module' });
+      const worker = new Worker(new URL('./echo.worker', import.meta.url), { type: 'module' });
 
       worker.onmessage = ({ data }: MessageEvent<WorkerMessage<any>>) => {
         if (isCancelled) return;
@@ -46,10 +48,12 @@ export class MergerService {
       };
 
       worker.postMessage({
-        files,
+        file,
         format,
-        crossfadeMs,
-        gapMs
+        delayMs,
+        feedback,
+        dryMix,
+        wetMix
       });
 
       return () => {

@@ -5,7 +5,7 @@ import { toBlobURL } from '@ffmpeg/util';
 let ffmpeg: FFmpeg | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
-  const { file, format, bitrate, sampleRate, channels } = event.data;
+  const { file, format, mode, targetLevel, truePeak } = event.data;
   
   try {
     self.postMessage({ type: 'progress', value: 2 });
@@ -13,6 +13,8 @@ self.onmessage = async (event: MessageEvent) => {
     if (!ffmpeg) {
       ffmpeg = new FFmpeg();
       ffmpeg.on('progress', ({ progress }) => {
+        // Normalizing especially loudnorm requires a 2-pass analysis in actual C++ ffmpeg,
+        // but the simplest 'loudnorm' filter runs in 1-pass dynamically if not given measured stats.
         self.postMessage({ type: 'progress', value: 10 + Math.round(progress * 85) });
       });
 
@@ -32,23 +34,26 @@ self.onmessage = async (event: MessageEvent) => {
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
-    // Determine codec
-    let codec = 'copy';
-    if (format === 'mp3') codec = 'libmp3lame';
-    else if (format === 'wav') codec = 'pcm_s16le';
-    else if (format === 'aac' || format === 'm4a') codec = 'aac';
-    else if (format === 'flac') codec = 'flac';
-    else if (format === 'ogg') codec = 'libvorbis';
-    else if (format === 'opus') codec = 'libopus';
-
-    self.postMessage({ type: 'log', message: \`Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)\` });
+    let filter = '';
+    
+    if (mode === 'peak') {
+      // Very basic peak normalization filter in FFmpeg is 'volume' filter using a dynamic evaluation if stats were known.
+      // Easiest true peak normalizer in FFmpeg is 'alimiter' or using pan/volume, but 'loudnorm' can act as a limiter.
+      // Another peak scaling: 'dynaudnorm' - dynamic audio normalizer.
+      // Using dynaudnorm gives a fast, broadcast quality simple peak normalizer:
+      filter = \`dynaudnorm=p=\${Math.pow(10, targetLevel/20)}\`; 
+      self.postMessage({ type: 'log', message: \`Using dynamic peak normalizer aiming for \${targetLevel}dB\` });
+    } else {
+      // EBU R128 LUFS Normalizer (loudnorm)
+      // I=Target LUFS, TP=True Peak limit, LRA=Loudness Range (default 7.0 is good)
+      filter = \`loudnorm=I=\${targetLevel}:TP=\${truePeak}:LRA=7.0\`;
+      self.postMessage({ type: 'log', message: \`Using EBU R128 LUFS Loudnorm (I=\${targetLevel}, TP=\${truePeak})\` });
+    }
 
     const args = [
       '-i', inputName,
-      '-c:a', codec,
-      '-b:a', bitrate,
-      '-ar', sampleRate.toString(),
-      '-ac', channels.toString(),
+      '-filter_complex', filter,
+      '-c:a', format === 'mp3' ? 'libmp3lame' : (format === 'wav' ? 'pcm_s16le' : 'aac'),
       '-y',
       outputName
     ];

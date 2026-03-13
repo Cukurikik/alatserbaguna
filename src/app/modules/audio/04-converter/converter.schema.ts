@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import { AudioFileSchema, ExportFormatSchema } from '../shared/schemas/audio.schemas';
 
-export const ConverterSchema = z.object({
-  inputFile: AudioFileSchema,
-  outputFormat: ExportFormatSchema,
-  bitrate: z.union([z.literal(64), z.literal(128), z.literal(192), z.literal(256), z.literal(320)]).default(192),
-  sampleRate: z.union([z.literal(22050), z.literal(44100), z.literal(48000), z.literal(96000)]).default(44100),
+export const ConverterConfigSchema = z.object({
+  file: AudioFileSchema,
+  format: ExportFormatSchema,
+  bitrate: z.enum(['64k', '128k', '192k', '256k', '320k']).default('192k'),
+  sampleRate: z.union([z.literal(44100), z.literal(48000), z.literal(96000)]).default(44100),
+  channels: z.union([z.literal(1), z.literal(2)]).default(2) // 1=Mono, 2=Stereo
 });
 
-export type ConverterConfig = z.infer<typeof ConverterSchema>;
+export type ConverterConfig = z.infer<typeof ConverterConfigSchema>;

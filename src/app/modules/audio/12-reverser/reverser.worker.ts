@@ -5,7 +5,7 @@ import { toBlobURL } from '@ffmpeg/util';
 let ffmpeg: FFmpeg | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
-  const { file, format, bitrate, sampleRate, channels } = event.data;
+  const { file, format, crossfadeEdges } = event.data;
   
   try {
     self.postMessage({ type: 'progress', value: 2 });
@@ -32,23 +32,26 @@ self.onmessage = async (event: MessageEvent) => {
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
-    // Determine codec
-    let codec = 'copy';
-    if (format === 'mp3') codec = 'libmp3lame';
-    else if (format === 'wav') codec = 'pcm_s16le';
-    else if (format === 'aac' || format === 'm4a') codec = 'aac';
-    else if (format === 'flac') codec = 'flac';
-    else if (format === 'ogg') codec = 'libvorbis';
-    else if (format === 'opus') codec = 'libopus';
+    // FFmpeg's `areverse` filter reverses the audio entirely.
+    // Memory intensive on very large tracks, but works great for most audio.
+    let filter = 'areverse';
+    
+    // Optional fade in / fade out at edges after reversing to avoid popping
+    if (crossfadeEdges) {
+      // Need audio duration to fade out properly, using simplified 0.1s fast fading on both ends
+      // Because `areverse` doesn't change duration, afade is straightforward.
+      // D is not strictly needed for fade in, but afade out needs timestamp.
+      // If we don't know duration exactly in filter, we can't easily tail-fade without two passes.
+      // Easiest is to just ignore tail fade or only fade-in the reverse for the first 50ms.
+      filter += ',afade=t=in:ss=0:d=0.05';
+    }
 
-    self.postMessage({ type: 'log', message: \`Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)\` });
+    self.postMessage({ type: 'log', message: \`Applying Filter: \${filter}\` });
 
     const args = [
       '-i', inputName,
-      '-c:a', codec,
-      '-b:a', bitrate,
-      '-ar', sampleRate.toString(),
-      '-ac', channels.toString(),
+      '-filter_complex', filter,
+      '-c:a', format === 'mp3' ? 'libmp3lame' : (format === 'wav' ? 'pcm_s16le' : 'aac'),
       '-y',
       outputName
     ];

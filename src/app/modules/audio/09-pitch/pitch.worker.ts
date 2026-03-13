@@ -5,7 +5,7 @@ import { toBlobURL } from '@ffmpeg/util';
 let ffmpeg: FFmpeg | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
-  const { file, format, bitrate, sampleRate, channels } = event.data;
+  const { file, format, semitones, preserveTempo } = event.data;
   
   try {
     self.postMessage({ type: 'progress', value: 2 });
@@ -32,23 +32,30 @@ self.onmessage = async (event: MessageEvent) => {
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
-    // Determine codec
-    let codec = 'copy';
-    if (format === 'mp3') codec = 'libmp3lame';
-    else if (format === 'wav') codec = 'pcm_s16le';
-    else if (format === 'aac' || format === 'm4a') codec = 'aac';
-    else if (format === 'flac') codec = 'flac';
-    else if (format === 'ogg') codec = 'libvorbis';
-    else if (format === 'opus') codec = 'libopus';
+    // Calculate pitch multiplier from semitones
+    // f2 = f1 * (2 ^ (semitones / 12))
+    const ratio = Math.pow(2, semitones / 12);
+    
+    // Fallback approach if rubberband is not available in standard FFmpeg WASM:
+    // Change sample rate to shift pitch & speed -> resample back -> fix tempo.
+    // asetrate=44100*ratio,aresample=44100
+    // If preserveTempo is true, apply atempo=1/ratio
+    // Note: atempo only allows [0.5, 100]. If ratio is > 2, 1/ratio is < 0.5.
+    // If we shift -12 semitones, ratio = 0.5 -> 1/ratio = 2.0 (Valid)
+    // If we shift +12 semitones, ratio = 2.0 -> 1/ratio = 0.5 (Valid)
+    // So the +/- 12 semitones range is safely within one atempo filter pass.
 
-    self.postMessage({ type: 'log', message: \`Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)\` });
+    let filter = \`asetrate=44100*\${ratio},aresample=44100\`;
+    if (preserveTempo && semitones !== 0) {
+       filter += \`,atempo=\${1/ratio}\`;
+    }
+    
+    self.postMessage({ type: 'log', message: \`Applying Pitch Filter: \${filter}\` });
 
     const args = [
       '-i', inputName,
-      '-c:a', codec,
-      '-b:a', bitrate,
-      '-ar', sampleRate.toString(),
-      '-ac', channels.toString(),
+      '-filter_complex', filter,
+      '-c:a', format === 'mp3' ? 'libmp3lame' : (format === 'wav' ? 'pcm_s16le' : 'aac'),
       '-y',
       outputName
     ];

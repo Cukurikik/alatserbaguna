@@ -5,7 +5,7 @@ import { toBlobURL } from '@ffmpeg/util';
 let ffmpeg: FFmpeg | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
-  const { file, format, bitrate, sampleRate, channels } = event.data;
+  const { file, format, roomSizeMs, damping, dryMix, wetMix } = event.data;
   
   try {
     self.postMessage({ type: 'progress', value: 2 });
@@ -32,23 +32,27 @@ self.onmessage = async (event: MessageEvent) => {
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
-    // Determine codec
-    let codec = 'copy';
-    if (format === 'mp3') codec = 'libmp3lame';
-    else if (format === 'wav') codec = 'pcm_s16le';
-    else if (format === 'aac' || format === 'm4a') codec = 'aac';
-    else if (format === 'flac') codec = 'flac';
-    else if (format === 'ogg') codec = 'libvorbis';
-    else if (format === 'opus') codec = 'libopus';
+    // To simulate reverb with aecho, we use multiple short delays reflecting off "walls".
+    // aecho=in_gain:out_gain:delays:decays
+    // e.g. aecho=0.8:0.4:40|50|70:0.4|0.3|0.2
+    
+    // Create dual reflection path for stereo-like room widening
+    const d1 = roomSizeMs;
+    const d2 = Math.round(roomSizeMs * 1.3);
+    const d3 = Math.round(roomSizeMs * 1.7);
+    
+    const dec1 = damping;
+    const dec2 = damping * 0.8;
+    const dec3 = damping * 0.6;
 
-    self.postMessage({ type: 'log', message: \`Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)\` });
+    const filter = \`aecho=\${dryMix}:\${wetMix}:\${d1}|\${d2}|\${d3}:\${dec1}|\${dec2}|\${dec3}\`;
+    
+    self.postMessage({ type: 'log', message: \`Applying Reverb Filter: \${filter}\` });
 
     const args = [
       '-i', inputName,
-      '-c:a', codec,
-      '-b:a', bitrate,
-      '-ar', sampleRate.toString(),
-      '-ac', channels.toString(),
+      '-filter_complex', filter,
+      '-c:a', format === 'mp3' ? 'libmp3lame' : (format === 'wav' ? 'pcm_s16le' : 'aac'),
       '-y',
       outputName
     ];

@@ -2,14 +2,13 @@ import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { concatMap, of, Observable } from 'rxjs';
+import { catchError, concatMap, exhaustMap, map, of, tap } from 'rxjs';
 import { withLatestFrom } from 'rxjs/operators';
-import { AudioErrorCode, ProcessingStatus, ExportFormat, AudioMeta } from '../shared/types/audio.types';
-import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
+import { ProcessingStatus, AudioErrorCode, ExportFormat } from '../shared/types/audio.types';
+import { MergerService } from './merger.service';
 
 export interface MergerState {
-  inputFile: File | null;
-  audioMeta: AudioMeta | null;
+  inputFiles: File[];
   status: ProcessingStatus;
   progress: number;
   outputBlob: Blob | null;
@@ -17,66 +16,86 @@ export interface MergerState {
   errorCode: AudioErrorCode | null;
   errorMessage: string | null;
   retryable: boolean;
+  logs: string[];
 }
+
 const initialState: MergerState = {
-  inputFile: null, audioMeta: null, status: 'idle', progress: 0,
-  outputBlob: null, outputSizeMB: null, errorCode: null, errorMessage: null, retryable: false,
+  inputFiles: [],
+  status: 'idle',
+  progress: 0,
+  outputBlob: null,
+  outputSizeMB: null,
+  errorCode: null,
+  errorMessage: null,
+  retryable: true,
+  logs: []
 };
+
 export const MergerActions = createActionGroup({
-  source: '[Merger]', events: {
-    'Load File': props<{ file: File }>(),
-    'Load File Success': props<{ meta: AudioMeta }>(),
-    'Load File Failure': props<{ errorCode: AudioErrorCode; message: string }>(),
-    'Start Processing': props<{ format: ExportFormat }>(),
+  source: '[Merger]',
+  events: {
+    'Add Files': props<{ files: File[] }>(),
+    'Remove File': props<{ index: number }>(),
+    'Reorder Files': props<{ previousIndex: number, currentIndex: number }>(),
+    'Start Processing': props<{ format: ExportFormat, crossfadeMs: number, gapMs: number }>(),
     'Update Progress': props<{ value: number }>(),
-    'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
-    'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
-    'Download Output': emptyProps(),
+    'Worker Log': props<{ message: string }>(),
+    'Processing Success': props<{ outputBlob: Blob, sizeMB: number }>(),
+    'Processing Failure': props<{ errorCode: AudioErrorCode; message: string }>(),
     'Reset State': emptyProps(),
   }
 });
+
 export const mergerReducer = createReducer(
   initialState,
-  on(MergerActions.loadFile, (s, { file }) => ({ ...s, inputFile: file, status: 'loading' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(MergerActions.loadFileSuccess, (s, { meta }) => ({ ...s, audioMeta: meta, status: 'idle' as ProcessingStatus })),
-  on(MergerActions.loadFileFailure, (s, { errorCode, message }) => ({ ...s, status: 'error' as ProcessingStatus, errorCode, errorMessage: message })),
-  on(MergerActions.startProcessing, (s) => ({ ...s, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null })),
+  on(MergerActions.addFiles, (s, { files }) => ({ ...s, inputFiles: [...s.inputFiles, ...files], status: 'idle' as ProcessingStatus, errorMessage: null, errorCode: null })),
+  on(MergerActions.removeFile, (s, { index }) => {
+    const arr = [...s.inputFiles];
+    arr.splice(index, 1);
+    return { ...s, inputFiles: arr };
+  }),
+  on(MergerActions.reorderFiles, (s, { previousIndex, currentIndex }) => {
+    const arr = [...s.inputFiles];
+    const prev = arr.splice(previousIndex, 1)[0];
+    arr.splice(currentIndex, 0, prev);
+    return { ...s, inputFiles: arr };
+  }),
+  on(MergerActions.startProcessing, (s) => ({ ...s, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorMessage: null, logs: [] })),
   on(MergerActions.updateProgress, (s, { value }) => ({ ...s, progress: value })),
-  on(MergerActions.processingSuccess, (s, { outputBlob, outputSizeMB }) => ({ ...s, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
-  on(MergerActions.processingFailure, (s, { errorCode, message, retryable }) => ({ ...s, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
-  on(MergerActions.resetState, () => ({ ...initialState })),
+  on(MergerActions.workerLog, (s, { message }) => ({ ...s, logs: [...s.logs, message] })),
+  on(MergerActions.processingSuccess, (s, { outputBlob, sizeMB }) => ({ ...s, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB: sizeMB })),
+  on(MergerActions.processingFailure, (s, { errorCode, message }) => ({ ...s, status: 'error' as ProcessingStatus, errorCode, errorMessage: message })),
+  on(MergerActions.resetState, () => ({ ...initialState }))
 );
+
 export const selectMergerState = createFeatureSelector<MergerState>('merger');
 export const selectMergerStatus = createSelector(selectMergerState, s => s.status);
-export const selectMergerInputFile = createSelector(selectMergerState, s => s.inputFile);
-export const selectMergerAudioMeta = createSelector(selectMergerState, s => s.audioMeta);
-export const selectMergerOutputBlob = createSelector(selectMergerState, s => s.outputBlob);
-export const selectMergerOutputSizeMB = createSelector(selectMergerState, s => s.outputSizeMB);
-export const selectMergerIsLoading = createSelector(selectMergerState, s => s.status === 'loading' || s.status === 'processing');
-export const selectMergerIsDone = createSelector(selectMergerState, s => s.status === 'done');
-export const selectMergerHasError = createSelector(selectMergerState, s => s.status === 'error');
-export const selectMergerErrorMessage = createSelector(selectMergerState, s => s.errorMessage);
-export const selectMergerRetryable = createSelector(selectMergerState, s => s.retryable);
-export const selectMergerCanProcess = createSelector(selectMergerState, s => !!s.inputFile && s.status === 'idle');
+export const selectMergerFiles = createSelector(selectMergerState, s => s.inputFiles);
 
-export const mergerProcessingEffect = createEffect(
-  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+export const processMergerEffect = createEffect(
+  (actions$ = inject(Actions), mergerService = inject(MergerService), store = inject(Store)) => {
     return actions$.pipe(
       ofType(MergerActions.startProcessing),
       withLatestFrom(store.select(selectMergerState)),
-      concatMap(([{ format }, state]) => {
-        if (!state.inputFile) return of(MergerActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file', retryable: false }));
-        return new Observable<any>(obs => {
-          let aborted = false;
-          ffmpeg.processAudio(state.inputFile!, format, ['-i', '{in}', '{out}'], (p) => {
-            if (!aborted) store.dispatch(MergerActions.updateProgress({ value: p }));
-          }).then(blob => {
-            if (!aborted) { obs.next(MergerActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 })); obs.complete(); }
-          }).catch(err => {
-            if (!aborted) { obs.next(MergerActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Processing failed', retryable: true })); obs.complete(); }
-          });
-          return () => { aborted = true; };
-        });
+      exhaustMap(([{ format, crossfadeMs, gapMs }, state]) => {
+        if (state.inputFiles.length < 2) return of(MergerActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'At least 2 files are needed to merge.' }));
+        
+        return mergerService.mergeAudio(state.inputFiles, format, crossfadeMs, gapMs).pipe(
+          map(event => {
+            if (event.type === 'progress') {
+              return MergerActions.updateProgress({ value: event.value || 0 });
+            } else if (event.type === 'complete' && event.data) {
+              return MergerActions.processingSuccess({ outputBlob: event.data.blob, sizeMB: event.data.sizeMB });
+            } else if (event.type === 'log' && event.message) {
+              return MergerActions.workerLog({ message: event.message });
+            }
+            return MergerActions.updateProgress({ value: 0 }); 
+          }),
+          catchError(err => of(MergerActions.processingFailure({ 
+            errorCode: err.errorCode || 'ENCODE_FAILED', 
+            message: err.message || 'Unknown processing error' 
+          })))
+        );
       })
     );
   },

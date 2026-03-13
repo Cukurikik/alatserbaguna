@@ -5,7 +5,7 @@ import { toBlobURL } from '@ffmpeg/util';
 let ffmpeg: FFmpeg | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
-  const { file, format, bitrate, sampleRate, channels } = event.data;
+  const { file, format, delayMs, feedback, dryMix, wetMix } = event.data;
   
   try {
     self.postMessage({ type: 'progress', value: 2 });
@@ -32,23 +32,29 @@ self.onmessage = async (event: MessageEvent) => {
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
-    // Determine codec
-    let codec = 'copy';
-    if (format === 'mp3') codec = 'libmp3lame';
-    else if (format === 'wav') codec = 'pcm_s16le';
-    else if (format === 'aac' || format === 'm4a') codec = 'aac';
-    else if (format === 'flac') codec = 'flac';
-    else if (format === 'ogg') codec = 'libvorbis';
-    else if (format === 'opus') codec = 'libopus';
+    // To simulate standard Delay/Echo, we use a single delay line and the user's feedback.
+    // However, aecho decays are linear multipliers. For true repeating echo, ffmpeg's aecho 
+    // requires explicitly chaining delays if we want infinite feedback, but we can do a long standard echo:
+    // aecho=in_gain:out_gain:delays:decays
+    // If feedback is high, we can stack 2-3 delays reducing by the feedback factor.
+    
+    const d1 = delayMs;
+    const d2 = delayMs * 2;
+    const d3 = delayMs * 3;
+    
+    const dec1 = feedback;
+    const dec2 = feedback * feedback;
+    const dec3 = feedback * feedback * feedback;
 
-    self.postMessage({ type: 'log', message: \`Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)\` });
+    // Use up to 3 echos for a tape-delay style effect
+    const filter = \`aecho=\${dryMix}:\${wetMix}:\${d1}|\${d2}|\${d3}:\${dec1}|\${dec2}|\${dec3}\`;
+    
+    self.postMessage({ type: 'log', message: \`Applying Echo Filter: \${filter}\` });
 
     const args = [
       '-i', inputName,
-      '-c:a', codec,
-      '-b:a', bitrate,
-      '-ar', sampleRate.toString(),
-      '-ac', channels.toString(),
+      '-filter_complex', filter,
+      '-c:a', format === 'mp3' ? 'libmp3lame' : (format === 'wav' ? 'pcm_s16le' : 'aac'),
       '-y',
       outputName
     ];
