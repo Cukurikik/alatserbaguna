@@ -121,7 +121,7 @@ import { ExportFormat } from '../shared/types/audio.types';
               <span class="text-emerald-400">Done: <span class="font-bold">{{ state.completedCount }}</span></span>
               <span class="text-rose-400">Errors: <span class="font-bold">{{ state.failedCount }}</span></span>
             </div>
-            <button (click)="onStartBatch(state)" [disabled]="state.isRunning || state.files.every(f => f.status !== 'queued')"
+            <button (click)="onStartBatch(state)" [disabled]="state.isRunning || !hasQueuedFiles(state.files)"
                     class="px-8 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-3"
                     [class]="state.isRunning ? 'bg-gray-800 text-orange-400' : 'bg-gradient-to-r from-orange-500 to-red-500 hover:opacity-90 active:scale-95 shadow-[0_0_20px_rgba(249,115,22,0.2)]'">
               @if (state.isRunning) {
@@ -132,7 +132,9 @@ import { ExportFormat } from '../shared/types/audio.types';
           </div>
         } @else {
           <!-- Empty State -->
-          <div class="flex-1 flex flex-col items-center justify-center text-center border-2 border-dashed border-gray-800 rounded-2xl py-20 cursor-pointer hover:border-orange-500/30 transition-colors"
+          <div class="flex-1 flex flex-col items-center justify-center text-center border-2 border-dashed border-gray-800 rounded-2xl py-20 cursor-pointer hover:border-orange-500/30 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500"
+               tabindex="0"
+               (keydown.enter)="fileInputMulti.click()"
                (click)="fileInputMulti.click()">
             <div class="text-5xl mb-4">📦</div>
             <p class="text-xl font-black text-gray-400 mb-2">Drop multiple files here</p>
@@ -162,6 +164,10 @@ export class BatchComponent implements OnDestroy {
   onAddFiles(e: Event) {
     const files = Array.from((e.target as HTMLInputElement).files ?? []);
     if (files.length) this.store.dispatch(BatchActions.addFiles({ files }));
+  }
+
+  hasQueuedFiles(files: any[]): boolean {
+    return files.some(f => f.status === 'queued');
   }
 
   onSetOperation(operation: BatchOperation) { this.store.dispatch(BatchActions.setOperation({ operation })); }

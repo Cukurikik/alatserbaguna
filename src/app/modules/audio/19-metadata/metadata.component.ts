@@ -45,8 +45,10 @@ import { AudioTags } from './metadata.schema';
               </div>
 
               <!-- Strip Toggle -->
-              <div class="bg-[#12121a] rounded-2xl border p-4 flex items-center justify-between cursor-pointer"
+              <div class="bg-[#12121a] rounded-2xl border p-4 flex items-center justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                   tabindex="0"
                    [class]="state.stripAll ? 'border-rose-500/40' : 'border-gray-800'"
+                   (keydown.enter)="onToggleStrip()"
                    (click)="onToggleStrip()">
                 <div>
                   <h4 class="font-bold text-sm" [class]="state.stripAll ? 'text-rose-400' : 'text-gray-300'">🗑️ Strip All Metadata</h4>
