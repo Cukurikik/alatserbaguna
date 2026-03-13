@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface ReverbState {
@@ -29,7 +35,7 @@ export const ReverbActions = createActionGroup({
   source: '[Reverb]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const ReverbActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const reverbReducer = createReducer(
   initialState,
-  on(ReverbActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(ReverbActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(ReverbActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(ReverbActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(ReverbActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(ReverbActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(ReverbActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectReverbOutputSizeMB = createSelector(selectReverbState, (s) =>
 export const selectReverbErrorMessage = createSelector(selectReverbState, (s) => s.errorMessage);
 export const selectReverbRetryable = createSelector(selectReverbState, (s) => s.retryable);
 export const selectReverbInputFile = createSelector(selectReverbState, (s) => s.inputFile);
-export const selectReverbIsLoading = createSelector(selectReverbStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectReverbIsDone = createSelector(selectReverbStatus, (s) => s === 'done');
-export const selectReverbHasError = createSelector(selectReverbStatus, (s) => s === 'error');
-export const selectReverbCanProcess = createSelector(selectReverbState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const reverbProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(ReverbActions.startProcessing),
+      withLatestFrom(store.select(selectReverbState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(ReverbActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-af","aecho=0.8:0.9:1000:0.3"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(ReverbActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(ReverbActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(ReverbActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

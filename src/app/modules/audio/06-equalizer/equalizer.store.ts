@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface EqualizerState {
@@ -29,7 +35,7 @@ export const EqualizerActions = createActionGroup({
   source: '[Equalizer]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const EqualizerActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const equalizerReducer = createReducer(
   initialState,
-  on(EqualizerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(EqualizerActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(EqualizerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(EqualizerActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(EqualizerActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(EqualizerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(EqualizerActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectEqualizerOutputSizeMB = createSelector(selectEqualizerState, 
 export const selectEqualizerErrorMessage = createSelector(selectEqualizerState, (s) => s.errorMessage);
 export const selectEqualizerRetryable = createSelector(selectEqualizerState, (s) => s.retryable);
 export const selectEqualizerInputFile = createSelector(selectEqualizerState, (s) => s.inputFile);
-export const selectEqualizerIsLoading = createSelector(selectEqualizerStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectEqualizerIsDone = createSelector(selectEqualizerStatus, (s) => s === 'done');
-export const selectEqualizerHasError = createSelector(selectEqualizerStatus, (s) => s === 'error');
-export const selectEqualizerCanProcess = createSelector(selectEqualizerState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const equalizerProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(EqualizerActions.startProcessing),
+      withLatestFrom(store.select(selectEqualizerState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(EqualizerActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-af","equalizer=f=1000:width_type=h:width=200:g=-3"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(EqualizerActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(EqualizerActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(EqualizerActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

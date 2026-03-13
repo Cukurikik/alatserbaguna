@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface SplitterState {
@@ -29,7 +35,7 @@ export const SplitterActions = createActionGroup({
   source: '[Splitter]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const SplitterActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const splitterReducer = createReducer(
   initialState,
-  on(SplitterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(SplitterActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(SplitterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(SplitterActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(SplitterActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(SplitterActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(SplitterActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectSplitterOutputSizeMB = createSelector(selectSplitterState, (s
 export const selectSplitterErrorMessage = createSelector(selectSplitterState, (s) => s.errorMessage);
 export const selectSplitterRetryable = createSelector(selectSplitterState, (s) => s.retryable);
 export const selectSplitterInputFile = createSelector(selectSplitterState, (s) => s.inputFile);
-export const selectSplitterIsLoading = createSelector(selectSplitterStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectSplitterIsDone = createSelector(selectSplitterStatus, (s) => s === 'done');
-export const selectSplitterHasError = createSelector(selectSplitterStatus, (s) => s === 'error');
-export const selectSplitterCanProcess = createSelector(selectSplitterState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const splitterProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(SplitterActions.startProcessing),
+      withLatestFrom(store.select(selectSplitterState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(SplitterActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-t","10"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(SplitterActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(SplitterActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(SplitterActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

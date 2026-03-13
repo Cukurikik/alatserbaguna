@@ -1,0 +1,2671 @@
+﻿[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[35mPrerendered 0 static routes.[39m
+Application bundle generation failed. [6.550 seconds] - 2026-03-13T18:07:52.594Z
+
+node.exe : [1m[33m[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8113: All imports are unused[0m [1m[35m[plugin 
+angular-compiler][0m
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\IKYY\AppData\Roaming\n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([1m[33m[33mΓ...r-compiler] 
+   [0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/11-noise-remover/noise-remover.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/21-silence-remover/silence-remover.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/25-voice-changer/voice-changer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+
+[33mΓû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: All imports are 
+unused[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:15:2:
+[37m      15 Γöé   [32mimports[37m: [AsyncPipe, DecimalPipe, 
+AudioDropZoneComponent, AudioP...
+         Γò╡   [32m~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected 
+closing block. The block may have been closed earlier. Did you forget to 
+close the <div> element? If you meant to write the `}` character, you 
+should use the "&#125;" HTML entity instead.[0m [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/01-recorder/recorder.component.ts:175:40:
+[37m      175 Γöé     
+this.store.dispatch(RecorderActions.[32mstartProcessing[37m());
+          Γò╡                                         
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/02-trimmer/trimmer.component.ts:175:39:
+[37m      175 Γöé     
+this.store.dispatch(TrimmerActions.[32mstartProcessing[37m());
+          Γò╡                                        
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/03-merger/merger.component.ts:175:38:
+[37m      175 Γöé     
+this.store.dispatch(MergerActions.[32mstartProcessing[37m());
+          Γò╡                                       
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/04-converter/converter.component.ts:175:41:
+[37m      175 Γöé     
+this.store.dispatch(ConverterActions.[32mstartProcessing[37m());
+          Γò╡                                          
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/05-compressor/compressor.component.ts:175:42:
+[37m      175 Γöé     
+this.store.dispatch(CompressorActions.[32mstartProcessing[37m());
+          Γò╡                                           
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/06-equalizer/equalizer.component.ts:175:41:
+[37m      175 Γöé     
+this.store.dispatch(EqualizerActions.[32mstartProcessing[37m());
+          Γò╡                                          
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/07-pitch-shifter/pitch-shifter.component.ts:175:44:
+[37m      175 Γöé     
+this.store.dispatch(PitchShifterActions.[32mstartProcessing[37m());
+          Γò╡                                             
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/08-time-stretch/time-stretch.component.ts:175:43:
+[37m      175 Γöé     
+this.store.dispatch(TimeStretchActions.[32mstartProcessing[37m());
+          Γò╡                                            
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/09-normalizer/normalizer.component.ts:175:42:
+[37m      175 Γöé     
+this.store.dispatch(NormalizerActions.[32mstartProcessing[37m());
+          Γò╡                                           
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/10-reverb/reverb.component.ts:175:38:
+[37m      175 Γöé     
+this.store.dispatch(ReverbActions.[32mstartProcessing[37m());
+          Γò╡                                       
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/11-noise-remover/noise-remover.component.ts:175:44:
+[37m      175 Γöé     
+this.store.dispatch(NoiseRemoverActions.[32mstartProcessing[37m());
+          Γò╡                                             
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/12-splitter/splitter.component.ts:175:40:
+[37m      175 Γöé     
+this.store.dispatch(SplitterActions.[32mstartProcessing[37m());
+          Γò╡                                         
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/13-metadata/metadata.component.ts:175:40:
+[37m      175 Γöé     
+this.store.dispatch(MetadataActions.[32mstartProcessing[37m());
+          Γò╡                                         
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/14-batch/batch.component.ts:175:37:
+[37m      175 Γöé     
+this.store.dispatch(BatchActions.[32mstartProcessing[37m());
+          Γò╡                                      [32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/15-analyser/analyser.component.ts:175:40:
+[37m      175 Γöé     
+this.store.dispatch(AnalyserActions.[32mstartProcessing[37m());
+          Γò╡                                         
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/16-reverser/reverser.component.ts:175:40:
+[37m      175 Γöé     
+this.store.dispatch(ReverserActions.[32mstartProcessing[37m());
+          Γò╡                                         
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/17-mixer/mixer.component.ts:175:37:
+[37m      175 Γöé     
+this.store.dispatch(MixerActions.[32mstartProcessing[37m());
+          Γò╡                                      [32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/18-fade/fade.component.ts:175:36:
+[37m      175 Γöé     
+this.store.dispatch(FadeActions.[32mstartProcessing[37m());
+          Γò╡                                     [32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/19-looper/looper.component.ts:175:38:
+[37m      175 Γöé     
+this.store.dispatch(LooperActions.[32mstartProcessing[37m());
+          Γò╡                                       
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/20-channel-mixer/channel-mixer.component.ts:175:44:
+[37m      175 Γöé     
+this.store.dispatch(ChannelMixerActions.[32mstartProcessing[37m());
+          Γò╡                                             
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+25:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+46:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+47:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+48:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+49:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+50:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/21-silence-remover/silence-remover.component.ts:1
+75:46:
+[37m      175 Γöé     
+this.store.dispatch(SilenceRemoverActions.[32mstartProcessing[37m());
+          Γò╡                                               
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/22-speed/speed.component.ts:175:37:
+[37m      175 Γöé     
+this.store.dispatch(SpeedActions.[32mstartProcessing[37m());
+          Γò╡                                      [32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/23-limiter/limiter.component.ts:175:39:
+[37m      175 Γöé     
+this.store.dispatch(LimiterActions.[32mstartProcessing[37m());
+          Γò╡                                        
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/24-stereo-widener/stereo-widener.component.ts:175:45:
+[37m      175 Γöé     
+this.store.dispatch(StereoWidenerActions.[32mstartProcessing[37m());
+          Γò╡                                              
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/25-voice-changer/voice-changer.component.ts:175:44:
+[37m      175 Γöé     
+this.store.dispatch(VoiceChangerActions.[32mstartProcessing[37m());
+          Γò╡                                             
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/26-karaoke/karaoke.component.ts:175:39:
+[37m      175 Γöé     
+this.store.dispatch(KaraokeActions.[32mstartProcessing[37m());
+          Γò╡                                        
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/27-visualizer/visualizer.component.ts:175:42:
+[37m      175 Γöé     
+this.store.dispatch(VisualizerActions.[32mstartProcessing[37m());
+          Γò╡                                           
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/28-transcriber/transcriber.component.ts:175:43:
+[37m      175 Γöé     
+this.store.dispatch(TranscriberActions.[32mstartProcessing[37m());
+          Γò╡                                            
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/modules/audio/29-watermark/watermark.component.ts:175:41:
+[37m      175 Γöé     
+this.store.dispatch(WatermarkActions.[32mstartProcessing[37m());
+          Γò╡                                          
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. Did you forget to close the 
+<div> element? If you meant to write the `}` character, you should use the 
+"&#125;" HTML entity instead.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:125:14:
+[37m      125 Γöé               [32m}[37m
+          Γò╡               [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:146:12:
+[37m      146 Γöé             [32m</div>[37m
+          Γò╡             [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:147:10:
+[37m      147 Γöé           [32m</div>[37m
+          Γò╡           [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:148:8:
+[37m      148 Γöé         [32m}[37m
+          Γò╡         [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+block. The block may have been closed earlier. If you meant to write the 
+`}` character, you should use the "&#125;" HTML entity instead.[0m 
+[1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:149:6:
+[37m      149 Γöé       [32m}[37m
+          Γò╡       [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing 
+tag "div". It may happen when the tag has already been closed by another 
+tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elem
+ents-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:150:4:
+[37m      150 Γöé     [32m</div>[37m
+          Γò╡     [32m~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 
+arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    
+src/app/modules/audio/30-stem-splitter/stem-splitter.component.ts:175:44:
+[37m      175 Γöé     
+this.store.dispatch(StemSplitterActions.[32mstartProcessing[37m());
+          Γò╡                                             
+[32m~~~~~~~~~~~~~~~[0m
+
+  An argument for 'props' was not provided.
+
+    node_modules/@ngrx/store/types/ngrx-store.d.ts:200:240:
+[37m      200 Γöé ...or<Type, ([32mprops: Props & NotAllowedCheck<Props 
+& object>[37m) => P...
+          Γò╡              
+[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

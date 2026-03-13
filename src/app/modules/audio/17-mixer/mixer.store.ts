@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface MixerState {
@@ -29,7 +35,7 @@ export const MixerActions = createActionGroup({
   source: '[Mixer]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const MixerActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const mixerReducer = createReducer(
   initialState,
-  on(MixerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(MixerActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(MixerActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(MixerActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(MixerActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(MixerActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(MixerActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectMixerOutputSizeMB = createSelector(selectMixerState, (s) => s
 export const selectMixerErrorMessage = createSelector(selectMixerState, (s) => s.errorMessage);
 export const selectMixerRetryable = createSelector(selectMixerState, (s) => s.retryable);
 export const selectMixerInputFile = createSelector(selectMixerState, (s) => s.inputFile);
-export const selectMixerIsLoading = createSelector(selectMixerStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectMixerIsDone = createSelector(selectMixerStatus, (s) => s === 'done');
-export const selectMixerHasError = createSelector(selectMixerStatus, (s) => s === 'error');
-export const selectMixerCanProcess = createSelector(selectMixerState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const mixerProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(MixerActions.startProcessing),
+      withLatestFrom(store.select(selectMixerState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(MixerActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-ac","2"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(MixerActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(MixerActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(MixerActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

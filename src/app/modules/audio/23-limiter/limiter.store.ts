@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface LimiterState {
@@ -29,7 +35,7 @@ export const LimiterActions = createActionGroup({
   source: '[Limiter]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const LimiterActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const limiterReducer = createReducer(
   initialState,
-  on(LimiterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(LimiterActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(LimiterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(LimiterActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(LimiterActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(LimiterActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(LimiterActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectLimiterOutputSizeMB = createSelector(selectLimiterState, (s) 
 export const selectLimiterErrorMessage = createSelector(selectLimiterState, (s) => s.errorMessage);
 export const selectLimiterRetryable = createSelector(selectLimiterState, (s) => s.retryable);
 export const selectLimiterInputFile = createSelector(selectLimiterState, (s) => s.inputFile);
-export const selectLimiterIsLoading = createSelector(selectLimiterStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectLimiterIsDone = createSelector(selectLimiterStatus, (s) => s === 'done');
-export const selectLimiterHasError = createSelector(selectLimiterStatus, (s) => s === 'error');
-export const selectLimiterCanProcess = createSelector(selectLimiterState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const limiterProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(LimiterActions.startProcessing),
+      withLatestFrom(store.select(selectLimiterState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(LimiterActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-af","alimiter=limit=-1dB"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(LimiterActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(LimiterActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(LimiterActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

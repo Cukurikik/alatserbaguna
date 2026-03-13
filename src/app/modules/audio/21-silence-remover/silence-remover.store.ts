@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface SilenceRemoverState {
@@ -29,7 +35,7 @@ export const SilenceRemoverActions = createActionGroup({
   source: '[SilenceRemover]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const SilenceRemoverActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const silenceremoverReducer = createReducer(
   initialState,
-  on(SilenceRemoverActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(SilenceRemoverActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(SilenceRemoverActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(SilenceRemoverActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(SilenceRemoverActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(SilenceRemoverActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(SilenceRemoverActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectSilenceRemoverOutputSizeMB = createSelector(selectSilenceRemo
 export const selectSilenceRemoverErrorMessage = createSelector(selectSilenceRemoverState, (s) => s.errorMessage);
 export const selectSilenceRemoverRetryable = createSelector(selectSilenceRemoverState, (s) => s.retryable);
 export const selectSilenceRemoverInputFile = createSelector(selectSilenceRemoverState, (s) => s.inputFile);
-export const selectSilenceRemoverIsLoading = createSelector(selectSilenceRemoverStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectSilenceRemoverIsDone = createSelector(selectSilenceRemoverStatus, (s) => s === 'done');
-export const selectSilenceRemoverHasError = createSelector(selectSilenceRemoverStatus, (s) => s === 'error');
-export const selectSilenceRemoverCanProcess = createSelector(selectSilenceRemoverState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const silenceremoverProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(SilenceRemoverActions.startProcessing),
+      withLatestFrom(store.select(selectSilenceRemoverState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(SilenceRemoverActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-af","silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-50dB"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(SilenceRemoverActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(SilenceRemoverActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(SilenceRemoverActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

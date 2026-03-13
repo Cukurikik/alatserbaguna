@@ -1,5 +1,11 @@
+import { inject } from '@angular/core';
 import { createActionGroup, createFeatureSelector, createReducer, createSelector, emptyProps, on, props } from '@ngrx/store';
-import { AudioErrorCode, ProcessingStatus } from '../shared/types/audio.types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { concatMap, of, Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
+import { AudioErrorCode, ProcessingStatus, ExportFormat } from '../shared/types/audio.types';
+import { FfmpegAudioService } from '../shared/engine/ffmpeg-audio.service';
 
 // ─── State ───────────────────────────────────────────────────────────────────
 export interface PitchShifterState {
@@ -29,7 +35,7 @@ export const PitchShifterActions = createActionGroup({
   source: '[PitchShifter]',
   events: {
     'Load File': props<{ file: File }>(),
-    'Start Processing': emptyProps(),
+    'Start Processing': props<{ format: ExportFormat }>(),
     'Update Progress': props<{ value: number }>(),
     'Processing Success': props<{ outputBlob: Blob; outputSizeMB: number }>(),
     'Processing Failure': props<{ errorCode: AudioErrorCode; message: string; retryable: boolean }>(),
@@ -40,8 +46,8 @@ export const PitchShifterActions = createActionGroup({
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 export const pitchshifterReducer = createReducer(
   initialState,
-  on(PitchShifterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'loading' as ProcessingStatus, outputBlob: null, errorCode: null, errorMessage: null })),
-  on(PitchShifterActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0 })),
+  on(PitchShifterActions.loadFile, (state, { file }) => ({ ...state, inputFile: file, status: 'idle' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
+  on(PitchShifterActions.startProcessing, (state) => ({ ...state, status: 'processing' as ProcessingStatus, progress: 0, outputBlob: null, errorCode: null, errorMessage: null })),
   on(PitchShifterActions.updateProgress, (state, { value }) => ({ ...state, progress: value })),
   on(PitchShifterActions.processingSuccess, (state, { outputBlob, outputSizeMB }) => ({ ...state, status: 'done' as ProcessingStatus, outputBlob, outputSizeMB, progress: 100 })),
   on(PitchShifterActions.processingFailure, (state, { errorCode, message, retryable }) => ({ ...state, status: 'error' as ProcessingStatus, errorCode, errorMessage: message, retryable })),
@@ -57,7 +63,43 @@ export const selectPitchShifterOutputSizeMB = createSelector(selectPitchShifterS
 export const selectPitchShifterErrorMessage = createSelector(selectPitchShifterState, (s) => s.errorMessage);
 export const selectPitchShifterRetryable = createSelector(selectPitchShifterState, (s) => s.retryable);
 export const selectPitchShifterInputFile = createSelector(selectPitchShifterState, (s) => s.inputFile);
-export const selectPitchShifterIsLoading = createSelector(selectPitchShifterStatus, (s) => s === 'loading' || s === 'processing' || s === 'rendering');
-export const selectPitchShifterIsDone = createSelector(selectPitchShifterStatus, (s) => s === 'done');
-export const selectPitchShifterHasError = createSelector(selectPitchShifterStatus, (s) => s === 'error');
-export const selectPitchShifterCanProcess = createSelector(selectPitchShifterState, (s) => s.inputFile !== null && s.status === 'idle');
+
+// ─── Effects ─────────────────────────────────────────────────────────────────
+export const pitchshifterProcessingEffect = createEffect(
+  (actions$ = inject(Actions), store = inject(Store), ffmpeg = inject(FfmpegAudioService)) => {
+    return actions$.pipe(
+      ofType(PitchShifterActions.startProcessing),
+      withLatestFrom(store.select(selectPitchShifterState)),
+      concatMap(([{ format }, state]) => {
+        if (!state.inputFile) {
+          return of(PitchShifterActions.processingFailure({ errorCode: 'INVALID_PARAMS', message: 'No input file selected', retryable: false }));
+        }
+        
+        return new Observable<any>(obs => {
+          let aborted = false;
+          const args = ["-i","{in}","-af","asetrate=44100*1.25,aresample=44100"]; // Feature-specific FFmpeg args
+          
+          ffmpeg.processAudio(
+            state.inputFile!,
+            format,
+            args,
+            (p) => { if (!aborted) store.dispatch(PitchShifterActions.updateProgress({ value: p })); }
+          ).then(blob => {
+            if (!aborted) {
+              obs.next(PitchShifterActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
+              obs.complete();
+            }
+          }).catch(err => {
+            if (!aborted) {
+              obs.next(PitchShifterActions.processingFailure({ errorCode: 'ENCODE_FAILED', message: err.message || 'Validation failed or FFmpeg crashed', retryable: true }));
+              obs.complete();
+            }
+          });
+
+          return () => { aborted = true; };
+        });
+      })
+    );
+  },
+  { functional: true }
+);

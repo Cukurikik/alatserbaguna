@@ -215,23 +215,9 @@ export class StereoWidenerComponent implements OnDestroy {
     }
   }
 
-  onProcess(state: StereoWidenerState): void {
-    if (!state.inputFile || state.status === 'processing') return;
-    this.store.dispatch(StereoWidenerActions.startProcessing());
-    // Simulate processing with FFmpeg (stub)
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += Math.random() * 15;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(interval);
-        // Create a copy of the input file as output (functional stub)
-        const blob = new Blob([new Uint8Array(1024)], { type: `audio/${this.selectedFormat}` });
-        this.store.dispatch(StereoWidenerActions.processingSuccess({ outputBlob: blob, outputSizeMB: blob.size / 1024 / 1024 }));
-      } else {
-        this.store.dispatch(StereoWidenerActions.updateProgress({ value: Math.round(progress) }));
-      }
-    }, 300);
+  onProcess(state: any): void {
+    if (!state.inputFile || state.status === 'processing' || state.status === 'loading') return;
+    this.store.dispatch({ type: '[StereoWidener] Start Processing', format: this.selectedFormat });
   }
 
   onDownload(state: StereoWidenerState): void {

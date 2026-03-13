@@ -42,12 +42,8 @@ function mkdirp(dir) {
 
 function write(filePath, content) {
   mkdirp(path.dirname(filePath));
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`  ✅ Created: ${path.relative(BASE, filePath)}`);
-  } else {
-    console.log(`  ⏭️  Exists: ${path.relative(BASE, filePath)}`);
-  }
+  fs.writeFileSync(filePath, content, 'utf8');
+  console.log(`  ✅ Created/Overwritten: ${path.relative(BASE, filePath)}`);
 }
 
 function genStore(f) {
