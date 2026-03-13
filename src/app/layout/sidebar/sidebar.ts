@@ -48,6 +48,14 @@ import { NgClass } from '@angular/common';
                 </div>
                 <span class="text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">Video_Engine</span>
              </a>
+
+             <a routerLink="/audio" routerLinkActive="bg-cyan-500/10 text-cyan-400 active-node-audio"
+                class="flex items-center gap-5 px-4 py-3.5 rounded-2xl text-gray-500 hover:bg-white/[0.03] hover:text-white transition-all active:scale-95 relative group active-node-audio-base">
+                <div class="text-cyan-400 w-10 h-10 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center shrink-0 transition-all group-hover:border-current group-hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] group-[.active-node-audio]:border-cyan-500/40 group-[.active-node-audio]:bg-cyan-500/10 group-[.active-node-audio]:shadow-[0_0_20px_rgba(6,182,212,0.2)] node-icon-base">
+                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                </div>
+                <span class="text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-500 whitespace-nowrap" [ngClass]="{'opacity-100 translate-x-0': expanded(), 'opacity-0 -translate-x-4': !expanded()}">Audio_Studio</span>
+             </a>
            </div>
         </div>
 
