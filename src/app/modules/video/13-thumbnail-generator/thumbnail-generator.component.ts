@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { ThumbnailGeneratorActions, selectThumbnailGeneratorState, ThumbnailGeneratorState } from './thumbnail-generator.store';
 import { ThumbnailGeneratorService } from './thumbnail-generator.service';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-thumbnail-generator',
   standalone: true,
-  imports: [AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
+  imports: [AsyncPipe, DecimalPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-950/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl p-6 flex flex-col overflow-y-auto custom-scrollbar" [@fadeIn]>
       
@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs';
           <h2 class="text-4xl font-black bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent drop-shadow-lg pb-1 tracking-tight">
             Snapshot Engine
           </h2>
-          <p class="text-gray-400 text-sm mt-1 font-medium italic opacity-80 uppercase tracking-widest">Frame Capture Logic: Neural Extraction</p>
+          <p class="text-gray-400 text-sm mt-1 font-medium italic opacity-80 uppercase tracking-widest">Frame Capture Logic: Neural Extraction v1.0</p>
         </div>
         @if (vm$ | async; as vm) {
           @if (vm.inputFile) {
@@ -30,7 +30,7 @@ import { Subscription } from 'rxjs';
               <span class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-amber-950/30 transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               </span>
-              Dispose
+              Purge Payload
             </button>
           }
         }
@@ -38,206 +38,225 @@ import { Subscription } from 'rxjs';
 
       @if (vm$ | async; as vm) {
         
-        <!-- Pillar 5: I/O — Input State -->
         @if (!vm.inputFile) {
-          <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full" [@slideUp]>
-            <app-file-drop-zone accept="video/*" (fileDropped)="onFileSelected($event)"></app-file-drop-zone>
+          <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full py-20" [@slideUp]>
+            <app-file-drop-zone 
+              accept="video/*" 
+              (fileDropped)="onFileSelected($event)"
+              class="w-full">
+            </app-file-drop-zone>
             
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-               <div class="p-6 rounded-2xl bg-amber-500/5 border border-amber-500/10 flex items-start gap-4">
-                  <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 shrink-0">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div class="p-8 rounded-[2.5rem] bg-gray-900/40 border border-gray-800 backdrop-blur-md flex items-start gap-6 group hover:border-amber-500/30 transition-all duration-500">
+                  <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-xl shadow-amber-500/5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   </div>
                   <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wide">Frame Decoupling</h4>
-                    <p class="text-xs text-gray-500 mt-1">Isolate specific frame buffers from compressed bitstreams at 1:1 pixel accuracy.</p>
+                    <h4 class="text-white font-black text-sm uppercase tracking-tight italic">Frame Decoupling</h4>
+                    <p class="text-[10px] text-gray-500 mt-2 leading-relaxed font-medium uppercase tracking-widest opacity-60 italic">Isolate specific frame buffers from compressed bitstreams at 1:1 pixel accuracy using neural extraction paths.</p>
                   </div>
                </div>
-               <div class="p-6 rounded-2xl bg-orange-500/5 border border-orange-500/10 flex items-start gap-4">
-                  <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-400 shrink-0">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+               <div class="p-8 rounded-[2.5rem] bg-gray-900/40 border border-gray-800 backdrop-blur-md flex items-start gap-6 group hover:border-orange-500/30 transition-all duration-500">
+                  <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center text-orange-400 shrink-0 group-hover:scale-110 group-hover:-rotate-3 transition-transform shadow-xl shadow-orange-500/5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
                   </div>
                   <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wide">Multi-Mode Output</h4>
-                    <p class="text-xs text-gray-500 mt-1">Generate individual stills, interval-based sequence strips, or composite tile grids.</p>
+                    <h4 class="text-white font-black text-sm uppercase tracking-tight italic">Multi-Mode Output</h4>
+                    <p class="text-[10px] text-gray-400 mt-2 leading-relaxed font-medium uppercase tracking-widest opacity-60 italic">Generate individual stills, interval-based sequence strips, or composite tile grids for instant stream analysis.</p>
                   </div>
                </div>
             </div>
           </div>
         }
 
-        <!-- Pillar 4: Component Logic Area -->
         @if (vm.inputFile) {
-          <div class="flex-1 flex flex-col lg:flex-row gap-8" [@fadeIn]>
+          <div class="flex-1 flex flex-col lg:flex-row gap-8 min-h-0" [@fadeIn]>
             
-            <!-- Left: Preview & Results Grid -->
-            <div class="flex-1 flex flex-col gap-6">
-              <div class="relative group rounded-3xl overflow-hidden border border-gray-800 shadow-2xl bg-black/40 aspect-video flex items-center justify-center">
+            <!-- Left: Results & Grid -->
+            <div class="flex-1 flex flex-col gap-8 min-h-0">
+              <div class="relative group rounded-[2.5rem] overflow-hidden border border-gray-800 shadow-2xl bg-black/40 backdrop-blur-md flex items-center justify-center aspect-video">
                 <app-video-preview [videoUrl]="videoUrl" (durationLoaded)="onDurationLoaded($event)"></app-video-preview>
                 
                 @if (vm.status === 'processing') {
-                   <div class="absolute inset-0 bg-black/70 backdrop-blur-md flex flex-col items-center justify-center z-10" [@fadeIn]>
+                   <div class="absolute inset-0 bg-gray-950/70 backdrop-blur-md flex flex-col items-center justify-center z-10" [@fadeIn]>
                       <app-progress-ring [progress]="vm.progress" [status]="'EXTRACTING'"></app-progress-ring>
-                      <div class="mt-6 flex flex-col items-center gap-2 text-center px-6">
-                         <p class="text-amber-400 font-mono text-[10px] uppercase tracking-[0.4em] animate-pulse font-black">Scanning Frame Buffers</p>
-                         <p class="text-gray-500 font-mono text-[8px] uppercase">Integrating Lanczos Scaling Pipeline</p>
+                      <div class="mt-8 flex flex-col items-center gap-2">
+                         <span class="text-amber-400 font-mono text-[10px] uppercase tracking-[0.4em] animate-pulse italic font-black">Frame_Core_Scanning</span>
+                         <span class="text-gray-500 font-mono text-[8px] uppercase tracking-widest opacity-60 italic">Integrating Lanczos Scaling Pipeline...</span>
                       </div>
                    </div>
                 }
 
-                <div class="absolute top-4 right-4 px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-lg backdrop-blur-md flex items-center gap-2">
-                   <div class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></div>
-                   <span class="text-[9px] font-black text-amber-400 uppercase tracking-widest">Capture v2.5</span>
+                <div class="absolute top-8 right-8 px-4 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-xl backdrop-blur-md flex items-center gap-3">
+                   <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.5)]"></div>
+                   <span class="text-[9px] font-black text-amber-400 uppercase tracking-widest italic">Capture_Core_v2.5</span>
                 </div>
               </div>
 
-              <!-- Captured Snapshots Display -->
-              <div class="flex-1 min-h-[300px] bg-gray-900/40 backdrop-blur-md border border-gray-800 rounded-3xl p-6 shadow-xl relative overflow-hidden flex flex-col gap-4">
-                 <div class="flex justify-between items-center mb-2">
-                    <h3 class="text-xs font-black text-gray-500 uppercase tracking-[0.2em] italic">Extraction Results</h3>
+              <!-- Extraction Results -->
+              <div class="flex-1 min-h-[300px] bg-gray-900/40 backdrop-blur-md border border-gray-800 rounded-[2.5rem] p-10 shadow-xl relative overflow-hidden flex flex-col gap-8">
+                 <div class="flex justify-between items-center px-2">
+                    <h3 class="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em] italic opacity-60 leading-none">Extraction_Results</h3>
                     @if (vm.outputBlobs.length > 0) {
-                       <span class="text-[9px] font-mono text-amber-500 uppercase tracking-widest bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                          {{ vm.outputBlobs.length }} Frames Ready
+                       <span class="text-[9px] font-mono text-amber-500 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 font-black italic">
+                          {{ vm.outputBlobs.length }} Segments_Ready
                        </span>
                     }
                  </div>
 
-                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 h-full overflow-y-auto custom-scrollbar pr-2 pb-4">
+                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 h-full overflow-y-auto custom-scrollbar pr-4 pb-4">
                     @for (blob of vm.outputBlobs; track $index; let i = $index) {
-                       <div class="relative aspect-video rounded-xl overflow-hidden border border-gray-800 group bg-black/60 shadow-lg transition-transform hover:scale-[1.02] cursor-pointer" 
-                            (click)="onDownloadSingle(blob, i)" [@slideUp]>
-                          <img [src]="getBlobUrl(blob)" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="Snapshot {{ i }}">
-                          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
-                             <span class="text-[8px] font-black text-white uppercase truncate">#{{ i + 1 }} · Capture</span>
+                       <div class="relative aspect-video rounded-[1.5rem] overflow-hidden border border-gray-800 group bg-black/60 shadow-xl transition-all duration-500 hover:scale-[1.05] hover:border-amber-500/30 cursor-pointer" 
+                            (click)="onDownloadSingle(blob, i)" (keydown.enter)="onDownloadSingle(blob, i)" tabindex="0" role="button" aria-label="Download segment" [@slideUp]>
+                          <img [src]="getBlobUrl(blob)" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" alt="Snapshot {{ i }}">
+                          <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-4">
+                             <div class="flex flex-col gap-1">
+                                <span class="text-[8px] font-black text-amber-400 uppercase tracking-widest italic opacity-60">Snapshot_ID</span>
+                                <span class="text-[10px] font-black text-white uppercase tracking-tighter truncate">#{{ (i + 1)|number:'2.0-0' }} · CAPTURE_SEGMENT</span>
+                             </div>
                           </div>
-                          <div class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                             <div class="w-5 h-5 bg-amber-500 rounded flex items-center justify-center">
-                                <svg class="w-3 h-3 text-amber-950" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"/></svg>
+                          <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
+                             <div class="w-8 h-8 bg-amber-500 rounded-xl flex items-center justify-center text-amber-950 shadow-xl border border-amber-400/20">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"/></svg>
                              </div>
                           </div>
                        </div>
                     } @empty {
                        @if (vm.status === 'idle') {
-                          <div class="col-span-full h-full flex flex-col items-center justify-center opacity-40 grayscale py-12">
-                             <svg class="w-12 h-12 text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 112.828 2.828l-7.414 7.414a2 2 0 01-2.828 0L4 16z"/></svg>
-                             <p class="text-[10px] uppercase font-black tracking-widest text-gray-500 italic">No Frames Captured</p>
+                          <div class="col-span-full h-full flex flex-col items-center justify-center grayscale opacity-20 py-16 gap-6">
+                             <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 112.828 2.828l-7.414 7.414a2 2 0 01-2.828 0L4 16z"/></svg>
+                             <p class="text-[10px] uppercase font-black tracking-[0.4em] text-gray-500 italic">Core_Buffer_Empty</p>
                           </div>
                        }
                     }
                  </div>
-                 <div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
               </div>
             </div>
 
-            <!-- Right: Parameters Panel -->
-            <div class="w-full lg:w-[420px] flex flex-col gap-6">
+            <div class="w-full lg:w-[420px] shrink-0 flex flex-col gap-8">
               
-              <!-- Parameters Card -->
-              <div class="bg-gray-900/50 backdrop-blur-md border border-gray-800 rounded-3xl p-8 flex flex-col gap-6 shadow-2xl relative overflow-hidden">
+              <!-- Parameters Panel -->
+              <div class="bg-gray-900/40 backdrop-blur-md border border-gray-800 rounded-[2.5rem] p-10 flex flex-col gap-8 shadow-2xl relative overflow-hidden">
+                 <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-amber-500/20 to-transparent"></div>
                  
                  <!-- Mode Selector -->
-                 <div>
-                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 leading-none italic opacity-60">Logic Pipeline</label>
-                    <div class="grid grid-cols-3 gap-2 p-1.5 bg-black/40 rounded-2xl border border-gray-800">
-                       <button (click)="onSetMode('single')" [class]="vm.mode === 'single' ? 'bg-amber-500 text-amber-950 font-black' : 'text-gray-500 hover:text-white'"
-                         class="py-3 rounded-xl text-[9px] uppercase font-black transition-all">Single</button>
-                       <button (click)="onSetMode('interval')" [class]="vm.mode === 'interval' ? 'bg-amber-500 text-amber-950 font-black' : 'text-gray-500 hover:text-white'"
-                         class="py-3 rounded-xl text-[9px] uppercase font-black transition-all">Sequence</button>
-                       <button (click)="onSetMode('grid')" [class]="vm.mode === 'grid' ? 'bg-amber-500 text-amber-950 font-black' : 'text-gray-500 hover:text-white'"
-                         class="py-3 rounded-xl text-[9px] uppercase font-black transition-all">Grid Map</button>
+                 <div class="p-8 bg-black/40 rounded-[2rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] mb-6 leading-none italic opacity-60 italic">Extraction_Mode</label>
+                    <div class="grid grid-cols-3 gap-3 p-1.5 bg-gray-950/60 rounded-2xl border border-white/5 shadow-inner">
+                       <button (click)="onSetMode('single')" [class]="vm.mode === 'single' ? 'bg-amber-500 text-amber-950 font-black shadow-lg' : 'text-gray-500 hover:text-white opacity-40'"
+                         class="py-4 rounded-xl text-[9px] uppercase font-black transition-all italic scale-95">Single</button>
+                       <button (click)="onSetMode('interval')" [class]="vm.mode === 'interval' ? 'bg-amber-500 text-amber-950 font-black shadow-lg' : 'text-gray-500 hover:text-white opacity-40'"
+                         class="py-4 rounded-xl text-[9px] uppercase font-black transition-all italic scale-95">Sequence</button>
+                       <button (click)="onSetMode('grid')" [class]="vm.mode === 'grid' ? 'bg-amber-500 text-amber-950 font-black shadow-lg' : 'text-gray-500 hover:text-white opacity-40'"
+                         class="py-4 rounded-xl text-[9px] uppercase font-black transition-all italic scale-95">Grid Map</button>
                     </div>
                  </div>
 
                  <!-- Contextual Options -->
                  <div class="space-y-6" [@fadeIn]>
                     @if (vm.mode === 'single') {
-                       <div class="p-6 bg-black/40 rounded-2xl border border-gray-800">
-                          <div class="flex justify-between items-center mb-4">
-                             <label class="text-[10px] font-black text-gray-400 uppercase tracking-wide italic opacity-60">Seek Point (s)</label>
-                             <span class="text-[10px] font-mono font-black text-amber-400 tracking-tighter">{{ vm.timestamp.toFixed(2) }}s</span>
+                       <div class="p-8 bg-black/40 rounded-[2rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                          <div class="flex justify-between items-center mb-6">
+                             <label class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] italic opacity-60">Seek_VFS_Point</label>
+                             <span class="text-[10px] font-mono font-black text-amber-400 italic">{{ vm.timestamp | number:'1.2-2' }}s</span>
                           </div>
                           <input type="range" min="0" [max]="getMaxDuration(vm)" step="0.01" [value]="vm.timestamp" (input)="onTimestamp($event)"
-                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus:outline-none shadow-inner">
                        </div>
                     } @else if (vm.mode === 'interval') {
-                       <div class="p-6 bg-black/40 rounded-2xl border border-gray-800">
-                          <div class="flex justify-between items-center mb-4">
-                             <label class="text-[10px] font-black text-gray-400 uppercase tracking-wide italic opacity-60">Sample Gap (s)</label>
-                             <span class="text-[10px] font-mono font-black text-amber-400 tracking-tighter">Every {{ vm.intervalSeconds }}s</span>
+                       <div class="p-8 bg-black/40 rounded-[2rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                          <div class="flex justify-between items-center mb-6">
+                             <label class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] italic opacity-60">Sample_Gap_Ref</label>
+                             <span class="text-[10px] font-mono font-black text-amber-400 italic">Every {{ vm.intervalSeconds }}s</span>
                           </div>
                           <input type="range" min="1" max="60" step="1" [value]="vm.intervalSeconds" (input)="onInterval($event)"
-                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus:outline-none shadow-inner">
                        </div>
                     } @else {
                        <div class="grid grid-cols-2 gap-4">
-                          <div class="p-4 bg-black/40 rounded-2xl border border-gray-800">
-                             <label class="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-3 block">Grid Cols</label>
-                             <input type="number" [value]="vm.gridCols" (input)="onGridCols($event)" class="w-full bg-transparent text-white font-mono font-black text-xs border-b border-gray-800 focus:outline-none focus:border-amber-500 transition-colors">
+                          <div class="p-6 bg-black/40 rounded-[1.8rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                             <label class="text-[8px] font-black text-gray-600 uppercase tracking-widest mb-3 block italic opacity-60">Grid_Columns</label>
+                             <input type="number" [value]="vm.gridCols" (input)="onGridCols($event)" class="w-full bg-transparent text-white font-mono font-black text-xs border-none focus:outline-none italic tracking-tighter">
                           </div>
-                          <div class="p-4 bg-black/40 rounded-2xl border border-gray-800">
-                             <label class="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-3 block">Grid Rows</label>
-                             <input type="number" [value]="vm.gridRows" (input)="onGridRows($event)" class="w-full bg-transparent text-white font-mono font-black text-xs border-b border-gray-800 focus:outline-none focus:border-amber-500 transition-colors">
+                          <div class="p-6 bg-black/40 rounded-[1.8rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                             <label class="text-[8px] font-black text-gray-600 uppercase tracking-widest mb-3 block italic opacity-60">Grid_Rows</label>
+                             <input type="number" [value]="vm.gridRows" (input)="onGridRows($event)" class="w-full bg-transparent text-white font-mono font-black text-xs border-none focus:outline-none italic tracking-tighter">
                           </div>
                        </div>
                     }
 
                     <!-- Format & Quality -->
                     <div class="grid grid-cols-2 gap-4">
-                       <div class="p-4 bg-black/40 rounded-2xl border border-gray-800">
-                          <label class="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-3 block">Matrix Format</label>
-                          <select (change)="onFormat($event)" class="w-full bg-transparent text-white font-mono font-black text-[10px] uppercase focus:outline-none cursor-pointer">
-                             <option value="jpg" [selected]="vm.imageFormat === 'jpg'">JPG (Optimized)</option>
-                             <option value="png" [selected]="vm.imageFormat === 'png'">PNG (Lossless)</option>
-                             <option value="webp" [selected]="vm.imageFormat === 'webp'">WebP (NextGen)</option>
+                       <div class="p-6 bg-black/40 rounded-[1.8rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                          <label class="text-[8px] font-black text-gray-600 uppercase tracking-widest mb-3 block italic opacity-60">Matrix_Format</label>
+                          <select (change)="onFormat($event)" class="w-full bg-transparent text-white font-mono font-black text-[10px] uppercase focus:outline-none cursor-pointer italic">
+                             <option value="jpg" [selected]="vm.imageFormat === 'jpg'" class="bg-gray-900">JPG_OPTIMIZED</option>
+                             <option value="png" [selected]="vm.imageFormat === 'png'" class="bg-gray-900">PNG_LOSSLESS</option>
+                             <option value="webp" [selected]="vm.imageFormat === 'webp'" class="bg-gray-900">WEBP_NEXTGEN</option>
                           </select>
                        </div>
-                       <div class="p-4 bg-black/40 rounded-2xl border border-gray-800">
-                          <label class="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-3 block">Compression: {{ vm.jpgQuality }}%</label>
+                       <div class="p-6 bg-black/40 rounded-[1.8rem] border border-gray-800 shadow-xl group hover:border-amber-500/20 transition-colors duration-500">
+                          <label class="text-[8px] font-black text-gray-600 uppercase tracking-widest mb-3 block italic opacity-60">Density: {{ vm.jpgQuality }}%</label>
                           <input type="range" min="10" max="100" step="5" [value]="vm.jpgQuality" (input)="onQuality($event)"
-                            class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                            class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus:outline-none shadow-inner">
                        </div>
                     </div>
                  </div>
 
                  <!-- Action Area -->
-                 <div class="pt-4 border-t border-gray-800/50">
+                 <div class="pt-6 border-t border-gray-800/50">
                     @if (vm.status === 'idle' || vm.status === 'error') {
                        <button (click)="onExecuteSnapshot(vm)"
-                         class="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:opacity-90 text-white font-black py-4 rounded-2xl shadow-xl shadow-amber-500/20 transition-all active:scale-95 text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
-                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                         class="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:opacity-90 text-white font-black py-5 rounded-2xl shadow-[0_20px_40px_rgba(251,191,36,0.2)] transition-all active:scale-95 text-xs uppercase tracking-[0.25em] flex items-center justify-center gap-4 italic group">
+                         <svg class="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                          Execute Snapshot
                        </button>
                     } @else if (vm.status === 'success') {
-                       <div class="space-y-3" [@slideUp]>
+                       <div class="space-y-4" [@slideUp]>
                           <button (click)="onDownloadAll(vm)" 
-                            class="w-full bg-emerald-500 hover:bg-emerald-400 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center gap-3 active:scale-95">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-                            Export Archive
+                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-[0_20px_40px_rgba(16,185,129,0.2)] transition-all flex items-center justify-center gap-3 active:scale-95 group italic">
+                            <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                            Export Segment Archive
                           </button>
                           @if (vm.outputSizeMB) {
-                            <p class="text-center text-[9px] font-mono text-gray-500 uppercase tracking-widest">Snapshot Buffer: {{ vm.outputSizeMB.toFixed(2) }} MB</p>
+                            <p class="text-center text-[9px] font-black font-mono text-emerald-500/60 uppercase tracking-[0.3em] italic">Buffer_Verified: {{ vm.outputSizeMB | number:'1.2-2' }} MB</p>
                           }
                        </div>
                     } @else {
-                       <div class="h-14 w-full bg-gray-800/20 rounded-2xl flex items-center justify-center border border-dashed border-gray-800 opacity-50">
-                          <span class="text-[10px] font-mono text-gray-600 uppercase tracking-widest animate-pulse">Scanning Pixels...</span>
+                       <div class="h-16 w-full bg-gray-950/40 rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-800/50 opacity-40">
+                          <span class="text-[10px] font-black font-mono text-gray-500 uppercase tracking-[0.4em] animate-pulse italic">Decoupling_Segments...</span>
                        </div>
                     }
 
                     @if (vm.status === 'error') {
-                       <div class="mt-4 p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-start gap-4" [@fadeIn]>
-                          <svg class="w-5 h-5 text-rose-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
-                          <div class="flex-1">
-                            <p class="text-white font-black text-xs uppercase tracking-tight">Logic Reject</p>
-                            <p class="text-rose-400 font-mono text-[9px] mt-1 pr-2 leading-relaxed opacity-80">{{ vm.errorMessage || 'Unknown extraction failure' }}</p>
+                       <div class="mt-6 p-6 bg-rose-500/5 border border-rose-500/20 rounded-[1.5rem] flex items-start gap-4 animate-in shake-1 duration-500" [@fadeIn]>
+                          <div class="w-10 h-10 bg-rose-500/10 rounded-full flex items-center justify-center text-rose-500 shrink-0 shadow-lg">
+                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <p class="text-white font-black text-xs uppercase tracking-tight italic">Extraction_Fault</p>
+                            <p class="text-rose-400 font-black font-mono text-[9px] mt-1.5 leading-relaxed uppercase tracking-wider opacity-80 italic line-clamp-2">{{ vm.errorMessage || 'Unknown segment extraction divergence' }}</p>
                             @if (vm.retryable) {
-                               <button (click)="onExecuteSnapshot(vm)" class="mt-4 text-[10px] font-black uppercase text-white bg-white/5 hover:bg-white/10 px-4 py-1.5 rounded-full border border-white/10 transition-all">Retry Extract</button>
+                               <button (click)="onExecuteSnapshot(vm)" class="mt-4 text-[9px] font-black uppercase text-white border-b-2 border-white/10 hover:border-amber-500 transition-all hover:text-amber-400 tracking-[0.2em] italic">Retry_Attempt_Ops</button>
                             }
                           </div>
                        </div>
                     }
                  </div>
               </div>
+
+              <!-- Technical Command visualizer -->
+              <div class="bg-gray-900/40 backdrop-blur-md rounded-[2.5rem] p-8 border border-gray-800 shadow-inner">
+                 <h4 class="text-[9px] font-black text-gray-400 uppercase tracking-[0.4em] mb-4 italic opacity-60">Snapshot_Kernel_Visualizer</h4>
+                 <div class="bg-black/60 p-5 rounded-2xl border border-white/5 font-mono group overflow-hidden relative">
+                    <div class="text-[9px] text-amber-400/80 leading-relaxed uppercase tracking-widest italic group-hover:scale-105 transition-transform duration-500">
+                       <span class="opacity-40">ffmpeg -ss</span> 
+                       <span class="font-black text-white px-1.5 py-0.5 bg-amber-500/20 rounded-md mx-1 shadow-sm border border-amber-500/20">{{ vm.timestamp }}s</span>
+                       <span class="opacity-40">-i src.mp4 -frames:v 1 dst.{{ vm.imageFormat }}</span>
+                    </div>
+                 </div>
+              </div>
+
             </div>
           </div>
         }
@@ -247,8 +266,7 @@ import { Subscription } from 'rxjs';
   styles: [`
     .custom-scrollbar::-webkit-scrollbar { width: 4px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 10px; }
   `],
   animations: [
     trigger('fadeIn', [
@@ -351,7 +369,7 @@ export class ThumbnailGeneratorComponent implements OnDestroy {
         error: (err) => {
           this.store.dispatch(ThumbnailGeneratorActions.processingFailure({ 
             errorCode: 'FFMPEG_COMMAND_FAILED', 
-            message: err.message ?? 'Snapshot extraction failed.',
+            message: err.message ?? 'Snapshot extraction failed. Segment buffer divergence.',
             retryable: true
           }));
         }
@@ -361,7 +379,7 @@ export class ThumbnailGeneratorComponent implements OnDestroy {
 
   onDownloadSingle(blob: Blob, index: number): void {
     const url = URL.createObjectURL(blob);
-    const filename = `snapshot_${index + 1}.jpg`; // Format dynamically if needed
+    const filename = `snapshot_${index + 1}.jpg`; 
     const a = Object.assign(document.createElement('a'), { href: url, download: filename });
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 150);

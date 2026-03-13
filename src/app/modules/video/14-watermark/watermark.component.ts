@@ -117,7 +117,7 @@ const POSITIONS: { label: string; value: WatermarkPosition }[] = [
                  <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
                     <div class="flex flex-col gap-1 border-r border-gray-800 last:border-0 pr-4">
                        <span class="text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none mb-1">Base Stream</span>
-                       <span class="text-white font-mono text-xs truncate">{{ vm.inputFile?.name }}</span>
+                       <span class="text-white font-mono text-xs truncate">{{ vm.inputFile.name }}</span>
                     </div>
                     <div class="flex flex-col gap-1 border-r border-gray-800 last:border-0 pr-4 pl-4 font-mono">
                        <span class="text-[9px] font-black text-violet-500/60 uppercase tracking-widest leading-none mb-1">Alpha Mode</span>
@@ -177,7 +177,7 @@ const POSITIONS: { label: string; value: WatermarkPosition }[] = [
                     <div class="space-y-4" [@fadeIn]>
                        <div>
                           <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-3 leading-none italic opacity-60">Logo Asset (.png/.jpg)</label>
-                          <div (click)="imageInput.click()" 
+                          <div (click)="imageInput.click()" (keydown.enter)="imageInput.click()" tabindex="0" role="button" aria-label="Upload Image Asset"
                             [class]="vm.imageFile ? 'border-violet-500/40 bg-violet-500/5' : 'border-gray-800 bg-black/40'"
                             class="p-8 rounded-2xl border border-dashed hover:border-violet-500/20 transition-all cursor-pointer group text-center relative overflow-hidden">
                              @if (vm.imageFile) {

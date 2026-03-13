@@ -84,7 +84,7 @@ import { Subscription } from 'rxjs';
                            <div class="grid grid-cols-2 gap-4">
                               <div class="flex flex-col gap-1">
                                  <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest">Container</span>
-                                 <p class="text-[10px] font-black text-emerald-400 font-mono uppercase">{{ vm.videoMeta?.format || 'Unknown' }}</p>
+                                 <p class="text-[10px] font-black text-emerald-400 font-mono uppercase">{{ vm.videoMeta?.codec || 'Unknown' }}</p>
                               </div>
                               <div class="flex flex-col gap-1">
                                  <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest">Duration</span>
@@ -94,7 +94,7 @@ import { Subscription } from 'rxjs';
                            <div class="flex flex-col gap-1 pt-4 border-t border-gray-800/50">
                               <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest">Bitrate_Aggregate</span>
                               <div class="flex items-center gap-2">
-                                 <span class="text-xl font-black text-white font-mono">{{ (vm.videoMeta?.bitrate || 0) / 1000 | number:'1.0-0' }}</span>
+                                 <span class="text-xl font-black text-white font-mono">{{ (vm.videoMeta?.videoBitrate || 0) / 1000 | number:'1.0-0' }}</span>
                                  <span class="text-[10px] font-black text-gray-500 uppercase font-mono italic">Kbps</span>
                               </div>
                            </div>
@@ -165,28 +165,28 @@ import { Subscription } from 'rxjs';
                            }
 
                            <!-- Audio Streams -->
-                           @for (as of vm.audioStreams; track as.index) {
+                           @for (astream of vm.audioStreams; track astream.index) {
                               <div class="p-6 rounded-2xl bg-black/40 border border-teal-500/20 hover:border-teal-500/40 transition-all flex items-center gap-6 group relative overflow-hidden text-teal-400">
                                  <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
                                  </div>
                                  <div class="flex-1 min-w-0">
                                     <div class="flex items-center gap-3">
-                                       <span class="text-[10px] font-black text-white uppercase tracking-tight">AUDIO_NODE_#{{ as.index }}</span>
-                                       <span class="text-[8px] font-mono text-teal-500/60 uppercase">{{ as.codec }} • {{ as.language || 'UND' }}</span>
+                                       <span class="text-[10px] font-black text-white uppercase tracking-tight">AUDIO_NODE_#{{ astream.index }}</span>
+                                       <span class="text-[8px] font-mono text-teal-500/60 uppercase">{{ astream.codec }} • {{ astream.language || 'UND' }}</span>
                                     </div>
                                     <div class="grid grid-cols-3 gap-4 mt-3 text-white">
                                        <div class="flex flex-col">
                                           <span class="text-[7px] font-black text-gray-600 uppercase tracking-widest">Topology</span>
-                                          <span class="text-[10px] font-mono">{{ as.channels }} CH</span>
+                                          <span class="text-[10px] font-mono">{{ astream.channels }} CH</span>
                                        </div>
                                        <div class="flex flex-col">
                                           <span class="text-[7px] font-black text-gray-600 uppercase tracking-widest">Sample_Rate</span>
-                                          <span class="text-[10px] font-mono">{{ as.sampleRate / 1000 }} kHz</span>
+                                          <span class="text-[10px] font-mono">{{ astream.sampleRate / 1000 }} kHz</span>
                                        </div>
                                        <div class="flex flex-col">
                                           <span class="text-[7px] font-black text-gray-600 uppercase tracking-widest">Bitrate</span>
-                                          <span class="text-[10px] font-mono">{{ as.bitrate }} Kbps</span>
+                                          <span class="text-[10px] font-mono">{{ astream.bitrate }} Kbps</span>
                                        </div>
                                     </div>
                                  </div>
@@ -255,12 +255,21 @@ export class AnalyserComponent implements OnDestroy {
                     
                     // Construct VideoMeta from parsed FFprobe output
                     const format = parsed.format || {};
+                    const vStream = streams.videoStreams[0] || {};
+                    const aStream = streams.audioStreams[0] || {};
                     const meta = {
-                       format: format.format_name || 'unknown',
+                       filename: file.name,
+                       fileSizeMB: file.size / (1024 * 1024),
                        duration: parseFloat(format.duration || '0'),
-                       size: parseInt(format.size || '0', 10),
-                       bitrate: parseInt(format.bit_rate || '0', 10),
-                       streams: streams.videoStreams.length + streams.audioStreams.length + streams.subtitleStreams.length
+                       width: vStream.width || 0,
+                       height: vStream.height || 0,
+                       fps: vStream.fps || 0,
+                       codec: format.format_name || 'unknown',
+                       audioCodec: aStream.codec || null,
+                       audioBitrate: aStream.bitrate || 0,
+                       videoBitrate: parseInt(format.bit_rate || '0', 10),
+                       hasAudio: streams.audioStreams.length > 0,
+                       aspectRatio: '16:9'
                     };
 
                     this.store.dispatch(AnalyserActions.analysisSuccess({
@@ -270,7 +279,7 @@ export class AnalyserComponent implements OnDestroy {
                     }));
                  } catch (e) {
                     this.store.dispatch(AnalyserActions.analysisFailure({
-                       errorCode: 'PARSING_FAILED',
+                       errorCode: 'FFMPEG_COMMAND_FAILED',
                        message: 'Failed to reconstruct bitstream topology from forensic dump.',
                        retryable: true
                     }));

@@ -96,7 +96,7 @@ import { Subscription } from 'rxjs';
                  <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
                     <div class="flex flex-col gap-1 border-r border-gray-800 last:border-0 pr-4">
                        <span class="text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none mb-1">Visual Stream</span>
-                       <span class="text-white font-mono text-xs truncate">{{ vm.videoFile?.name }}</span>
+                       <span class="text-white font-mono text-xs truncate">{{ vm.videoFile.name }}</span>
                     </div>
                     <div class="flex flex-col gap-1 border-r border-gray-800 last:border-0 pr-4 pl-4 font-mono">
                        <span class="text-[9px] font-black text-cyan-500/60 uppercase tracking-widest leading-none mb-1">Target Audio</span>

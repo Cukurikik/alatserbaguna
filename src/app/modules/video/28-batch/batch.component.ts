@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { BatchActions, selectBatchState, BatchState, BatchFileEntry } from './batch.store';
 import { BatchService } from './batch.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-batch',
   standalone: true,
-  imports: [AsyncPipe, FileDropZoneComponent, ProgressRingComponent],
+  imports: [AsyncPipe, DecimalPipe, FileDropZoneComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-950/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl p-6 flex flex-col overflow-y-auto custom-scrollbar" [@fadeIn]>
       

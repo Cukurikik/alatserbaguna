@@ -302,7 +302,7 @@ export class TrimmerComponent implements OnDestroy {
         }).subscribe({
           next: (msg) => {
             if (msg.type === 'progress') {
-              this.store.dispatch(TrimmerActions.updateProgress({ progress: msg.value }));
+              this.store.dispatch(TrimmerActions.updateProgress({ progress: msg.value ?? 0 }));
             } else if (msg.type === 'complete') {
               const outputBlob = new Blob([msg.data as BlobPart], { type: `video/${state.outputFormat}` });
               this.store.dispatch(TrimmerActions.processingSuccess({ 

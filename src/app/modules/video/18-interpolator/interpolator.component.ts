@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { InterpolatorActions, selectInterpolatorState, InterpolatorState, InterpolatorAlgorithm } from './interpolator.store';
+import { InterpolatorActions, selectInterpolatorState, InterpolatorState } from './interpolator.store';
 import { InterpolatorService } from './interpolator.service';
 import { FileDropZoneComponent } from '../shared/components/file-drop-zone/file-drop-zone.component';
 import { VideoPreviewComponent } from '../shared/components/video-preview/video-preview.component';

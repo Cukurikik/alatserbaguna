@@ -101,7 +101,7 @@ import { FormsModule } from '@angular/forms';
                   <!-- Status Area -->
                   @if (vm.status === 'processing') {
                      <div class="mt-auto pt-6 border-t border-gray-800 flex items-center gap-6" [@fadeIn]>
-                        <app-progress-ring [progress]="vm.progress" [size]="40"></app-progress-ring>
+                        <app-progress-ring [progress]="vm.progress"></app-progress-ring>
                         <div class="flex flex-col gap-1">
                            <span class="text-emerald-400 font-mono text-[10px] uppercase tracking-[0.3em] font-black animate-pulse">Mutating Atom Headers</span>
                            <span class="text-gray-500 font-mono text-[8px] uppercase">Re-mapping Metadata Dictionary</span>
@@ -111,7 +111,7 @@ import { FormsModule } from '@angular/forms';
                      <div class="mt-auto pt-6 border-t border-gray-800 flex items-center justify-between font-mono">
                         <div class="flex flex-col gap-1">
                            <span class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Target Path</span>
-                           <span class="text-gray-400 text-[10px] tracking-tighter">{{ vm.inputFile?.name }}</span>
+                           <span class="text-gray-400 text-[10px] tracking-tighter">{{ vm.inputFile.name }}</span>
                         </div>
                         <div class="flex flex-col items-end gap-1 text-right">
                            <span class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Protocol</span>
