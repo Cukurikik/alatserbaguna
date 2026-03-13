@@ -1,3 +1,4 @@
-export * from './thumbnail-generator.component';
-export * from './thumbnail-generator.service';
-export * from './thumbnail-generator.store';
+// Feature 13 — Thumbnail Generator
+export { ThumbnailGeneratorComponent } from './thumbnail-generator.component';
+export { ThumbnailInputSchema } from './thumbnail-generator.schema';
+export type { ThumbnailInput } from './thumbnail-generator.schema';

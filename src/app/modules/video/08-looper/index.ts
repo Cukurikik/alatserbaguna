@@ -1,3 +1,4 @@
-export * from './looper.component';
-export * from './looper.service';
-export * from './looper.store';
+// Feature 08 — Looper
+export { LooperComponent } from './looper.component';
+export { LooperInputSchema } from './looper.schema';
+export type { LooperInput } from './looper.schema';

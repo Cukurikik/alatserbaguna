@@ -12,7 +12,7 @@ export const BatchInputSchema = z.object({
     'thumbnail', 'watermark', 'extractAudio', 'replaceAudio',
     'denoise', 'interpolate', 'metadata', 'split',
   ]),
-  operationConfig: z.record(z.unknown()),
+  operationConfig: z.record(z.string(), z.unknown()),
 });
 
 export type BatchInput = z.infer<typeof BatchInputSchema>;

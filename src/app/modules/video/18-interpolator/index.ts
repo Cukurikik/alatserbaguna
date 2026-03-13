@@ -1,3 +1,4 @@
-export * from './interpolator.component';
-export * from './interpolator.service';
-export * from './interpolator.store';
+// Feature 18 — Interpolator
+export { InterpolatorComponent } from './interpolator.component';
+export { InterpolatorInputSchema } from './interpolator.schema';
+export type { InterpolatorInput } from './interpolator.schema';

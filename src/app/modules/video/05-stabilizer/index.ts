@@ -1,3 +1,4 @@
-export * from './stabilizer.component';
-export * from './stabilizer.service';
-export * from './stabilizer.store';
+// Feature 05 — Stabilizer
+export { StabilizerComponent } from './stabilizer.component';
+export { StabilizerInputSchema } from './stabilizer.schema';
+export type { StabilizerInput } from './stabilizer.schema';

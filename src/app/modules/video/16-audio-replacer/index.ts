@@ -1,3 +1,4 @@
-export * from './audio-replacer.component';
-export * from './audio-replacer.service';
-export * from './audio-replacer.store';
+// Feature 16 — Audio Replacer
+export { AudioReplacerComponent } from './audio-replacer.component';
+export { AudioReplacerInputSchema } from './audio-replacer.schema';
+export type { AudioReplacerInput } from './audio-replacer.schema';

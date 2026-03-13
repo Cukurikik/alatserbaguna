@@ -1,3 +1,4 @@
-export * from './blur.component';
-export * from './blur.service';
-export * from './blur.store';
+// Feature 24 — Blur
+export { BlurComponent } from './blur.component';
+export { BlurInputSchema } from './blur.schema';
+export type { BlurInput } from './blur.schema';

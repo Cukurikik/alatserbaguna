@@ -1,3 +1,4 @@
-export * from './pip.component';
-export * from './pip.service';
-export * from './pip.store';
+// Feature 23 — PIP
+export { PipComponent } from './pip.component';
+export { PipInputSchema } from './pip.schema';
+export type { PipInput } from './pip.schema';

@@ -1,3 +1,4 @@
-export * from './batch.component';
-export * from './batch.service';
-export * from './batch.store';
+// Feature 28 — Batch Processor
+export { BatchComponent } from './batch.component';
+export { BatchInputSchema } from './batch.schema';
+export type { BatchInput } from './batch.schema';

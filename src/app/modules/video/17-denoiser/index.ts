@@ -1,3 +1,4 @@
-export * from './denoiser.component';
-export * from './denoiser.service';
-export * from './denoiser.store';
+// Feature 17 — Denoiser
+export { DenoiserComponent } from './denoiser.component';
+export { DenoiserInputSchema } from './denoiser.schema';
+export type { DenoiserInput } from './denoiser.schema';

@@ -1,3 +1,34 @@
+// Video Module Root — barrel export for the entire video feature set
 export * from './shared';
+
+// 30 Video Features
 export * from './01-trimmer';
-export { VIDEO_ROUTES } from './video.routes';
+export * from './02-merger';
+export * from './03-converter';
+export * from './04-compressor';
+export * from './05-stabilizer';
+export * from './06-reverser';
+export * from './07-speed-controller';
+export * from './08-looper';
+export * from './09-flip-rotate';
+export * from './10-crop-resize';
+export * from './11-color-grading';
+export * from './12-subtitle-burner';
+export * from './13-thumbnail-generator';
+export * from './14-watermark';
+export * from './15-audio-extractor';
+export * from './16-audio-replacer';
+export * from './17-denoiser';
+export * from './18-interpolator';
+export * from './19-metadata-editor';
+export * from './20-splitter';
+export * from './21-screen-recorder';
+export * from './22-video-to-gif';
+export * from './23-pip';
+export * from './24-blur';
+export * from './25-transitions';
+export * from './26-compare';
+export * from './27-slideshow';
+export * from './28-batch';
+export * from './29-analyser';
+export * from './30-upscaler';

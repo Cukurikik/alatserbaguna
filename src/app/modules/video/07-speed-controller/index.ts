@@ -1,3 +1,4 @@
-export * from './speed-controller.component';
-export * from './speed-controller.service';
-export * from './speed-controller.store';
+// Feature 07 — Speed Controller
+export { SpeedControllerComponent } from './speed-controller.component';
+export { SpeedInputSchema } from './speed-controller.schema';
+export type { SpeedInput } from './speed-controller.schema';

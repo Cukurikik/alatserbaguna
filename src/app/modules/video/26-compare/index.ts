@@ -1,3 +1,4 @@
-export * from './compare.component';
-export * from './compare.service';
-export * from './compare.store';
+// Feature 26 — Compare
+export { CompareComponent } from './compare.component';
+export { CompareInputSchema } from './compare.schema';
+export type { CompareInput } from './compare.schema';
