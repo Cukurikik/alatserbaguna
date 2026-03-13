@@ -118,3 +118,6 @@ export interface ExportConfig {
   quality: 'fast' | 'balanced' | 'best';
   filename: string;
 }
+
+/** @deprecated Use VideoMeta. Kept for backward-compatibility with existing stores. */
+export type VideoMetadata = VideoMeta;

@@ -141,9 +141,21 @@ export class TrimmerComponent {
   }
 
   onDurationLoaded(duration: number): void {
-    // We send a mock meta success just for UI test initially
-    this.store.dispatch(TrimmerActions.loadMetaSuccess({ 
-      meta: { name: 'video', size: 0, type: 'video/mp4', duration, width: 1920, height: 1080 } 
+    this.store.dispatch(TrimmerActions.loadMetaSuccess({
+      meta: {
+        filename: 'video',
+        fileSizeMB: 0,
+        duration,
+        width: 1920,
+        height: 1080,
+        fps: 30,
+        codec: 'h264',
+        audioCodec: 'aac',
+        audioBitrate: 128,
+        videoBitrate: 0,
+        hasAudio: true,
+        aspectRatio: '16:9',
+      }
     }));
   }
 
