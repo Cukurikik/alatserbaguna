@@ -35,7 +35,9 @@ export class UpscalerService {
   async checkWebGPU(): Promise<boolean> {
     if (!('gpu' in navigator)) return false;
     try {
-      const adapter = await navigator.gpu.requestAdapter();
+      // Cast: navigator.gpu is unknown without @webgpu/types — safe after 'gpu' in navigator check
+      const gpu = (navigator as Navigator & { gpu: { requestAdapter(): Promise<object | null> } }).gpu;
+      const adapter = await gpu.requestAdapter();
       return adapter !== null;
     } catch {
       return false;
