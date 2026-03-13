@@ -25,6 +25,17 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 /**
+ * 🔒 SECURITY HEADERS — Required for SharedArrayBuffer (FFmpeg WASM, Web Workers)
+ * Cross-Origin-Embedder-Policy + Cross-Origin-Opener-Policy must both be present.
+ */
+app.use((_req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  next();
+});
+
+/**
  * Serve static files from /browser
  */
 app.use(

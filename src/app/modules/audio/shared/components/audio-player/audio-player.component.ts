@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, OnDestroy, signal, SimpleChanges } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-audio-player',
   standalone: true,
-  imports: [DecimalPipe],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (audioBlob) {
@@ -43,7 +42,10 @@ export class AudioPlayerComponent implements OnChanges, OnDestroy {
     }
   }
   ngOnDestroy() { if (this.blobUrl) URL.revokeObjectURL(this.blobUrl); }
-  toggle(el: HTMLAudioElement) { el.paused ? (el.play(), this.playing.set(true)) : (el.pause(), this.playing.set(false)); }
+  toggle(el: HTMLAudioElement): void {
+    if (el.paused) { el.play(); this.playing.set(true); }
+    else { el.pause(); this.playing.set(false); }
+  }
   onTimeUpdate(el: HTMLAudioElement) { this.currentTime.set(el.currentTime); }
   onMeta(el: HTMLAudioElement) { this.duration.set(el.duration); }
   seek(el: HTMLAudioElement, e: Event) { el.currentTime = Number((e.target as HTMLInputElement).value); }
