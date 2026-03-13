@@ -20,8 +20,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`\${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`\${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -30,7 +30,7 @@ self.onmessage = async (event: MessageEvent) => {
     const inputName = 'input_' + file.name.replace(/[^a-zA-Z0-9.]/g, '');
     const outputName = 'output.' + format;
     
-    self.postMessage({ type: 'log', message: \`Writing \${file.name} to memory...\` });
+    self.postMessage({ type: 'log', message: `Writing \${file.name} to memory...` });
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
@@ -38,21 +38,21 @@ self.onmessage = async (event: MessageEvent) => {
     // format: equalizer=f=FREQ:width_type=o:w=1:g=GAIN
     // 31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000 Hz
     const eqFilters = [
-      \`equalizer=f=31.25:width_type=o:w=1:g=\${b.hz31}\`,
-      \`equalizer=f=62.5:width_type=o:w=1:g=\${b.hz62}\`,
-      \`equalizer=f=125:width_type=o:w=1:g=\${b.hz125}\`,
-      \`equalizer=f=250:width_type=o:w=1:g=\${b.hz250}\`,
-      \`equalizer=f=500:width_type=o:w=1:g=\${b.hz500}\`,
-      \`equalizer=f=1000:width_type=o:w=1:g=\${b.hz1k}\`,
-      \`equalizer=f=2000:width_type=o:w=1:g=\${b.hz2k}\`,
-      \`equalizer=f=4000:width_type=o:w=1:g=\${b.hz4k}\`,
-      \`equalizer=f=8000:width_type=o:w=1:g=\${b.hz8k}\`,
-      \`equalizer=f=16000:width_type=o:w=1:g=\${b.hz16k}\`
+      `equalizer=f=31.25:width_type=o:w=1:g=\${b.hz31}`,
+      `equalizer=f=62.5:width_type=o:w=1:g=\${b.hz62}`,
+      `equalizer=f=125:width_type=o:w=1:g=\${b.hz125}`,
+      `equalizer=f=250:width_type=o:w=1:g=\${b.hz250}`,
+      `equalizer=f=500:width_type=o:w=1:g=\${b.hz500}`,
+      `equalizer=f=1000:width_type=o:w=1:g=\${b.hz1k}`,
+      `equalizer=f=2000:width_type=o:w=1:g=\${b.hz2k}`,
+      `equalizer=f=4000:width_type=o:w=1:g=\${b.hz4k}`,
+      `equalizer=f=8000:width_type=o:w=1:g=\${b.hz8k}`,
+      `equalizer=f=16000:width_type=o:w=1:g=\${b.hz16k}`
     ];
 
     const filterString = eqFilters.join(',');
     
-    self.postMessage({ type: 'log', message: \`Applying equalizers: \${filterString}\` });
+    self.postMessage({ type: 'log', message: `Applying equalizers: \${filterString}` });
 
     const args = [
       '-i', inputName,
@@ -67,7 +67,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData], { type: `audio/\${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

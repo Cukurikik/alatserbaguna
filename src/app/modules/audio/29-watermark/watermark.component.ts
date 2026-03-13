@@ -60,7 +60,7 @@ import { WatermarkMode } from './watermark.schema';
                       <label class="text-xs font-black text-gray-500 uppercase tracking-widest block mb-2">Watermark Text</label>
                       <input type="text" maxlength="128" placeholder="© 2025 Your Name / Copyright ID"
                              [value]="watermarkText()"
-                             (input)="watermarkText.set(($event.target as HTMLInputElement).value)"
+                             (input)="watermarkText.set($any($event.target).value)"
                              class="w-full bg-gray-900 border border-gray-700 focus:border-indigo-500 text-white font-mono text-sm rounded-xl px-4 py-3 outline-none transition-colors">
                       <p class="text-[10px] text-gray-500 mt-1">{{ watermarkText().length }}/128 chars</p>
                     </div>
@@ -73,7 +73,7 @@ import { WatermarkMode } from './watermark.schema';
                           <span class="text-[9px] text-gray-500">{{ strength() < 0.4 ? 'Imperceptible' : strength() < 0.7 ? 'Balanced' : 'Robust' }}</span>
                         </div>
                       </div>
-                      <input type="range" min="0.1" max="1.0" step="0.05" [value]="strength()" (input)="strength.set(+($event.target as HTMLInputElement).value)"
+                      <input type="range" min="0.1" max="1.0" step="0.05" [value]="strength()" (input)="strength.set(+$any($event.target).value)"
                             class="w-full accent-indigo-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                     </div>
 
@@ -109,7 +109,7 @@ import { WatermarkMode } from './watermark.schema';
               <div class="bg-[#12121a] rounded-2xl border border-gray-800 p-6 flex flex-col min-h-[260px]">
                 @if (mode() === 'embed') {
                   <label class="text-xs text-gray-400 uppercase tracking-widest mb-3 font-bold">Output Format</label>
-                  <select [value]="outputFormat()" (change)="outputFormat.set(($event.target as HTMLSelectElement).value as any)"
+                  <select [value]="outputFormat()" (change)="outputFormat.set($any($event.target).value)"
                           class="w-full bg-gray-900 border border-gray-700 font-bold text-sm rounded-lg px-4 py-3 outline-none focus:border-indigo-500 transition-colors mb-6">
                     <option value="wav">WAV (Lossless — recommended)</option>
                   </select>

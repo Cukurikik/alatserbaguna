@@ -118,3 +118,5 @@ export const processTrimmerEffect = createEffect(
   },
   { functional: true }
 );
+
+export const trimmerProcessingEffect = processTrimmerEffect;

@@ -18,8 +18,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`\${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`\${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -28,7 +28,7 @@ self.onmessage = async (event: MessageEvent) => {
     const inputName = 'input_' + file.name.replace(/[^a-zA-Z0-9.]/g, '');
     const outputName = 'output.' + format;
     
-    self.postMessage({ type: 'log', message: \`Writing \${file.name} to memory...\` });
+    self.postMessage({ type: 'log', message: `Writing \${file.name} to memory...` });
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
@@ -43,9 +43,9 @@ self.onmessage = async (event: MessageEvent) => {
     // ratio is ratio (e.g. 4)
     // attack is ms (e.g. 20)
     // release is ms (e.g. 250)
-    const filter = \`acompressor=threshold=\${thresholdDb}dB:ratio=\${ratio}:attack=\${attackMs}:release=\${releaseMs}:makeup=\${makeupLinear}\`;
+    const filter = `acompressor=threshold=\${thresholdDb}dB:ratio=\${ratio}:attack=\${attackMs}:release=\${releaseMs}:makeup=\${makeupLinear}`;
     
-    self.postMessage({ type: 'log', message: \`Applying compression: \${filter}\` });
+    self.postMessage({ type: 'log', message: `Applying compression: \${filter}` });
 
     const args = [
       '-i', inputName,
@@ -60,7 +60,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData as any], { type: `audio/${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

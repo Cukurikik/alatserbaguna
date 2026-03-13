@@ -63,3 +63,5 @@ export const processWatermarkEffect = createEffect(
   },
   { functional: true }
 );
+
+export const watermarkProcessingEffect = processWatermarkEffect;

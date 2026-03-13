@@ -210,7 +210,7 @@ export class TrimmerComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_trim_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}_\${Date.now()}.\${this.outputFormat()}\`;
+    a.download = `omni_trim_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}_${Date.now()}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -234,7 +234,7 @@ export class TrimmerComponent implements OnDestroy {
     const totalSec = Math.floor(ms / 1000);
     const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
     const s = (totalSec % 60).toString().padStart(2, '0');
-    return \`\${m}:\${s}\`;
+    return `\${m}:\${s}`;
   }
 
   formatTimeMsec(ms: number | undefined): string {
@@ -243,7 +243,7 @@ export class TrimmerComponent implements OnDestroy {
     const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
     const s = (totalSec % 60).toString().padStart(2, '0');
     const msStr = (ms % 1000).toString().padStart(3, '0');
-    return \`\${m}:\${s}.\${msStr}\`;
+    return `\${m}:\${s}.\${msStr}`;
   }
 
   ngOnDestroy(): void {

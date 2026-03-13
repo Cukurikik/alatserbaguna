@@ -38,7 +38,7 @@ import { StemLabel } from './stem-splitter.schema';
             <div class="bg-[#12121a] rounded-2xl border border-gray-800 p-5 flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 text-xl">🧬</div>
               <div class="flex-1"><h3 class="font-bold">{{ state.inputFile.name }}</h3><p class="text-xs text-gray-500 font-mono mt-1">{{ (state.inputFile.size/1024/1024) | number:'1.2-2' }} MB</p></div>
-              <select [value]="outputFormat()" (change)="outputFormat.set(($event.target as HTMLSelectElement).value as any)"
+              <select [value]="outputFormat()" (change)="outputFormat.set($any($event.target).value)"
                       class="bg-gray-900 border border-gray-700 font-bold text-sm rounded-lg px-3 py-2 outline-none focus:border-yellow-500 transition-colors">
                 <option value="wav">WAV</option><option value="mp3">MP3</option><option value="aac">AAC</option>
               </select>
@@ -157,8 +157,7 @@ export class StemSplitterComponent implements OnDestroy {
   }
   async downloadAllZip(stems: any[]) {
     // Trigger all downloads sequentially with delay
-    for (let i = 0; i < stems.length; i++) {
-      const s = stems[i];
+    for (const s of stems) {
       if (s.blob) {
         this.downloadStem(s);
         await new Promise(r => setTimeout(r, 300));

@@ -44,7 +44,7 @@ async function extractStem(ffmpegInstance: FFmpeg, inputName: string, label: Ste
   await ffmpegInstance.exec(['-i', inputName, '-af', filter, '-c:a', codec, '-y', outName]);
   const data = await ffmpegInstance.readFile(outName);
   await ffmpegInstance.deleteFile(outName);
-  const blob = new Blob([data], { type: `audio/${format}` });
+  const blob = new Blob([data as any], { type: `audio/${format}` });
   return { label, blob, sizeMB: blob.size / 1024 / 1024, isReady: true };
 }
 

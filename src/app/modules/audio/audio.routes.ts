@@ -30,7 +30,7 @@ import { karaokeReducer, karaokeProcessingEffect } from './26-karaoke/karaoke.st
 import { visualizerReducer, visualizerProcessingEffect } from './27-visualizer/visualizer.store';
 import { transcriberReducer, transcriberProcessingEffect } from './28-transcriber/transcriber.store';
 import { watermarkReducer, watermarkProcessingEffect } from './29-watermark/watermark.store';
-import { stemsplitterReducer, stemsplitterProcessingEffect } from './30-stem-splitter/stem-splitter.store';
+import { stemSplitterReducer, processStemSplitterEffect } from './30-stem-splitter/stem-splitter.store';
 
 export const AUDIO_ROUTES: Routes = [
   {
@@ -65,7 +65,7 @@ export const AUDIO_ROUTES: Routes = [
       provideState('visualizer', visualizerReducer),
       provideState('transcriber', transcriberReducer),
       provideState('watermark', watermarkReducer),
-      provideState('stem-splitter', stemsplitterReducer),
+      provideState('stem-splitter', stemSplitterReducer),
       provideEffects({
         recorderProcessingEffect,
         trimmerProcessingEffect,
@@ -96,7 +96,7 @@ export const AUDIO_ROUTES: Routes = [
         visualizerProcessingEffect,
         transcriberProcessingEffect,
         watermarkProcessingEffect,
-        stemsplitterProcessingEffect,
+        processStemSplitterEffect,
       })
     ],
     children: [

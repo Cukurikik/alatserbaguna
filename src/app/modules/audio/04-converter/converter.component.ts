@@ -253,7 +253,7 @@ export class ConverterComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_conv_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}_\${this.bitrate()}.\${this.outputFormat()}\`;
+    a.download = `omni_conv_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}_${this.bitrate()}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

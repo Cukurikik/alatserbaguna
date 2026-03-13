@@ -18,8 +18,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`\${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`\${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -28,7 +28,7 @@ self.onmessage = async (event: MessageEvent) => {
     const inputName = 'input_' + file.name.replace(/[^a-zA-Z0-9.]/g, '');
     const outputName = 'output.' + format;
     
-    self.postMessage({ type: 'log', message: \`Writing \${file.name} to memory...\` });
+    self.postMessage({ type: 'log', message: `Writing \${file.name} to memory...` });
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
@@ -41,7 +41,7 @@ self.onmessage = async (event: MessageEvent) => {
     else if (format === 'ogg') codec = 'libvorbis';
     else if (format === 'opus') codec = 'libopus';
 
-    self.postMessage({ type: 'log', message: \`Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)\` });
+    self.postMessage({ type: 'log', message: `Converting to \${format.toUpperCase()} (Codec: \${codec}, \${bitrate}, \${sampleRate}Hz, \${channels}ch)` });
 
     const args = [
       '-i', inputName,
@@ -58,7 +58,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData], { type: `audio/\${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

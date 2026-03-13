@@ -87,3 +87,5 @@ export const processCompressorEffect = createEffect(
   },
   { functional: true }
 );
+
+export const compressorProcessingEffect = processCompressorEffect;

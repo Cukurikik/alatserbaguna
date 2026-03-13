@@ -78,9 +78,8 @@ export const startRecordingEffect$ = createEffect(
     return actions$.pipe(
       ofType(RecorderActions.startRecording),
       switchMap(({ source, deviceId }) => {
-        return new Promise<any>(async (resolve) => {
-          try {
-            await recorderService.requestStream(source, deviceId);
+        return new Promise<any>((resolve) => {
+          recorderService.requestStream(source, deviceId).then(() => {
             resolve(RecorderActions.streamReady());
             
             // start recorder
@@ -88,13 +87,13 @@ export const startRecordingEffect$ = createEffect(
                store.dispatch(RecorderActions.chunkReceived({ blob }));
             });
             
-          } catch (err: any) {
+          }).catch((err: any) => {
             resolve(RecorderActions.recordingFailure({ 
               errorCode: 'MIC_PERMISSION_DENIED', 
               message: err.message || 'Permission denied or no stream available.', 
               retryable: true 
             }));
-          }
+          });
         });
       })
     );
@@ -149,3 +148,5 @@ export const cleanupEffect$ = createEffect(
   },
   { functional: true, dispatch: false }
 );
+
+export const recorderProcessingEffect = startRecordingEffect$;

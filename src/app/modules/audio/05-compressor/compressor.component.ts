@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy, signal } from '@angular/core';
-import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CompressorActions, selectCompressorState } from './compressor.store';
@@ -10,7 +10,7 @@ import { ExportFormat } from '../shared/types/audio.types';
   selector: 'app-compressor',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, DecimalPipe, NgClass, AudioDropZoneComponent],
+  imports: [AsyncPipe, DecimalPipe, AudioDropZoneComponent],
   animations: [
     trigger('fadeIn', [transition(':enter', [style({ opacity: 0 }), animate('400ms ease-out', style({ opacity: 1 }))])]),
     trigger('slideUp', [transition(':enter', [style({ opacity: 0, transform: 'translateY(20px)' }), animate('500ms cubic-bezier(0.16,1,0.3,1)', style({ opacity: 1, transform: 'translateY(0)' }))])]),
@@ -266,7 +266,7 @@ export class CompressorComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_comp_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}.\${this.outputFormat()}\`;
+    a.download = `omni_comp_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

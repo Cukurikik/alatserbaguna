@@ -18,8 +18,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`\${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`\${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -34,7 +34,7 @@ self.onmessage = async (event: MessageEvent) => {
     const startTimeSec = (startTimeMs / 1000).toFixed(3);
     const durationSec = ((endTimeMs - startTimeMs) / 1000).toFixed(3);
 
-    self.postMessage({ type: 'log', message: \`Trimming \${inputName} from \${startTimeSec}s, length: \${durationSec}s\` });
+    self.postMessage({ type: 'log', message: `Trimming \${inputName} from \${startTimeSec}s, length: \${durationSec}s` });
 
     // Precise cut: flag -ss before input is faster, but sometimes less accurate for audio.
     // For exact precision, we use -ss and -t after input, or before for speed.
@@ -52,7 +52,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData as any], { type: `audio/${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

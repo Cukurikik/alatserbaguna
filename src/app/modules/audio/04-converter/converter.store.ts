@@ -87,3 +87,5 @@ export const processConverterEffect = createEffect(
   },
   { functional: true }
 );
+
+export const converterProcessingEffect = processConverterEffect;

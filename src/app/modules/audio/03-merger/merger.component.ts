@@ -253,7 +253,7 @@ export class MergerComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_merged_mix_\${Date.now()}.\${this.outputFormat()}\`;
+    a.download = `omni_merged_mix_${Date.now()}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

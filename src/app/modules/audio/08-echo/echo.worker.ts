@@ -18,8 +18,8 @@ self.onmessage = async (event: MessageEvent) => {
 
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
       await ffmpeg.load({
-        coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-        wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+        coreURL: await toBlobURL(`\${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`\${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
       });
     }
 
@@ -28,7 +28,7 @@ self.onmessage = async (event: MessageEvent) => {
     const inputName = 'input_' + file.name.replace(/[^a-zA-Z0-9.]/g, '');
     const outputName = 'output.' + format;
     
-    self.postMessage({ type: 'log', message: \`Writing \${file.name} to memory...\` });
+    self.postMessage({ type: 'log', message: `Writing \${file.name} to memory...` });
     const fileData = await file.arrayBuffer();
     await ffmpeg.writeFile(inputName, new Uint8Array(fileData));
 
@@ -47,9 +47,9 @@ self.onmessage = async (event: MessageEvent) => {
     const dec3 = feedback * feedback * feedback;
 
     // Use up to 3 echos for a tape-delay style effect
-    const filter = \`aecho=\${dryMix}:\${wetMix}:\${d1}|\${d2}|\${d3}:\${dec1}|\${dec2}|\${dec3}\`;
+    const filter = `aecho=\${dryMix}:\${wetMix}:\${d1}|\${d2}|\${d3}:\${dec1}|\${dec2}|\${dec3}`;
     
-    self.postMessage({ type: 'log', message: \`Applying Echo Filter: \${filter}\` });
+    self.postMessage({ type: 'log', message: `Applying Echo Filter: \${filter}` });
 
     const args = [
       '-i', inputName,
@@ -64,7 +64,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: \`audio/\${format === 'm4a' ? 'mp4' : format}\` });
+    const blob = new Blob([outputData], { type: `audio/\${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

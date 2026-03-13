@@ -69,3 +69,5 @@ export const processAnalyserEffect = createEffect(
   },
   { functional: true }
 );
+
+export const analyserProcessingEffect = processAnalyserEffect;

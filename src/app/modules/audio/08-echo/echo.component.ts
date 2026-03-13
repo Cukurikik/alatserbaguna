@@ -249,7 +249,7 @@ export class EchoComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_echo_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}.\${this.outputFormat()}\`;
+    a.download = `omni_echo_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

@@ -88,3 +88,5 @@ export const processEqualizerEffect = createEffect(
   },
   { functional: true }
 );
+
+export const equalizerProcessingEffect = processEqualizerEffect;

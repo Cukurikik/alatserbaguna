@@ -107,7 +107,7 @@ import { ExportFormat } from '../shared/types/audio.types';
               <!-- Main Record Button -->
               <div class="relative w-24 h-24 flex items-center justify-center">
                 @if(state.status === 'idle' || state.status === 'done') {
-                  <button (click)="onStart()" class="w-20 h-20 rounded-full bg-red-600 hover:bg-red-500 border-[6px] border-[#12121a] outline outline-2 outline-gray-700 shadow-xl transition-all hover:scale-105 active:scale-95"></button>
+                  <button (click)="onStart()" aria-label="Start Recording" class="w-20 h-20 rounded-full bg-red-600 hover:bg-red-500 border-[6px] border-[#12121a] outline outline-2 outline-gray-700 shadow-xl transition-all hover:scale-105 active:scale-95"></button>
                 } @else {
                   <button (click)="onStop()" [@recordPulse]="state.status" class="w-20 h-20 rounded-xl bg-red-600 border-[6px] border-[#12121a] outline outline-2 outline-red-900 shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center">
                     <div class="w-6 h-6 bg-white rounded-sm"></div>
@@ -252,7 +252,7 @@ export class RecorderComponent implements AfterViewInit, OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_recording_\${new Date().getTime()}.\${this.outputFormat()}\`;
+    a.download = `omni_recording_${new Date().getTime()}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -271,7 +271,7 @@ export class RecorderComponent implements AfterViewInit, OnDestroy {
     const totalSec = Math.floor(ms / 1000);
     const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
     const s = (totalSec % 60).toString().padStart(2, '0');
-    return \`\${m}:\${s}\`;
+    return `\${m}:\${s}`;
   }
 
   formatMs(ms: number): string {

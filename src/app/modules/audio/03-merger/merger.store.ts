@@ -101,3 +101,5 @@ export const processMergerEffect = createEffect(
   },
   { functional: true }
 );
+
+export const mergerProcessingEffect = processMergerEffect;

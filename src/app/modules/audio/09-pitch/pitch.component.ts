@@ -211,7 +211,7 @@ export class PitchComponent implements OnDestroy {
   semitoneDisplay = computed(() => {
     const val = this.semitones();
     if (val === 0) return '0';
-    return val > 0 ? \`+\${val}\` : \`\${val}\`;
+    return val > 0 ? `+\${val}` : `\${val}`;
   });
 
   private cachedBlobUrls = new Map<Blob, string>();
@@ -254,7 +254,7 @@ export class PitchComponent implements OnDestroy {
     const url = this.getBlobUrl(state.outputBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`omni_pitch_\${this.semitoneDisplay()}st_\${state.inputFile?.name?.replace(/\\.[^.]+$/, '')}.\${this.outputFormat()}\`;
+    a.download = `omni_pitch_${this.semitoneDisplay()}st_${state.inputFile?.name?.replace(/\.[^.]+$/, '')}.${this.outputFormat()}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
