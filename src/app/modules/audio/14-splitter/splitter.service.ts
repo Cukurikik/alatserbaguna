@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WorkerMessage } from '../shared/types/audio.types';
-import { AnalysisResult } from './analyser.schema';
+import { WorkerMessage, ExportFormat } from '../shared/types/audio.types';
 
 @Injectable({ providedIn: 'root' })
-export class AnalyserService {
-  analyseFile(file: File): Observable<WorkerMessage<AnalysisResult>> {
+export class SplitterService {
+  splitAudio(
+    file: File,
+    format: ExportFormat,
+    mode: 'equal' | 'silence',
+    equalParts: number,
+    silenceThresholdDb: number,
+    silenceMinDurationSec: number
+  ): Observable<WorkerMessage<{ blobs: Blob[], count: number }>> {
     return new Observable(observer => {
       let isCancelled = false;
-      const worker = new Worker(new URL('./analyser.worker', import.meta.url), { type: 'module' });
+      const worker = new Worker(new URL('./splitter.worker', import.meta.url), { type: 'module' });
       worker.onmessage = ({ data }: MessageEvent<WorkerMessage<any>>) => {
         if (isCancelled) return;
         switch (data.type) {
@@ -19,7 +25,7 @@ export class AnalyserService {
         }
       };
       worker.onerror = (err) => { if (!isCancelled) observer.error({ type: 'error', message: err.message, errorCode: 'WORKER_CRASHED' }); worker.terminate(); };
-      worker.postMessage({ file });
+      worker.postMessage({ file, format, mode, equalParts, silenceThresholdDb, silenceMinDurationSec });
       return () => { isCancelled = true; worker.terminate(); };
     });
   }

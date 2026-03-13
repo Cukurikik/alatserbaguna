@@ -1,14 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WorkerMessage } from '../shared/types/audio.types';
-import { AnalysisResult } from './analyser.schema';
+import { WorkerMessage, ExportFormat } from '../shared/types/audio.types';
+
+export interface TrackMixConfig {
+  file: File;
+  volume: number;
+  pan: number;
+  muted: boolean;
+  soloed: boolean;
+}
 
 @Injectable({ providedIn: 'root' })
-export class AnalyserService {
-  analyseFile(file: File): Observable<WorkerMessage<AnalysisResult>> {
+export class MixerService {
+  mixTracks(
+    tracks: TrackMixConfig[],
+    masterVolume: number,
+    outputMode: 'stereo' | 'mono',
+    format: ExportFormat
+  ): Observable<WorkerMessage<{ blob: Blob, sizeMB: number }>> {
     return new Observable(observer => {
       let isCancelled = false;
-      const worker = new Worker(new URL('./analyser.worker', import.meta.url), { type: 'module' });
+      const worker = new Worker(new URL('./mixer.worker', import.meta.url), { type: 'module' });
       worker.onmessage = ({ data }: MessageEvent<WorkerMessage<any>>) => {
         if (isCancelled) return;
         switch (data.type) {
@@ -19,7 +31,7 @@ export class AnalyserService {
         }
       };
       worker.onerror = (err) => { if (!isCancelled) observer.error({ type: 'error', message: err.message, errorCode: 'WORKER_CRASHED' }); worker.terminate(); };
-      worker.postMessage({ file });
+      worker.postMessage({ tracks, masterVolume, outputMode, format });
       return () => { isCancelled = true; worker.terminate(); };
     });
   }
