@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { CompressorActions, selectCompressorState, CompressorState } from './compressor.store';
 import { CompressorService } from './compressor.service';
@@ -14,7 +14,7 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
 @Component({
   selector: 'app-compressor',
   standalone: true,
-  imports: [AsyncPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
+  imports: [AsyncPipe, DecimalPipe, FileDropZoneComponent, VideoPreviewComponent, ProgressRingComponent],
   template: `
     <div class="h-full w-full bg-gray-950/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl p-6 flex flex-col overflow-y-auto custom-scrollbar" [@fadeIn]>
       
@@ -22,17 +22,17 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
       <div class="mb-8 flex justify-between items-start">
         <div>
           <h2 class="text-4xl font-black bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg pb-1 tracking-tight">
-            Video Compressor
+            Dense Engine
           </h2>
-          <p class="text-gray-400 text-sm mt-1 font-medium italic opacity-80 uppercase tracking-widest">Precision Bitrate Neutralizer</p>
+          <p class="text-gray-400 text-sm mt-1 font-medium italic opacity-80 uppercase tracking-widest">Precision Bitrate Neutralizer: Quantum Squeeze v1.0</p>
         </div>
         @if (vm$ | async; as vm) {
           @if (vm.inputFile) {
-            <button (click)="onReset()" class="group flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-rose-400 transition-all uppercase tracking-tighter">
-              <span class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-rose-950/30 transition-colors">
+            <button (click)="onReset()" class="group flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-emerald-400 transition-all uppercase tracking-tighter">
+              <span class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-emerald-950/30 transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               </span>
-              Clear
+              Purge Payload
             </button>
           }
         }
@@ -40,156 +40,178 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
 
       @if (vm$ | async; as vm) {
         
-        <!-- Pillar 5: I/O — Input State -->
         @if (!vm.inputFile) {
-          <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full" [@slideUp]>
-            <app-file-drop-zone accept="video/*" (fileDropped)="onFileSelected($event)"></app-file-drop-zone>
+          <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full py-20" [@slideUp]>
+            <app-file-drop-zone 
+              accept="video/*" 
+              (fileDropped)="onFileSelected($event)"
+              class="w-full">
+            </app-file-drop-zone>
             
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-               <div class="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 flex items-start gap-4">
-                  <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 shrink-0">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div class="p-8 rounded-[2.5rem] bg-gray-900/40 border border-gray-800 backdrop-blur-md flex items-start gap-6 group hover:border-emerald-500/30 transition-all duration-500">
+                  <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-xl shadow-emerald-500/5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                   </div>
                   <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wide">Dynamic CRF Control</h4>
-                    <p class="text-xs text-gray-500 mt-1">Constant Rate Factor ensures consistent visual quality across every frame while minimizing file weight.</p>
+                    <h4 class="text-white font-black text-sm uppercase tracking-tight italic">Dynamic CRF Control</h4>
+                    <p class="text-[10px] text-gray-500 mt-2 leading-relaxed font-medium uppercase tracking-widest opacity-60 italic">Constant Rate Factor ensures consistent visual parity while minimizing bitstream volume.</p>
                   </div>
                </div>
-               <div class="p-6 rounded-2xl bg-teal-500/5 border border-teal-500/10 flex items-start gap-4">
-                  <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center text-teal-400 shrink-0">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+               <div class="p-8 rounded-[2.5rem] bg-gray-900/40 border border-gray-800 backdrop-blur-md flex items-start gap-6 group hover:border-cyan-500/30 transition-all duration-500">
+                  <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 group-hover:-rotate-3 transition-transform shadow-xl shadow-cyan-500/5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                   </div>
                   <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wide">Multi-Threaded Encoding</h4>
-                    <p class="text-xs text-gray-500 mt-1">CPU-Optimized presets (Ultrafast to Veryslow) to balance processing speed and final efficiency.</p>
+                    <h4 class="text-white font-black text-sm uppercase tracking-tight italic">Multi-Threaded Squeeze</h4>
+                    <p class="text-[10px] text-gray-500 mt-2 leading-relaxed font-medium uppercase tracking-widest opacity-60 italic">CPU-Optimized presets balancing processing velocity and final extraction efficiency.</p>
                   </div>
                </div>
             </div>
           </div>
         }
 
-        <!-- Pillar 4: Component Logic Area -->
         @if (vm.inputFile) {
-          <div class="flex-1 flex flex-col lg:flex-row gap-8" [@fadeIn]>
+          <div class="flex-1 flex flex-col lg:flex-row gap-8 min-h-0" [@fadeIn]>
             
-            <!-- Left: Preview & Metrics -->
-            <div class="flex-1 flex flex-col gap-6">
-              <div class="relative group rounded-3xl overflow-hidden border border-gray-800 shadow-2xl bg-black/40">
+            <div class="flex-1 flex flex-col gap-8 min-h-0">
+              <div class="relative group rounded-[2.5rem] overflow-hidden border border-gray-800 shadow-2xl bg-black/40 backdrop-blur-md">
                 <app-video-preview [videoUrl]="videoUrl" (durationLoaded)="onDurationLoaded($event)"></app-video-preview>
                 
                 @if (vm.status === 'processing') {
-                   <div class="absolute inset-0 bg-black/70 backdrop-blur-md flex flex-col items-center justify-center z-10" [@fadeIn]>
-                      <app-progress-ring [progress]="vm.progress" [status]="'REDUCING'"></app-progress-ring>
-                      <p class="text-emerald-400 font-mono text-[10px] mt-6 uppercase tracking-[0.4em] animate-pulse">Encoding Pipeline Saturated</p>
+                   <div class="absolute inset-0 bg-gray-950/70 backdrop-blur-md flex flex-col items-center justify-center z-10" [@fadeIn]>
+                      <app-progress-ring [progress]="vm.progress" [status]="'COMPRESSING_BITSTREAM'"></app-progress-ring>
+                      <div class="mt-8 flex flex-col items-center gap-2">
+                         <span class="text-emerald-400 font-mono text-[10px] uppercase tracking-[0.4em] animate-pulse italic font-black">Dense_Core_Active</span>
+                         <span class="text-gray-500 font-mono text-[8px] uppercase tracking-widest opacity-60 italic">Neutralizing Payload Density...</span>
+                      </div>
                    </div>
                 }
               </div>
 
               <!-- Size Comparison Masterpiece Widget -->
-              <div class="bg-gray-900/40 backdrop-blur-md border border-gray-800 rounded-3xl p-6 shadow-xl overflow-hidden relative group">
-                 <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                 <div class="flex items-center justify-between mb-8 relative">
-                    <h3 class="text-lg font-black text-white flex items-center gap-3">
-                       <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                       Mass Reduction
+              <div class="bg-gray-900/40 backdrop-blur-md border border-gray-800 rounded-[2.5rem] p-10 shadow-2xl overflow-hidden relative group">
+                 <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent opacity-10"></div>
+                 <div class="flex items-center justify-between mb-10 relative">
+                    <h3 class="text-xl font-black text-white flex items-center gap-4 italic uppercase tracking-tighter">
+                       <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                       </div>
+                       Mass Neutralization
                     </h3>
                     @if (vm.status === 'success' && vm.outputSizeMB) {
-                       <div class="px-4 py-1.5 bg-emerald-500 rounded-full shadow-lg shadow-emerald-500/20">
-                          <span class="text-xs font-black text-emerald-950 uppercase tracking-tighter">
-                            {{ (((vm.originalSizeMB - vm.outputSizeMB) / vm.originalSizeMB) * 100).toFixed(1) }}% Saved
+                       <div class="px-5 py-2 bg-emerald-500 border border-emerald-400 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                          <span class="text-[10px] font-black text-emerald-950 uppercase tracking-widest italic leading-none">
+                            {{ (((vm.originalSizeMB - vm.outputSizeMB) / vm.originalSizeMB) * 100) | number:'1.1-1' }}% Purged
                           </span>
                        </div>
                     }
                  </div>
                  
-                 <div class="flex items-center justify-between gap-4 relative">
-                    <div class="flex-1 p-6 rounded-2xl bg-black/20 border border-gray-800 text-center">
-                       <span class="block text-[9px] font-black text-gray-500 uppercase tracking-widest mb-2">Original Volume</span>
-                       <span class="text-2xl font-mono text-gray-300 font-black tracking-tighter">{{ vm.originalSizeMB.toFixed(2) }}<span class="text-[10px] ml-1 opacity-40">MB</span></span>
+                 <div class="flex items-center justify-between gap-6 relative">
+                    <div class="flex-1 p-8 rounded-[2rem] bg-black/40 border border-gray-800 text-center shadow-lg group-hover:border-emerald-500/10 transition-colors">
+                       <span class="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-3 italic opacity-60">Source_Volume</span>
+                       <span class="text-3xl font-mono text-gray-300 font-black tracking-tighter italic">{{ vm.originalSizeMB | number:'1.2-2' }}<span class="text-[12px] ml-2 opacity-40 uppercase">MB</span></span>
                     </div>
                     
-                    <div class="shrink-0 w-12 h-12 rounded-full border border-gray-800 flex items-center justify-center bg-gray-900">
-                       <svg class="w-6 h-6 text-gray-700 group-hover:text-emerald-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    <div class="shrink-0 w-16 h-16 rounded-3xl border border-gray-800 flex items-center justify-center bg-gray-900 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                       <svg class="w-8 h-8 text-gray-700 group-hover:text-emerald-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </div>
-
-                    <div class="flex-1 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-center">
-                       <span class="block text-[9px] font-black text-emerald-500/60 uppercase tracking-widest mb-2">Compressed Volume</span>
-                       <span class="text-2xl font-mono text-emerald-400 font-black tracking-tighter">
-                          {{ vm.status === 'success' && vm.outputSizeMB ? vm.outputSizeMB.toFixed(2) : '---' }}<span class="text-[10px] ml-1 opacity-40">MB</span>
+ 
+                    <div class="flex-1 p-8 rounded-[2rem] bg-emerald-500/5 border border-emerald-500/20 text-center shadow-lg group-hover:border-emerald-500/40 transition-colors">
+                       <span class="block text-[10px] font-black text-emerald-500/60 uppercase tracking-[0.2em] mb-3 italic opacity-60">Neutron_Volume</span>
+                       <span class="text-3xl font-mono text-emerald-400 font-black tracking-tighter italic">
+                          {{ vm.status === 'success' && vm.outputSizeMB ? (vm.outputSizeMB | number:'1.2-2') : '---' }}<span class="text-[12px] ml-2 opacity-40 uppercase">MB</span>
                        </span>
                     </div>
                  </div>
               </div>
             </div>
 
-            <!-- Right: Parameters Panel -->
-            <div class="w-full lg:w-[420px] flex flex-col gap-6">
+            <div class="w-full lg:w-[420px] shrink-0 flex flex-col gap-8">
               
               <!-- Settings Card -->
-              <div class="bg-gray-900/50 backdrop-blur-md border border-gray-800 rounded-3xl p-8 flex flex-col gap-8 shadow-2xl">
+              <div class="bg-gray-900/40 backdrop-blur-md border border-gray-800 rounded-[2.5rem] p-10 flex flex-col gap-10 shadow-2xl relative overflow-hidden">
+                 <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
                  
                  <!-- CRF Slider -->
-                 <div class="p-6 bg-black/30 rounded-2xl border border-gray-800/50 relative overflow-hidden">
-                    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
+                 <div class="p-8 bg-black/40 rounded-[2rem] border border-gray-800 shadow-xl group hover:border-emerald-500/20 transition-colors duration-500">
                     <div class="flex justify-between items-center mb-6">
-                      <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest leading-none">Quantum Density (CRF)</label>
-                      <div class="px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-md">
-                         <span class="text-emerald-400 font-mono text-xs font-bold leading-none">{{ vm.crf }}</span>
-                      </div>
+                       <label class="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] italic opacity-60">Quantum_Density (CRF)</label>
+                       <div class="px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl shadow-inner">
+                          <span class="text-emerald-400 font-mono text-xs font-black leading-none italic">{{ vm.crf }}</span>
+                       </div>
                     </div>
                     <input type="range" min="18" max="51" [value]="vm.crf" (input)="onSetCRF($event)"
                       class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-emerald-500 focus:outline-none">
                     <div class="flex justify-between mt-4">
-                      <span class="text-[9px] font-bold text-gray-600 uppercase tracking-tighter">Lossless-ish</span>
-                      <span class="text-[9px] font-bold text-gray-600 uppercase tracking-tighter">Maximum Squeeze</span>
+                       <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest italic opacity-40 leading-none">Lossless-ish</span>
+                       <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest italic opacity-40 leading-none">Maximum_Squeeze</span>
                     </div>
                  </div>
 
                  <!-- Preset Selection -->
-                 <div>
-                   <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4">Encoding Priority</label>
-                   <div class="grid grid-cols-4 gap-2">
-                     @for (preset of presets; track preset) {
-                       <button (click)="onSetPreset(preset)"
-                         [class]="vm.preset === preset
-                           ? 'bg-emerald-500 text-emerald-950 shadow-lg shadow-emerald-500/20'
-                           : 'bg-black/40 text-gray-500 hover:bg-gray-800 hover:text-white border border-gray-800'"
-                         class="py-3 px-1 rounded-xl text-[9px] font-black font-mono transition-all uppercase tracking-widest hover:scale-[1.05] active:scale-95 leading-none">
-                         {{ preset }}
-                       </button>
-                     }
-                   </div>
-                   <p class="text-[9px] text-gray-600 mt-4 font-mono uppercase tracking-tighter">* Slower presets result in better compression ratios.</p>
+                 <div class="space-y-4">
+                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] italic opacity-60">Encoding_Priority</label>
+                    <div class="grid grid-cols-4 gap-2">
+                      @for (preset of presets; track preset) {
+                        <button (click)="onSetPreset(preset)"
+                          [class]="vm.preset === preset
+                            ? 'bg-emerald-500 text-emerald-950 font-black border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
+                            : 'bg-black/40 text-gray-500 hover:bg-gray-800 hover:text-white border border-gray-800/50 opacity-60 hover:opacity-100'"
+                          class="py-3.5 px-1 rounded-xl text-[9px] font-black font-mono transition-all uppercase tracking-widest hover:scale-[1.05] active:scale-95 leading-none border">
+                          {{ preset }}
+                        </button>
+                      }
+                    </div>
                  </div>
 
                  <!-- Output Format -->
-                 <div class="flex flex-col gap-4">
-                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-widest leading-none">Target Wrapper</label>
-                    <app-export-panel
-                       [disabled]="vm.status === 'processing'"
-                       (formatChange)="onSetFormat($event)"
-                       (exportClicked)="onStartCompress(vm)">
-                    </app-export-panel>
+                 <div class="space-y-4">
+                    <label class="block text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] italic opacity-60">Target_Wrapper</label>
+                    <div class="bg-black/40 p-6 rounded-[2rem] border border-gray-800">
+                       <div class="flex flex-col gap-6">
+                         <div class="flex gap-2">
+                            @for (fmt of ['mp4', 'webm', 'mov']; track fmt) {
+                              <button (click)="onSetFormat(fmt)"
+                                [class]="vm.outputFormat === fmt
+                                  ? 'bg-emerald-500 text-emerald-950 font-black border-emerald-400 shadow-lg'
+                                  : 'bg-black/40 text-gray-500 hover:bg-gray-800 border border-gray-800/50'"
+                                class="flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border italic">
+                                {{ fmt }}
+                              </button>
+                            }
+                         </div>
+                         <button (click)="onStartCompress(vm)"
+                           [disabled]="vm.status === 'processing'"
+                           class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-black py-5 rounded-2xl shadow-2xl shadow-emerald-500/20 transition-all active:scale-95 text-xs uppercase tracking-[0.25em] flex items-center justify-center gap-4 italic disabled:opacity-30">
+                           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                           Energize Squeeze
+                         </button>
+                       </div>
+                    </div>
                  </div>
 
-                 <!-- Success/Error Logic -->
-                 <div class="pt-4 border-t border-gray-800/50">
+                 <!-- Action Results -->
+                 <div class="pt-6 border-t border-gray-800/50">
                     @if (vm.status === 'success') {
                        <button (click)="onDownload(vm)" 
-                         class="w-full bg-emerald-500 hover:bg-emerald-400 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center gap-3 active:scale-95" [@slideUp]>
-                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                         Export Compressed Asset
+                         class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center gap-3 active:scale-95 group italic" [@slideUp]>
+                         <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                         Export Reconstructed Asset
                        </button>
                     }
 
                     @if (vm.status === 'error') {
-                       <div class="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-start gap-4" [@fadeIn]>
-                          <svg class="w-5 h-5 text-rose-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
-                          <div class="flex-1">
-                            <p class="text-white font-black text-xs uppercase leading-tight tracking-tight">Neutron Engine Core Error</p>
-                            <p class="text-rose-400 font-mono text-[9px] mt-1 pr-2 leading-relaxed opacity-80">{{ vm.errorMessage || 'Unknown system divergence' }}</p>
+                       <div class="p-6 bg-rose-500/5 border border-rose-500/20 rounded-[1.5rem] flex items-start gap-4 animate-in shake-1 duration-500" [@fadeIn]>
+                          <div class="w-10 h-10 bg-rose-500/10 rounded-full flex items-center justify-center text-rose-500 shrink-0 shadow-lg">
+                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <p class="text-white font-black text-xs uppercase tracking-tight italic">Engine_Squeeze_Failure</p>
+                            <p class="text-rose-400 font-black font-mono text-[9px] mt-1.5 leading-relaxed uppercase tracking-wider opacity-80 italic line-clamp-2">{{ vm.errorMessage || 'Unknown bitstream reduction failure' }}</p>
                             @if (vm.retryable) {
-                               <button (click)="onStartCompress(vm)" class="mt-4 text-[10px] font-black uppercase text-white bg-white/5 hover:bg-white/10 px-4 py-1.5 rounded-full border border-white/10 transition-all">Re-initialize</button>
+                               <button (click)="onStartCompress(vm)" class="mt-4 text-[9px] font-black uppercase text-white border-b-2 border-white/10 hover:border-emerald-500 transition-all hover:text-emerald-400 tracking-[0.2em] italic">Retry_Attempt_Ops</button>
                             }
                           </div>
                        </div>
@@ -197,21 +219,21 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
                  </div>
               </div>
 
-              <!-- Extra Technical Metadata -->
-              <div class="bg-gray-900/30 rounded-3xl p-6 border border-white/5 border-dashed">
-                 <h4 class="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-4">Stream Diagnostics</h4>
-                 <div class="space-y-3">
+              <!-- Technical Stats -->
+              <div class="bg-gray-900/40 backdrop-blur-md rounded-[2.5rem] p-8 border border-gray-800 shadow-inner group hover:border-emerald-500/10 transition-colors">
+                 <h4 class="text-[9px] font-black text-gray-500 uppercase tracking-[0.4em] mb-6 italic opacity-60">Stream_Diagnostics</h4>
+                 <div class="space-y-4">
                     <div class="flex justify-between items-center text-[10px] font-mono">
-                       <span class="text-gray-500 uppercase tracking-tighter">Spatial Resolution</span>
-                       <span class="text-white">{{ vm.videoMeta?.width || '–' }}×{{ vm.videoMeta?.height || '–' }}</span>
+                       <span class="text-gray-500 uppercase tracking-widest italic opacity-60">Resolution</span>
+                       <span class="text-white font-black italic">{{ vm.videoMeta?.width || '–' }}×{{ vm.videoMeta?.height || '–' }}</span>
                     </div>
                     <div class="flex justify-between items-center text-[10px] font-mono">
-                       <span class="text-gray-500 uppercase tracking-tighter">Interframe Speed</span>
-                       <span class="text-white font-bold">{{ vm.videoMeta?.fps || '–' }} Hz</span>
+                       <span class="text-gray-500 uppercase tracking-widest italic opacity-60">Frequency</span>
+                       <span class="text-white font-black italic">{{ vm.videoMeta?.fps || '–' }} Hz</span>
                     </div>
                     <div class="flex justify-between items-center text-[10px] font-mono">
-                       <span class="text-gray-500 uppercase tracking-tighter">Encoding Logic</span>
-                       <span class="text-white uppercase">{{ vm.videoMeta?.codec || 'AUTO' }}</span>
+                       <span class="text-gray-500 uppercase tracking-widest italic opacity-60">Codec_Logic</span>
+                       <span class="text-emerald-400 font-black italic uppercase">{{ vm.videoMeta?.codec || 'AUTO' }}</span>
                     </div>
                  </div>
               </div>
@@ -225,8 +247,7 @@ const PRESETS = ['ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium
   styles: [`
     .custom-scrollbar::-webkit-scrollbar { width: 4px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 10px; }
   `],
   animations: [
     trigger('fadeIn', [
@@ -308,7 +329,7 @@ export class CompressorComponent implements OnDestroy {
         error: (err) => {
           this.store.dispatch(CompressorActions.processingFailure({ 
             errorCode: 'FFMPEG_COMMAND_FAILED', 
-            message: err.message ?? 'Compression failed. Try a faster preset or moderate quality.',
+            message: err.message ?? 'Compression failed. Neural bitstream diverging.',
             retryable: true
           }));
         }
@@ -320,13 +341,8 @@ export class CompressorComponent implements OnDestroy {
     if (state.outputBlob) {
       const url = URL.createObjectURL(state.outputBlob);
       const filename = this.compressorService.getOutputFilename(state.inputFile?.name || 'video', state.outputFormat, state.crf);
-      const a = Object.assign(document.createElement('a'), { 
-        href: url, 
-        download: filename 
-      });
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      const a = Object.assign(document.createElement('a'), { href: url, download: filename });
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 150);
     }
   }
