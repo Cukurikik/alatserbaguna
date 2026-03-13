@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, OnDestroy, signal } from '@angular/core';
+import JSZip from 'jszip';
 import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -70,9 +71,10 @@ import { ExportFormat } from '../shared/types/audio.types';
                     <div class="flex justify-between items-center">
                       <label class="text-sm font-bold text-gray-300">Number of Parts</label>
                       <div class="flex items-center gap-2">
-                        <button (click)="equalParts.update(v => Math.max(2, v - 1))" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">-</button>
-                        <span class="w-10 text-center text-xl font-black text-amber-400 font-mono">{{ equalParts() }}</span>
-                        <button (click)="equalParts.update(v => Math.min(50, v + 1))" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">+</button>
+                        <button (click)="decreaseParts()" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">-</button>
+                      <input type="number" min="2" max="10" [value]="equalParts()" (change)="onEqualPartsChange($event)"
+                             class="w-16 bg-gray-900 border-none text-center font-black text-amber-400 outline-none">
+                      <button (click)="increaseParts()" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center font-bold transition-all active:scale-95">+</button>
                       </div>
                     </div>
                     <input type="range" min="2" max="50" step="1" [value]="equalParts()" (input)="onEqualPartsChange($event)" class="w-full accent-amber-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
@@ -191,6 +193,11 @@ export class SplitterComponent implements OnDestroy {
   silenceThresholdDb = signal<number>(-40);
   silenceMinDuration = signal<number>(0.5);
   private cachedBlobUrls = new Map<Blob, string>();
+
+  protected readonly Math = Math;
+
+  decreaseParts() { this.equalParts.update(v => Math.max(2, v - 1)); }
+  increaseParts() { this.equalParts.update(v => Math.min(10, v + 1)); }
 
   onFileSelected(files: File[]) { if (files.length) this.store.dispatch(SplitterActions.loadFile({ file: files[0] })); }
   onEqualPartsChange(e: Event) { this.equalParts.set(parseInt((e.target as HTMLInputElement).value, 10)); }

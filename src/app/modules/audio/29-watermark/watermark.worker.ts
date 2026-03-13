@@ -91,7 +91,7 @@ self.onmessage = async (event: MessageEvent) => {
 
       self.postMessage({ type: 'progress', value: 80 });
       const wavBuf = writeWav(channelData, decoded.sampleRate);
-      const blob = new Blob([wavBuf], { type: 'audio/wav' });
+      const blob = new Blob([wavBuf as any], { type: 'audio/wav' });
       self.postMessage({ type: 'complete', data: { blob, sizeMB: blob.size / 1024 / 1024, detectedText: null, confidence: null } });
 
     } else {

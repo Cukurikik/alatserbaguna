@@ -67,7 +67,7 @@ self.onmessage = async (event: MessageEvent) => {
     self.postMessage({ type: 'progress', value: 95 });
 
     const outputData = await ffmpeg.readFile(outputName);
-    const blob = new Blob([outputData], { type: `audio/\${format === 'm4a' ? 'mp4' : format}` });
+    const blob = new Blob([outputData as any], { type: `audio/\${format === 'm4a' ? 'mp4' : format}` });
     const sizeMB = blob.size / (1024 * 1024);
 
     // Cleanup

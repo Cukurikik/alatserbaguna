@@ -45,7 +45,7 @@ self.onmessage = async (event: MessageEvent) => {
 
     self.postMessage({ type: 'progress', value: 95 });
     const data = await ffmpeg.readFile(outputName);
-    const blob = new Blob([data], { type: `audio/${format}` });
+    const blob = new Blob([data as any], { type: `audio/${format}` });
     await ffmpeg.deleteFile(inputName); await ffmpeg.deleteFile(outputName);
     self.postMessage({ type: 'complete', data: { blob, sizeMB: blob.size / 1024 / 1024 } });
   } catch (err: any) {

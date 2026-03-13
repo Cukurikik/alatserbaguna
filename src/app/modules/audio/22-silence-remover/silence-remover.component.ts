@@ -44,7 +44,7 @@ import { ExportFormat } from '../shared/types/audio.types';
                 <!-- Threshold -->
                 <div class="flex flex-col gap-2">
                   <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Silence Threshold</label><span class="text-amber-400 font-mono font-black text-sm">{{ thresholdDb() }} dBFS</span></div>
-                  <input type="range" min="-60" max="-10" step="1" [value]="thresholdDb()" (input)="thresholdDb.set(+($event.target as HTMLInputElement).value)"
+                  <input type="range" min="-60" max="-10" step="1" [value]="thresholdDb()" (input)="thresholdDb.set(+$any($event.target).value)"
                         class="w-full accent-amber-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                   <div class="flex gap-2">
                     @for (v of [-60,-40,-30,-20]; track v) {
@@ -57,7 +57,7 @@ import { ExportFormat } from '../shared/types/audio.types';
                 <!-- Min Duration -->
                 <div class="flex flex-col gap-2">
                   <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Minimum Silence Duration</label><span class="text-orange-400 font-mono font-black text-sm">{{ minSilenceDur() }}s</span></div>
-                  <input type="range" min="0.1" max="5" step="0.1" [value]="minSilenceDur()" (input)="minSilenceDur.set(+($event.target as HTMLInputElement).value)"
+                  <input type="range" min="0.1" max="5" step="0.1" [value]="minSilenceDur()" (input)="minSilenceDur.set(+$any($event.target).value)"
                         class="w-full accent-orange-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                   <p class="text-xs text-gray-500">Gaps shorter than this will be kept as-is.</p>
                 </div>
@@ -65,7 +65,7 @@ import { ExportFormat } from '../shared/types/audio.types';
                 <!-- Padding -->
                 <div class="flex flex-col gap-2">
                   <div class="flex justify-between"><label class="text-sm font-bold text-gray-300">Padding</label><span class="text-yellow-400 font-mono font-black text-sm">{{ padding() }}s</span></div>
-                  <input type="range" min="0" max="2" step="0.05" [value]="padding()" (input)="padding.set(+($event.target as HTMLInputElement).value)"
+                  <input type="range" min="0" max="2" step="0.05" [value]="padding()" (input)="padding.set(+$any($event.target).value)"
                         class="w-full accent-yellow-500 h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer">
                   <p class="text-xs text-gray-500">Extra silence to keep before/after speech (prevents harsh cuts).</p>
                 </div>
@@ -75,7 +75,7 @@ import { ExportFormat } from '../shared/types/audio.types';
             <div class="w-full lg:w-80 flex flex-col gap-6">
               <div class="bg-[#12121a] rounded-2xl border border-gray-800 p-6 flex flex-col min-h-[300px]">
                 <label class="text-xs text-gray-400 uppercase tracking-widest mb-3 font-bold">Format</label>
-                <select [value]="outputFormat()" (change)="outputFormat.set(($event.target as HTMLSelectElement).value as any)"
+                <select [value]="outputFormat()" (change)="outputFormat.set($any($event.target).value)"
                         class="w-full bg-gray-900 border border-gray-700 font-bold text-sm rounded-lg px-4 py-3 outline-none focus:border-amber-500 transition-colors mb-6">
                   <option value="wav">WAV</option><option value="mp3">MP3</option><option value="aac">AAC</option>
                 </select>

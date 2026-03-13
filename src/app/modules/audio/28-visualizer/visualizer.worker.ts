@@ -42,7 +42,7 @@ async function renderFrame(canvas: OffscreenCanvas, fftData: Float32Array, timeD
     for (let i = 0; i < timeData.length; i++) {
       const x = (i / timeData.length) * width;
       const y = ((timeData[i] + 1) / 2) * height;
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      if (i === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
     }
     ctx.stroke();
   } else if (config.style === 'circle') {
@@ -142,13 +142,13 @@ self.onmessage = async (event: MessageEvent) => {
 
     self.postMessage({ type: 'progress', value: 97 });
     const mp4 = await ffmpeg.readFile('vis_out.mp4');
-    const blob = new Blob([mp4], { type: 'video/mp4' });
+    const blob = new Blob([mp4 as any], { type: 'video/mp4' });
 
     // Cleanup
     await ffmpeg.deleteFile('vis_audio.wav');
     await ffmpeg.deleteFile('vis_out.mp4');
     for (let f = 0; f < totalFrames; f++) {
-      await ffmpeg.deleteFile(`frame_${String(f).padStart(5, '0')}.png`).catch(() => {});
+      await ffmpeg.deleteFile(`frame_${String(f).padStart(5, '0')}.png`).catch(() => undefined);
     }
 
     self.postMessage({ type: 'complete', data: { blob, sizeMB: blob.size / 1024 / 1024 } });
