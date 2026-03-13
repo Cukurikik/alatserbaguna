@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
+import { provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { trimmerFeature } from './01-trimmer/trimmer.store';
+import { TrimmerEffects } from './01-trimmer/trimmer.effects';
 
 export const VIDEO_ROUTES: Routes = [
   {
     path: 'trimmer',
     loadComponent: () => import('./01-trimmer/trimmer.component').then(m => m.TrimmerComponent),
-    title: 'Video Trimmer — Omni-Tool'
+    title: 'Video Trimmer — Omni-Tool',
+    providers: [
+      provideState(trimmerFeature),
+      provideEffects([TrimmerEffects])
+    ]
   },
   {
     path: 'merger',
